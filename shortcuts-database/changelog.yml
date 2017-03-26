@@ -1,2 +1,3 @@
 databaseChangeLog:
-  - databaseChangeLog
+    - include: 
+        file: migrations/createRouteTable.sql
