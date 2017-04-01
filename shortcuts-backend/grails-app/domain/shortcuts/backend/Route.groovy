@@ -9,8 +9,10 @@ class Route {
 
     static mapping = {
         id column: 'route_id'
+        description column: 'description'
     }
 
     static constraints = {
+        description nullable: false
     }
 }
