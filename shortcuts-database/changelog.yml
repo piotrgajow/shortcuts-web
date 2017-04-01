@@ -2,3 +2,4 @@ databaseChangeLog:
     - include:
         file: migrations/createRouteTable.sql
         file: migrations/createTripTable.sql
+        file: migrations/createTripPointTable.sql
