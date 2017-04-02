@@ -7,6 +7,8 @@ class Route {
 
     String description
 
+    static hasMany = [trips: Trip]
+
     static mapping = {
         id column: 'route_id'
         description column: 'description'
