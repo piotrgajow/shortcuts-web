@@ -18,7 +18,7 @@ class Trip {
 
     static constraints = {
         route nullable: false
-        startTime nullable: true
-        endTime nullable: true
+        startTime nullable: false
+        endTime nullable: false
     }
 }
