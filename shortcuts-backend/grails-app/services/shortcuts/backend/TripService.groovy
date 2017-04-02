@@ -35,15 +35,15 @@ class TripService {
 
     private Trip buildTrip(Long routeId, path) {
         Route route = Route.get(routeId)
-        def (Date startTime, Date endTime) = getStartAndEndTime(path)
-        return new Trip(route: route, startTime: startTime, endTime: endTime)
+        def tripTimes = getStartAndEndTime(path)
+        return new Trip(route: route, startTime: tripTimes.startTime, endTime: tripTimes.endTime)
     }
 
     private def getStartAndEndTime(path) {
         def timeInstances = path.collect {
             dateService.parseDate(it.time)
         }
-        return [timeInstances.min(), timeInstances.max()]
+        return [startTime: timeInstances.min(), endTime: timeInstances.max()]
     }
 
     private def addTripPoints(Trip trip, path) {
