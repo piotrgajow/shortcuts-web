@@ -7,6 +7,7 @@ class Trip {
     Date endTime
 
     static hasMany = [path: TripPoint]
+    static belongsTo = [Route]
 
     static mapping = {
         id column: 'trip_id'
