@@ -7,15 +7,27 @@ class TripController {
     def tripService
 
     def save(Long routeId) {
-        render tripService.createTrip(routeId, request.JSON) as JSON
+        try {
+            render tripService.createTrip(routeId, request.JSON) as JSON
+        } catch (ex) {
+            render ex.message
+        }
     }
 
     def getByRoute(Long routeId) {
-        render tripService.getByRoute(routeId) as JSON
+        try {
+            render tripService.getByRoute(routeId) as JSON
+        } catch (ex) {
+            render ex.message
+        }
     }
 
     def getById(Long tripId) {
-        render tripService.getById(tripId) as JSON
+        try {
+            render tripService.getById(tripId) as JSON
+        } catch (ex) {
+            render ex.message
+        }
     }
 
 }
