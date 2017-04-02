@@ -17,8 +17,11 @@ class TripService {
         }
 
         Route route = Route.get(routeId)
-        Date startTime = dateService.parseDate(path[0].time)
-        Date endTime = dateService.parseDate(path[-1].time)
+        def timeInstances = path.collect {
+            dateService.parseDate(it.time)
+        }
+        Date startTime = timeInstances.min()
+        Date endTime = timeInstances.max()
 
         Trip trip = new Trip(route: route, startTime: startTime, endTime: endTime)
         path.each { it ->
