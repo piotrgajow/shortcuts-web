@@ -1,0 +1,8 @@
+language: groovy
+
+before_script:
+    - cd shortcuts-backend 
+    - chmod +x grailsw
+
+script:
+    - ./grailsw test-app --non-interactive --echoOut --stacktrace
