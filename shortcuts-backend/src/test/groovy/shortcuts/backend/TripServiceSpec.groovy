@@ -23,8 +23,8 @@ class TripServiceSpec extends Specification {
         service.createTrip(routeId, tripJson)
 
         then:
-        def ex = thrown TripCreationException
-        ex.message == 'Trip requires a specified path'
+        def exception = thrown TripCreationException
+        exception.message == 'Trip requires a specified path'
 
         where:
         routeId = 1
@@ -36,8 +36,8 @@ class TripServiceSpec extends Specification {
         service.createTrip(routeId, tripJson)
 
         then:
-        def ex = thrown TripCreationException
-        ex.message == 'Trip requires a specified route'
+        def exception = thrown TripCreationException
+        exception.message == 'Trip requires a specified route'
 
         where:
         routeId = null
