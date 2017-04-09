@@ -10,15 +10,12 @@ import spock.lang.Unroll
 @Unroll
 class TripServiceSpec extends Specification {
 
-    def setup() {
+    def setupSpec() {
         Route.metaClass.static.get = { Long id ->
             def route = new Route(description: 'Test route')
             route.id = id
             return route
         }
-    }
-
-    def cleanup() {
     }
 
     void 'Should reject trips without path'() {
