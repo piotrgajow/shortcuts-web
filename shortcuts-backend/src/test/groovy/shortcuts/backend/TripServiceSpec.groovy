@@ -41,7 +41,7 @@ class TripServiceSpec extends Specification {
 
         where:
         routeId = null
-        tripJson = [path: [[latitude: 0, longitude: 0, time: '2000-01-01T20:30:00Z']]]
+        tripJson = [path: createPathJson([0, 0, '2000-01-01T20:30:00Z'])]
     }
 
     void 'Should assign trip to proper route'() {
@@ -53,7 +53,7 @@ class TripServiceSpec extends Specification {
 
         where:
         routeId = 1L
-        tripJson = [path: [[latitude: 0, longitude: 0, time: '2000-01-01T20:30:00Z']]]
+        tripJson = [path: createPathJson([0, 0, '2000-01-01T20:30:00Z'])]
     }
 
     void 'Should extract trip start time from path'() {
@@ -66,8 +66,8 @@ class TripServiceSpec extends Specification {
         where:
         routeId = 1
         expectedStartTime | tripJson
-        '2000-01-01 20:30:00' | [path: [[latitude: 0, longitude: 0, time: '2000-01-01T20:30:00Z']]]
-        '2000-01-01 21:30:00' | [path: [[latitude: 0, longitude: 0, time: '2000-01-01T21:30:00Z'], [latitude: 1, longitude: 0, time: '2000-01-01T22:00:00Z']]]
+        '2000-01-01 20:30:00' | [path: createPathJson([0, 0, '2000-01-01T20:30:00Z'])]
+        '2000-01-01 21:30:00' | [path: createPathJson([0, 0, '2000-01-01T21:30:00Z'], [1, 0, '2000-01-01T22:00:00Z'])]
     }
 
     void 'Should extract trip end time from path'() {
@@ -80,8 +80,8 @@ class TripServiceSpec extends Specification {
         where:
         routeId = 1
         expectedEndTime | tripJson
-        '2000-01-01 20:30:00' | [path: [[latitude: 0, longitude: 0, time: '2000-01-01T20:30:00Z']]]
-        '2000-01-01 22:00:00' | [path: [[latitude: 0, longitude: 0, time: '2000-01-01T21:30:00Z'], [latitude: 1, longitude: 0, time: '2000-01-01T22:00:00Z']]]
+        '2000-01-01 20:30:00' | [path: createPathJson([0, 0, '2000-01-01T20:30:00Z'])]
+        '2000-01-01 22:00:00' | [path: createPathJson([0, 0, '2000-01-01T21:30:00Z'], [1, 0, '2000-01-01T22:00:00Z'])]
     }
 
     void 'Should persist path points'() {
@@ -93,7 +93,14 @@ class TripServiceSpec extends Specification {
 
         where:
         routeId = 1
-        tripJson = [path: [[latitude: 0, longitude: 0, time: '2000-01-01T21:30:00Z'], [latitude: 1, longitude: 0, time: '2000-01-01T22:00:00Z']]]
+        tripJson = [path: createPathJson([0, 0, '2000-01-01T21:30:00Z'], [1, 0, '2000-01-01T22:00:00Z'])]
+    }
+
+    private static def createPathJson(... points) {
+        return points.collect {
+            def (latitude, longitude, time) = it
+            return [latitude: latitude, longitude: longitude, time: time]
+        }
     }
 
 }
