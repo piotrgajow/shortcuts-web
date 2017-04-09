@@ -64,10 +64,11 @@ class TripServiceSpec extends Specification {
         result.startTime == new Date().parse('yyyy-MM-dd HH:mm:ss', expectedStartTime)
 
         where:
-        routeId = 1
-        expectedStartTime | tripJson
+        expectedStartTime     | tripJson
         '2000-01-01 20:30:00' | [path: createPathJson([0, 0, '2000-01-01T20:30:00Z'])]
         '2000-01-01 21:30:00' | [path: createPathJson([0, 0, '2000-01-01T21:30:00Z'], [1, 0, '2000-01-01T22:00:00Z'])]
+
+        routeId = 1
     }
 
     void 'Should extract trip end time from path'() {
@@ -78,10 +79,11 @@ class TripServiceSpec extends Specification {
         result.endTime == new Date().parse('yyyy-MM-dd HH:mm:ss', expectedEndTime)
 
         where:
-        routeId = 1
-        expectedEndTime | tripJson
+        expectedEndTime       | tripJson
         '2000-01-01 20:30:00' | [path: createPathJson([0, 0, '2000-01-01T20:30:00Z'])]
         '2000-01-01 22:00:00' | [path: createPathJson([0, 0, '2000-01-01T21:30:00Z'], [1, 0, '2000-01-01T22:00:00Z'])]
+
+        routeId = 1
     }
 
     void 'Should persist path points'() {
