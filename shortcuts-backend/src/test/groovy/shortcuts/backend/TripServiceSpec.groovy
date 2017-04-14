@@ -10,7 +10,7 @@ import spock.lang.Unroll
 @Unroll
 class TripServiceSpec extends Specification {
 
-    def setup() {
+    def setupSpec() {
         Route.metaClass.static.get = { Long id ->
             def route = new Route(description: 'Test route')
             route.id = id
@@ -18,16 +18,13 @@ class TripServiceSpec extends Specification {
         }
     }
 
-    def cleanup() {
-    }
-
     void 'Should reject trips without path'() {
         when:
         service.createTrip(routeId, tripJson)
 
         then:
-        def ex = thrown TripCreationException
-        ex.message == 'Trip requires a specified path'
+        def exception = thrown TripCreationException
+        exception.message == 'Trip requires a specified path'
 
         where:
         routeId = 1
@@ -39,12 +36,12 @@ class TripServiceSpec extends Specification {
         service.createTrip(routeId, tripJson)
 
         then:
-        def ex = thrown TripCreationException
-        ex.message == 'Trip requires a specified route'
+        def exception = thrown TripCreationException
+        exception.message == 'Trip requires a specified route'
 
         where:
         routeId = null
-        tripJson = [path: [[latitude: 0, longitude: 0, time: '2000-01-01T20:30:00Z']]]
+        tripJson = createPathJson([0, 0, '2000-01-01T20:30:00Z'])
     }
 
     void 'Should assign trip to proper route'() {
@@ -56,7 +53,7 @@ class TripServiceSpec extends Specification {
 
         where:
         routeId = 1L
-        tripJson = [path: [[latitude: 0, longitude: 0, time: '2000-01-01T20:30:00Z']]]
+        tripJson = createPathJson([0, 0, '2000-01-01T20:30:00Z'])
     }
 
     void 'Should extract trip start time from path'() {
@@ -67,10 +64,11 @@ class TripServiceSpec extends Specification {
         result.startTime == new Date().parse('yyyy-MM-dd HH:mm:ss', expectedStartTime)
 
         where:
+        expectedStartTime     | tripJson
+        '2000-01-01 20:30:00' | createPathJson([0, 0, '2000-01-01T20:30:00Z'])
+        '2000-01-01 21:30:00' | createPathJson([0, 0, '2000-01-01T21:30:00Z'], [1, 0, '2000-01-01T22:00:00Z'])
+
         routeId = 1
-        expectedStartTime | tripJson
-        '2000-01-01 20:30:00' | [path: [[latitude: 0, longitude: 0, time: '2000-01-01T20:30:00Z']]]
-        '2000-01-01 21:30:00' | [path: [[latitude: 0, longitude: 0, time: '2000-01-01T21:30:00Z'], [latitude: 1, longitude: 0, time: '2000-01-01T22:00:00Z']]]
     }
 
     void 'Should extract trip end time from path'() {
@@ -81,10 +79,11 @@ class TripServiceSpec extends Specification {
         result.endTime == new Date().parse('yyyy-MM-dd HH:mm:ss', expectedEndTime)
 
         where:
+        expectedEndTime       | tripJson
+        '2000-01-01 20:30:00' | createPathJson([0, 0, '2000-01-01T20:30:00Z'])
+        '2000-01-01 22:00:00' | createPathJson([0, 0, '2000-01-01T21:30:00Z'], [1, 0, '2000-01-01T22:00:00Z'])
+
         routeId = 1
-        expectedEndTime | tripJson
-        '2000-01-01 20:30:00' | [path: [[latitude: 0, longitude: 0, time: '2000-01-01T20:30:00Z']]]
-        '2000-01-01 22:00:00' | [path: [[latitude: 0, longitude: 0, time: '2000-01-01T21:30:00Z'], [latitude: 1, longitude: 0, time: '2000-01-01T22:00:00Z']]]
     }
 
     void 'Should persist path points'() {
@@ -96,7 +95,15 @@ class TripServiceSpec extends Specification {
 
         where:
         routeId = 1
-        tripJson = [path: [[latitude: 0, longitude: 0, time: '2000-01-01T21:30:00Z'], [latitude: 1, longitude: 0, time: '2000-01-01T22:00:00Z']]]
+        tripJson = createPathJson([0, 0, '2000-01-01T21:30:00Z'], [1, 0, '2000-01-01T22:00:00Z'])
+    }
+
+    private static def createPathJson(... points) {
+        def path = points.collect {
+            def (latitude, longitude, time) = it
+            return [latitude: latitude, longitude: longitude, time: time]
+        }
+        return [path: path]
     }
 
 }
