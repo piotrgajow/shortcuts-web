@@ -5,7 +5,7 @@ import groovy.time.TimeCategory
 import spock.lang.Issue
 import spock.lang.Specification
 
-class DateCalculationsSpec extends Specification {
+class GroovyTimeSpec extends Specification {
 
     static DATE_FORMAT = 'yyyy-MM-dd HH:mm:ss'
 
