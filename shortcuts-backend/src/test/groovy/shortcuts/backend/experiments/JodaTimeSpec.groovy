@@ -2,6 +2,7 @@ package shortcuts.backend.experiments
 
 import org.joda.time.Duration
 import org.joda.time.Instant
+import spock.lang.Issue
 import spock.lang.Specification
 
 class JodaTimeSpec extends Specification {
@@ -46,6 +47,31 @@ class JodaTimeSpec extends Specification {
 
         expect:
         durations.min().standardSeconds == 1
+    }
+
+    @Issue('Different representation of data than expected')
+    def "Check duration components"() {
+        given:
+        def twoMinutes = new Duration(120000)
+
+        expect:
+        twoMinutes.standardMinutes == 2
+
+        and:
+        twoMinutes.standardSeconds == 120
+        // Expected behaviour:
+        // twoMinutes.standardSeconds == 0
+    }
+
+    def "Check period components"() {
+        given:
+        def twoMinutes = new Duration(120000).toPeriod()
+
+        expect:
+        twoMinutes.minutes == 2
+
+        and:
+        twoMinutes.seconds == 0
     }
 
     private static def getDurationsList() {

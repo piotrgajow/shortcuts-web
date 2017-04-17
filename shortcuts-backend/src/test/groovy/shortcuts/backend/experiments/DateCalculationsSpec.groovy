@@ -2,6 +2,7 @@ package shortcuts.backend.experiments
 
 import groovy.time.Duration
 import groovy.time.TimeCategory
+import spock.lang.Issue
 import spock.lang.Specification
 
 class DateCalculationsSpec extends Specification {
@@ -32,6 +33,7 @@ class DateCalculationsSpec extends Specification {
         new Duration(0, 0, 0, 1, 0) + new Duration(0, 0, 0, 3, 0) == new Duration(0, 0, 0, 4, 0)
     }
 
+    @Issue('Not possible to divide groovy.time.Duration by number')
     def "Divide duration by scalar"() {
         when:
         (new Duration(0, 0, 0, 10, 0) / 2).seconds == 5
