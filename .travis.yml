@@ -1,5 +1,8 @@
 language: groovy
 
+jdk:
+  - oraclejdk8
+
 before_script:
     - cd shortcuts-backend 
     - chmod +x grailsw
