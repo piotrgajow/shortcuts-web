@@ -2,7 +2,7 @@ package shortcuts.backend
 
 import grails.rest.Resource
 
-@Resource(uri='/route')
+@Resource(uri = '/route')
 class Route {
 
     String description
