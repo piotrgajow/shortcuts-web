@@ -52,26 +52,26 @@ class JodaTimeSpec extends Specification {
     @Issue('Different representation of data than expected')
     def "Check duration components"() {
         given:
-        def twoMinutes = new Duration(120000)
+        def twoMinutes = new Duration(135000)
 
         expect:
         twoMinutes.standardMinutes == 2
 
         and:
-        twoMinutes.standardSeconds == 120
+        twoMinutes.standardSeconds == 135
         // Expected behaviour:
         // twoMinutes.standardSeconds == 0
     }
 
     def "Check period components"() {
         given:
-        def twoMinutes = new Duration(120000).toPeriod()
+        def twoMinutes = new Duration(135000).toPeriod()
 
         expect:
         twoMinutes.minutes == 2
 
         and:
-        twoMinutes.seconds == 0
+        twoMinutes.seconds == 15
     }
 
     private static def getDurationsList() {

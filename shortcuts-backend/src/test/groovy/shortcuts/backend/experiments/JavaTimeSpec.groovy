@@ -46,15 +46,15 @@ class JavaTimeSpec extends Specification {
     @Issue('Different representation of data than expected')
     def "Check duration components"() {
         given:
-        def twoMinutes = Duration.ofMinutes(2)
+        def twoMinutes = Duration.ofSeconds(135)
 
         expect:
         twoMinutes.toMinutes() == 2
 
         and:
-        twoMinutes.seconds == 120
+        twoMinutes.seconds == 135
         // Expected behaviour:
-        // twoMinutes.seconds == 0
+        // twoMinutes.seconds == 15
     }
 
     private static def getDurationsList() {
