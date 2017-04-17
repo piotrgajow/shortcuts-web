@@ -46,5 +46,4 @@ class StatisticsServiceSpec extends Specification {
         return trip;
     }
 
-
 }

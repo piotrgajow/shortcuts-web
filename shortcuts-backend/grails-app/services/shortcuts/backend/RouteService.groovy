@@ -17,7 +17,6 @@ class RouteService {
                     shortestTrip   : statisticsService.findShortestPath(trips)
             ]
         }
-
     }
 
 }

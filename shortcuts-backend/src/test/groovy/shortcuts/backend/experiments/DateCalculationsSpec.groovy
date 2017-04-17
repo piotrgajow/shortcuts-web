@@ -17,7 +17,7 @@ class DateCalculationsSpec extends Specification {
         TimeCategory.minus(d2, d1).seconds == 1
     }
 
-    def "Create duration from milliseconds"() {
+    def "Create duration from seconds"() {
         expect:
         new Duration(0, 0, 0, 2, 0).seconds == 2
     }
