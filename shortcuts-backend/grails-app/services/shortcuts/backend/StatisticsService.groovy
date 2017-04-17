@@ -16,4 +16,17 @@ class StatisticsService {
         return ((Duration) durations.sum()).dividedBy(durations.size())
     }
 
+    def findShortestPath(List<Trip> trips) {
+        def tripsWithDuration = trips.collectEntries { Trip trip ->
+            Instant startInstant = new Instant(trip.startTime)
+            Instant endInstant = new Instant(trip.endTime)
+            Duration duration = new Duration(startInstant, endInstant)
+            return [(trip): duration]
+        }
+
+        return tripsWithDuration.min {
+            it.value
+        }.key
+    }
+
 }
