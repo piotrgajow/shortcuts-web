@@ -8,25 +8,24 @@ import org.joda.time.Instant
 class StatisticsService {
 
     def calculateAverageTripTime(List<Trip> trips) {
-        def durations = trips.collect { Trip trip ->
-            Instant startInstant = new Instant(trip.startTime)
-            Instant endInstant = new Instant(trip.endTime)
-            return new Duration(startInstant, endInstant)
-        }
+        def durations = trips.collect this.&tripToDuration
         return ((Duration) durations.sum()).dividedBy(durations.size())
     }
 
     def findShortestPath(List<Trip> trips) {
         def tripsWithDuration = trips.collectEntries { Trip trip ->
-            Instant startInstant = new Instant(trip.startTime)
-            Instant endInstant = new Instant(trip.endTime)
-            Duration duration = new Duration(startInstant, endInstant)
-            return [(trip): duration]
+            return [(trip): tripToDuration(trip)]
         }
 
         return tripsWithDuration.min {
             it.value
         }.key
+    }
+
+    private static Duration tripToDuration(Trip trip) {
+        Instant startInstant = new Instant(trip.startTime)
+        Instant endInstant = new Instant(trip.endTime)
+        return new Duration(startInstant, endInstant)
     }
 
 }
