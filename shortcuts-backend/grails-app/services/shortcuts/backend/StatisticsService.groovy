@@ -9,7 +9,8 @@ class StatisticsService {
 
     def calculateAverageTripTime(List<Trip> trips) {
         def durations = trips.collect this.&tripToDuration
-        return ((Duration) durations.sum()).dividedBy(durations.size())
+        def averageDuration = ((Duration) durations.sum()).dividedBy(durations.size())
+        return averageDuration.toPeriod()
     }
 
     def findShortestPath(List<Trip> trips) {

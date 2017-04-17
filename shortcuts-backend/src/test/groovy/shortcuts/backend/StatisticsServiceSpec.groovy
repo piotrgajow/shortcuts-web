@@ -16,9 +16,9 @@ class StatisticsServiceSpec extends Specification {
         def result = service.calculateAverageTripTime(trips)
 
         then: 'Average duration is 1h 5min'
-        result.standardHours == 1
-        result.standardMinutes == 65
-        result.standardSeconds == 3900
+        result.hours == 1
+        result.minutes == 5
+        result.seconds == 0
     }
 
     void "Should find fastest trip"() {
