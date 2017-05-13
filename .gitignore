@@ -1,3 +1,5 @@
+# BACKEND
+
 shortcuts-backend/Thumbs.db
 shortcuts-backend/.DS_Store
 shortcuts-backend/.gradle
@@ -9,3 +11,46 @@ shortcuts-backend/*.iws
 shortcuts-backend/.project
 shortcuts-backend/.settings
 shortcuts-backend/.classpath
+
+# FRONTEND
+
+# compiled output
+shortcuts-frontend/dist
+shortcuts-frontend/tmp
+shortcuts-frontend/out-tsc
+
+# dependencies
+shortcuts-frontend/node_modules
+
+# IDEs and editors
+shortcuts-frontend/.idea
+shortcuts-frontend/.project
+shortcuts-frontend/.classpath
+shortcuts-frontend/.c9/
+shortcuts-frontend/*.launch
+shortcuts-frontend/.settings/
+shortcuts-frontend/*.sublime-workspace
+
+# IDE - VSCode
+shortcuts-frontend/.vscode/*
+!shortcuts-frontend/.vscode/settings.json
+!shortcuts-frontend/.vscode/tasks.json
+!shortcuts-frontend/.vscode/launch.json
+!shortcuts-frontend/.vscode/extensions.json
+
+# misc
+shortcuts-frontend/.sass-cache
+shortcuts-frontend/connect.lock
+shortcuts-frontend/coverage
+shortcuts-frontend/libpeerconnection.log
+shortcuts-frontend/npm-debug.log
+shortcuts-frontend/testem.log
+shortcuts-frontend/typings
+
+# e2e
+shortcuts-frontend/e2e/*.js
+shortcuts-frontend/e2e/*.map
+
+# System Files
+shortcuts-frontend/.DS_Store
+shortcuts-frontend/Thumbs.db
