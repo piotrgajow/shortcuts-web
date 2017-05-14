@@ -7,11 +7,15 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { MainMenuComponent } from './main/main-menu.component';
+import { RouteComponent } from './route/route.component';
+import { RouteFormComponent } from './route/route-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainMenuComponent
+    MainMenuComponent,
+    RouteComponent,
+    RouteFormComponent
   ],
   imports: [
     AppRoutingModule,

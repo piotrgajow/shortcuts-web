@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { MainMenuComponent } from './main/main-menu.component';
+import { RouteComponent } from './route/route.component';
 
 const routes: Routes = [
   { path: 'menu', component: MainMenuComponent },
+  { path: 'route', component: RouteComponent },
   { path: '', redirectTo: '/menu', pathMatch: 'full' }
 ]
 
