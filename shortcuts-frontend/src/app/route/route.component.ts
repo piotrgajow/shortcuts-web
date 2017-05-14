@@ -7,4 +7,9 @@ import { Route } from './route';
 })
 export class RouteComponent {
     selectedRoute: Route;
+    addingNewRoute: boolean;
+
+    onAddigNewRouteToggled(addingNewRoute: boolean): void {
+        this.addingNewRoute = addingNewRoute;
+    }
 }

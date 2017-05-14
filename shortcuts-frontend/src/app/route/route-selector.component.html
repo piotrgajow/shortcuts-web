@@ -1,0 +1,8 @@
+<ul>
+    <li *ngFor="let route of routes" (click)="onSelect(route)" [class.selected]="route === selectedRoute">
+         {{route.description}}
+    </li>
+    <li (click)="onSelect(null)" [class.selected]="addingNewRoute === true">
+        Create new route
+    </li>
+</ul>

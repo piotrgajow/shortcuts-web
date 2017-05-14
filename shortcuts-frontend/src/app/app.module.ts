@@ -9,13 +9,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { MainMenuComponent } from './main/main-menu.component';
 import { RouteComponent } from './route/route.component';
 import { RouteFormComponent } from './route/route-form.component';
+import { RouteSelectorComponent } from './route/route-selector.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainMenuComponent,
     RouteComponent,
-    RouteFormComponent
+    RouteFormComponent,
+    RouteSelectorComponent
   ],
   imports: [
     AppRoutingModule,
