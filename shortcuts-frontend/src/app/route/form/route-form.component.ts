@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Route } from './route';
+import { Route } from '../route';
 
 @Component({
     selector: 'route-form',
