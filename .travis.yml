@@ -1,19 +1,23 @@
 language: groovy
 
 jobs:
-    jdk:
-        - oraclejdk8
     include:
+        jdk:
+            - oraclejdk8
         - stage: Preparation
           script:
               cd shortcuts-backend 
-              chmod +x grailsw
-              chmod +x gradlew
+              chmod +x ./grailsw
+              chmod +x ./gradlew
         - stage: Compilation
           script: 
               cd shortcuts-backend 
               ./grailsw compile
         - stage: Unit tests
-          script: ./grailsw test-app --non-interactive --echoOut --stacktrace
+          script: 
+              cd shortcuts-backend 
+              ./grailsw test-app --non-interactive --echoOut --stacktrace
         - stage: Package
-          script: ./grailsw war
+          script: 
+              cd shortcuts-backend 
+              ./grailsw war
