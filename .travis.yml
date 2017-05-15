@@ -6,6 +6,7 @@ jdk:
 before_script:
     - cd shortcuts-backend 
     - chmod +x grailsw
+    - chmod +x gradlew
 
 jobs:
     include:
@@ -14,4 +15,4 @@ jobs:
         - stage: Unit tests
           script: ./grailsw test-app --non-interactive --echoOut --stacktrace
         - stage: Package
-          script: ./grails war
+          script: ./grailsw war
