@@ -10,7 +10,9 @@ jobs:
               chmod +x grailsw
               chmod +x gradlew
         - stage: Compilation
-          script: ./grailsw compile
+          script: 
+              cd shortcuts-backend 
+              ./grailsw compile
         - stage: Unit tests
           script: ./grailsw test-app --non-interactive --echoOut --stacktrace
         - stage: Package
