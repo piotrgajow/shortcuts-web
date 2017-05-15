@@ -1,4 +1,5 @@
 language: groovy
+cache: bundler
         
 jobs:
     include:
@@ -7,7 +8,4 @@ jobs:
           jdk: oraclejdk8
         - stage: Unit tests
           script: cd shortcuts-backend && chmod +x ./grailsw && chmod +x ./gradlew && ./grailsw test-app --non-interactive --echoOut --stacktrace
-          jdk: oraclejdk8
-        - stage: Package
-          script: cd shortcuts-backend && chmod +x ./grailsw && chmod +x ./gradlew && ./grailsw war
           jdk: oraclejdk8
