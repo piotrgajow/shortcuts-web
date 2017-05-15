@@ -6,15 +6,10 @@ jdk:
 jobs:
     include:
         - stage: Preparation
-          script: cd shortcuts-backend 
-          script: chmod +x ./grailsw
-          script: chmod +x ./gradlew
+          script: cd shortcuts-backend && chmod +x ./grailsw && chmod +x ./gradlew
         - stage: Compilation
-          script: cd shortcuts-backend 
-          script: ./grailsw compile
+          script: cd shortcuts-backend && ./grailsw compile
         - stage: Unit tests
-          script: cd shortcuts-backend 
-          script: ./grailsw test-app --non-interactive --echoOut --stacktrace
+          script: cd shortcuts-backend && ./grailsw test-app --non-interactive --echoOut --stacktrace
         - stage: Package
-          script: cd shortcuts-backend 
-          script: ./grailsw war
+          script: cd shortcuts-backend && ./grailsw war
