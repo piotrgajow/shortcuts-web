@@ -7,5 +7,11 @@ before_script:
     - cd shortcuts-backend 
     - chmod +x grailsw
 
-script:
-    - ./grailsw test-app --non-interactive --echoOut --stacktrace
+jobs:
+    include:
+        - stage: Compilation
+          script: ./grailsw compile
+        - stage: Unit tests
+          script: ./grailsw test-app --non-interactive --echoOut --stacktrace
+        - stage: Package
+          script: ./grails war
