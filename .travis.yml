@@ -1,9 +1,11 @@
 language: groovy
+        
+jdk:
+    - oraclejdk8
 
 jobs:
     include:
-        jdk:
-            - oraclejdk8
+
         - stage: Preparation
           script: cd shortcuts-backend 
           script: chmod +x ./grailsw
