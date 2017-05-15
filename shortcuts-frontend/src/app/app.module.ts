@@ -10,6 +10,7 @@ import { MainMenuComponent } from './main/main-menu.component';
 import { RouteComponent } from './route/route.component';
 import { RouteFormComponent } from './route/form/route-form.component';
 import { RouteSelectorComponent } from './route/selector/route-selector.component';
+import { RouteService } from './route/route.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { RouteSelectorComponent } from './route/selector/route-selector.componen
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [RouteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
