@@ -1,6 +1,9 @@
 language: groovy
-cache: bundler
-        
+
+cache:
+  directories:
+      - $HOME/.m2
+
 jobs:
     include:
         - stage: Compilation
