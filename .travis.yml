@@ -1,12 +1,8 @@
 language: groovy
 
-jdk:
-    - oraclejdk8
-
-before_script:
-
-
 jobs:
+    jdk:
+        - oraclejdk8
     include:
         - stage: Preparation
           script:
