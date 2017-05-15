@@ -1,8 +1,10 @@
 language: groovy
 
 cache:
-  directories:
-      - $HOME/.m2
+    directories:
+        - $HOME/.m2
+        - $HOME/.grails
+        - $HOME/.gradle
 
 jobs:
     include:
