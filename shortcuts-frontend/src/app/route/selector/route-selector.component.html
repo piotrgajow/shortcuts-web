@@ -2,7 +2,10 @@
     <li *ngFor="let route of routes" (click)="onSelect(route)" [class.selected]="route === selectedRoute">
          {{route.description}}
     </li>
-    <li (click)="onSelect(null)" [class.selected]="addingNewRoute === true">
+    <button (click)="confirmSelection()" [disabled]="!selectedRoute">
+        Select
+    </button>
+    <p (click)="onSelect(null)" [class.selected]="addingNewRoute === true">
         Create new route
-    </li>
+    </p>
 </ul>

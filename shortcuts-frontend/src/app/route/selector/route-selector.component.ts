@@ -28,6 +28,10 @@ export class RouteSelectorComponent implements OnInit {
     this.onAddigNewRouteToggled.emit(this.addingNewRoute);
   }
 
+  confirmSelection(): void {
+      console.log('Selected route: ' + this.selectedRoute.toString());
+  }
+
   ngOnInit(): void {
     this.routeService.getRoutes().then(routes => this.routes = routes);
   }
