@@ -4,12 +4,15 @@ jdk:
     - oraclejdk8
 
 before_script:
-    - cd shortcuts-backend 
-    - chmod +x grailsw
-    - chmod +x gradlew
+
 
 jobs:
     include:
+        - stage: Preparation
+          script:
+              cd shortcuts-backend 
+              chmod +x grailsw
+              chmod +x gradlew
         - stage: Compilation
           script: ./grailsw compile
         - stage: Unit tests
