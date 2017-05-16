@@ -8,17 +8,14 @@ cache:
 
 jobs:
     include:
-        - stage: Compilation
+        - &backend-prepare
+          stage: Compilation
+          jdk: oraclejdk8
           before_script: 
               - cd shortcuts-backend 
               - chmod +x ./grailsw 
-              - chmod +x ./gradlew
+              - chmod +x ./gradlew 
           script: ./grailsw compile
-          jdk: oraclejdk8
-        - stage: Unit tests
-          before_script:
-              - cd shortcuts-backend
-              - chmod +x ./grailsw 
-              - chmod +x ./gradlew
+        - <<: *backend-prepare
+          stage: Unit tests
           script: ./grailsw test-app --non-interactive --echoOut --stacktrace
-          jdk: oraclejdk8
