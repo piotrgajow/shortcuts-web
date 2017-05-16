@@ -1,11 +1,24 @@
 language: groovy
 
-jdk:
-    - oraclejdk8
+cache:
+    directories:
+        - $HOME/.m2
+        - $HOME/.grails
+        - $HOME/.gradle
 
-before_script:
-    - cd shortcuts-backend 
-    - chmod +x grailsw
-
-script:
-    - ./grailsw test-app --non-interactive --echoOut --stacktrace
+jobs:
+    include:
+        - stage: Compilation
+          before_script: 
+              - cd shortcuts-backend 
+              - chmod +x ./grailsw 
+              - chmod +x ./gradlew
+          script: ./grailsw compile
+          jdk: oraclejdk8
+        - stage: Unit tests
+          before_script:
+              - cd shortcuts-backend
+              - chmod +x ./grailsw 
+              - chmod +x ./gradlew
+          script: ./grailsw test-app --non-interactive --echoOut --stacktrace
+          jdk: oraclejdk8
