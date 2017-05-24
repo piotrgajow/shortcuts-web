@@ -1,0 +1,5 @@
+<h3>Select route or add new one</h3>
+<route-selector (onAddigNewRouteToggled)="onAddigNewRouteToggled($event)"></route-selector>
+<div *ngIf="addingNewRoute">
+  <route-form></route-form>
+</div>
