@@ -11,6 +11,8 @@ import { RouteComponent } from './route/route.component';
 import { RouteFormComponent } from './route/form/route-form.component';
 import { RouteSelectorComponent } from './route/selector/route-selector.component';
 import { RouteService } from './route/route.service';
+import { TimerComponent } from './timer/timer.component';
+import { TripComponent } from './trip/trip.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { RouteService } from './route/route.service';
     MainMenuComponent,
     RouteComponent,
     RouteFormComponent,
-    RouteSelectorComponent
+    RouteSelectorComponent,
+    TimerComponent,
+    TripComponent,
   ],
   imports: [
     AppRoutingModule,
