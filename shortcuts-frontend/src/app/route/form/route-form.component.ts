@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 import { Route } from '../route';
+import { RouteService } from '../route.service';
 
 @Component({
     selector: 'route-form',
@@ -8,8 +9,18 @@ import { Route } from '../route';
 })
 export class RouteFormComponent {
     route: Route = new Route();
+    @Output() onNewRoute: EventEmitter<Route> = new EventEmitter<Route>();
+
+    constructor(
+        private routeService: RouteService,
+    ) {}
 
     onSubmit(): void {
-        console.log(this.route);
+        this.routeService.saveRoute(this.route).then(route => {
+            console.log('new route added');
+            console.log(route);
+            this.onNewRoute.emit(route);
+        })
     }
+
 }

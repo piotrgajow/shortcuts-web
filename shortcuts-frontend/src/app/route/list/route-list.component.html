@@ -1,0 +1,5 @@
+<ul>
+    <li *ngFor="let route of routes">
+        {{route.description}} <span *ngIf="route.averageTime">({{route.averageTime | time}})</span>
+    </li>
+</ul>

@@ -3,6 +3,8 @@ import { Router, Params, ActivatedRoute } from '@angular/router';
 
 import { Route } from '../route';
 import { RouteService } from '../route.service';
+import { Trip } from '../../trip/trip';
+import { TripService } from '../../trip/trip.service';
 
 @Component({
   selector: 'route-selector',
@@ -10,15 +12,15 @@ import { RouteService } from '../route.service';
   styleUrls: ['./route-selector.component.css']
 })
 export class RouteSelectorComponent implements OnInit {
-  route: Route;
   routes: Route[] = [];
   selectedRoute: Route;
-  time: number;
+  trip: Trip;
 
   constructor(
       private router: Router,
       private routeService: RouteService,
       private activatedRoute: ActivatedRoute,
+      private tripService: TripService,
   ) {}
 
   onSelect(selectedRoute): void {
@@ -26,14 +28,17 @@ export class RouteSelectorComponent implements OnInit {
   }
 
   confirmSelection(): void {
-      console.log('Selected route: ' + this.selectedRoute.toString());
+      this.tripService.saveTrip(this.selectedRoute.id, this.trip);
       this.router.navigateByUrl('');
   }
 
   ngOnInit(): void {
     this.routeService.getRoutes().then(routes => this.routes = routes);
-    this.activatedRoute.params.forEach((params: Params) => {
-        this.time = params['time'];
-    });
+    this.trip = this.tripService.currentTrip;
   }
+
+  addRoute(route: Route): void {
+      this.routes.push(route);
+  }
+
 }

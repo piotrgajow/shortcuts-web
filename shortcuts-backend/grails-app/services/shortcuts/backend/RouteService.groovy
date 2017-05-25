@@ -5,18 +5,14 @@ import grails.transaction.Transactional
 @Transactional
 class RouteService {
 
-    def statisticsService
+    def createRoute(routeJson) {
+        Route route = new Route(routeJson)
+        route.save(flus: true, failOnError: true)
+        return route
+    }
 
-    def getAllRoutesWithStatistics() {
-        def allRoutes = Route.getAll()
-        return allRoutes.collect { Route route ->
-            List trips = route.trips.toList()
-            return [
-                    route          : route,
-                    averageDuration: statisticsService.calculateAverageTripTime(trips),
-                    shortestTrip   : statisticsService.findShortestPath(trips)
-            ]
-        }
+    def getAllRoutes() {
+        return Route.findAll()
     }
 
 }

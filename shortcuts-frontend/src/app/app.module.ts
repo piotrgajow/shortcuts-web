@@ -14,6 +14,8 @@ import { RouteSelectorComponent } from './route/selector/route-selector.componen
 import { RouteService } from './route/route.service';
 import { TimerComponent } from './timer/timer.component';
 import { TripComponent } from './trip/trip.component';
+import { TripService } from './trip/trip.service';
+import { TimePipe } from './shared/time.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { TripComponent } from './trip/trip.component';
     RouteSelectorComponent,
     TimerComponent,
     TripComponent,
+    TimePipe
   ],
   imports: [
     AppRoutingModule,
@@ -32,7 +35,10 @@ import { TripComponent } from './trip/trip.component';
     FormsModule,
     HttpModule
   ],
-  providers: [RouteService],
+  providers: [
+      RouteService,
+      TripService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

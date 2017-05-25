@@ -8,7 +8,7 @@ import { TripComponent } from './trip/trip.component';
 
 const routes: Routes = [
   { path: 'newTrip', component: TripComponent },
-  { path: 'selectRoute/:time', component: RouteSelectorComponent },
+  { path: 'selectRoute', component: RouteSelectorComponent },
   { path: 'routes', component: RouteListComponent },
   { path: '', redirectTo: '/routes', pathMatch: 'full' }
 ]

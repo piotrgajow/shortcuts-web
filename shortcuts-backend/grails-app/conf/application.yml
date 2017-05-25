@@ -6,6 +6,9 @@ grails:
     spring:
         transactionManagement:
             proxies: false
+    cors:
+        enabled: true
+        allowedOrigins: ['http://localhost:4200']
 info:
     app:
         name: '@info.app.name@'

@@ -1,5 +1,5 @@
 <p>
-    Twój przejazd trwał {{time}}.
+    Twój przejazd trwał {{trip.time | time}}.
 </p>
 <p>
     Do której trasy chcesz go dodać?
@@ -12,4 +12,4 @@
         Potwierdź
     </button>
 </ul>
-<route-form></route-form>
+<route-form (onNewRoute)="addRoute($event)"></route-form>

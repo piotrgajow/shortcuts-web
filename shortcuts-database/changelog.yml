@@ -1,5 +1,5 @@
 databaseChangeLog:
-    - include:
-        file: migrations/createRouteTable.sql
-        file: migrations/createTripTable.sql
-        file: migrations/createTripPointTable.sql
+    - include file: migrations/createRouteTable.sql
+    - include file: migrations/createTripTable.sql
+    - include file: migrations/createTripPointTable.sql
+    - include file: migrations/simplifySchema.sql

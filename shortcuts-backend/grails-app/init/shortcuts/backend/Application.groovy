@@ -8,6 +8,5 @@ import org.joda.time.Period
 class Application extends GrailsAutoConfiguration {
     static void main(String[] args) {
         GrailsApp.run(Application, args)
-        JSON.registerObjectMarshaller(Period, new PeriodJsonMapper().&mapToJson)
     }
 }
