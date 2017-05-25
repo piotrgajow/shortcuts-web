@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { MainMenuComponent } from './main/main-menu.component';
-import { RouteComponent } from './route/route.component';
+import { MainMenuComponent } from './shared/menu/main-menu.component';
+import { RouteListComponent } from './route/list/route-list.component';
+import { RouteSelectorComponent } from './route/selector/route-selector.component';
 import { TripComponent } from './trip/trip.component';
 
 const routes: Routes = [
   { path: 'newTrip', component: TripComponent },
-  { path: 'menu', component: MainMenuComponent },
-  { path: 'route', component: RouteComponent },
-  { path: '', redirectTo: '/menu', pathMatch: 'full' }
+  { path: 'selectRoute/:time', component: RouteSelectorComponent },
+  { path: 'routes', component: RouteListComponent },
+  { path: '', redirectTo: '/routes', pathMatch: 'full' }
 ]
 
 @NgModule({

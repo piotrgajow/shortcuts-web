@@ -4,5 +4,5 @@ import { Component } from '@angular/core';
     templateUrl: './trip.component.html'
 })
 export class TripComponent {
-    time: number;
+    time: number=0;
 }

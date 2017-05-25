@@ -1,3 +1,2 @@
-<timer time="time"></timer>
-{{time}}
-<a routerLink="['/route', time]"
+<timer [(time)]="time"></timer>
+<a [routerLink]="['/selectRoute', time]">Koniec</a>
