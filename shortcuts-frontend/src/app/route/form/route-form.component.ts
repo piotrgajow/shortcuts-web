@@ -17,8 +17,6 @@ export class RouteFormComponent {
 
     onSubmit(): void {
         this.routeService.saveRoute(this.route).then(route => {
-            console.log('new route added');
-            console.log(route);
             this.onNewRoute.emit(route);
         })
     }

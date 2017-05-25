@@ -5,9 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-
 import { MainMenuComponent } from './shared/menu/main-menu.component';
-import { RouteComponent } from './route/route.component';
 import { RouteFormComponent } from './route/form/route-form.component';
 import { RouteListComponent } from './route/list/route-list.component';
 import { RouteSelectorComponent } from './route/selector/route-selector.component';
@@ -21,7 +19,6 @@ import { TimePipe } from './shared/time.pipe';
   declarations: [
     AppComponent,
     MainMenuComponent,
-    RouteComponent,
     RouteFormComponent,
     RouteListComponent,
     RouteSelectorComponent,
