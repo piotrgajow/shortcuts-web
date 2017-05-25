@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { Observable, Subscription } from 'rxjs/Rx';
 
-
-
 @Component({
     selector: 'timer',
     templateUrl: './timer.component.html'

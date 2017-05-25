@@ -2,10 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'main-menu',
-  templateUrl: './main-menu.component.html'
+    templateUrl: './main-menu.component.html'
 })
-export class MainMenuComponent {
-  registerNewTrip(): void {
-    console.log('registerNewTrip');
-  }
-}
+export class MainMenuComponent {}

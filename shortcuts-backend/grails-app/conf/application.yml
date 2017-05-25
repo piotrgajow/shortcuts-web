@@ -6,6 +6,9 @@ grails:
     spring:
         transactionManagement:
             proxies: false
+    gorm:
+        failOnError: true
+        autoFlush: true
     cors:
         enabled: true
         allowedOrigins: ['http://localhost:4200']

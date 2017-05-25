@@ -7,7 +7,7 @@ class RouteService {
 
     def createRoute(routeJson) {
         Route route = new Route(routeJson)
-        route.save(flus: true, failOnError: true)
+        route.save()
         return route
     }
 

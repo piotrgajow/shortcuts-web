@@ -5,7 +5,7 @@ import { RouteService } from '../route.service';
 
 @Component({
     selector: 'route-form',
-    templateUrl: './route-form.component.html'
+    templateUrl: './route-form.component.html',
 })
 export class RouteFormComponent {
     route: Route = new Route();

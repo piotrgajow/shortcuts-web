@@ -1,9 +1,8 @@
 package shortcuts.backend
 
-import grails.rest.Resource
-
 class Route {
 
+    Long id
     String description
 
     static hasMany = [trips: Trip]

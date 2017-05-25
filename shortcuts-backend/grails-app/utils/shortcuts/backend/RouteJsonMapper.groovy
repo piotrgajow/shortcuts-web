@@ -1,6 +1,7 @@
 package shortcuts.backend
 
 class RouteJsonMapper implements JsonMapper<Route> {
+
     @Override
     def mapToJson(Route it) {
         return [

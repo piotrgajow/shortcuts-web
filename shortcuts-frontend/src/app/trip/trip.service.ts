@@ -13,11 +13,7 @@ export class TripService {
     ) {}
 
     saveTrip(routeId: number, trip: Trip): Promise<Trip> {
-        console.log(routeId);
-        console.log(trip);
-        return this.http.post(`http://localhost:8080/route/${routeId}/trip`, trip).toPromise().then(response => {
-            console.log(response);
-            return response.json() as Trip;
-        });
+        return this.http.post(`http://localhost:8080/route/${routeId}/trip`, trip).toPromise().then(response => response.json() as Trip);
     }
+    
 }
