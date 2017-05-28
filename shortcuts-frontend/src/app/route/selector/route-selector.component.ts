@@ -28,8 +28,7 @@ export class RouteSelectorComponent implements OnInit {
   }
 
   confirmSelection(): void {
-      this.tripService.saveTrip(this.selectedRoute.id, this.trip);
-      this.router.navigateByUrl('');
+      this.tripService.saveTrip(this.selectedRoute.id, this.trip).then(response => this.router.navigateByUrl(''));
   }
 
   ngOnInit(): void {
