@@ -8,8 +8,16 @@ class RouteController {
 
     def index() {
         try {
-            render routeService.getAllRoutesWithStatistics() as JSON
+            render routeService.getAllRoutes() as JSON
         } catch (ex) {
+            render ex.message
+        }
+    }
+
+    def save() {
+        try {
+            render routeService.createRoute(request.JSON) as JSON
+        } catch(ex) {
             render ex.message
         }
     }

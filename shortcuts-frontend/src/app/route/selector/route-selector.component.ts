@@ -1,7 +1,10 @@
-import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Router, Params, ActivatedRoute } from '@angular/router';
 
 import { Route } from '../route';
 import { RouteService } from '../route.service';
+import { Trip } from '../../trip/trip';
+import { TripService } from '../../trip/trip.service';
 
 @Component({
   selector: 'route-selector',
@@ -9,30 +12,32 @@ import { RouteService } from '../route.service';
   styleUrls: ['./route-selector.component.css']
 })
 export class RouteSelectorComponent implements OnInit {
-  addingNewRoute: boolean;
-  route: Route;
   routes: Route[] = [];
   selectedRoute: Route;
-  @Output() onAddigNewRouteToggled = new EventEmitter<boolean>();
+  trip: Trip;
 
-  constructor(private routeService: RouteService) {}
+  constructor(
+      private router: Router,
+      private routeService: RouteService,
+      private activatedRoute: ActivatedRoute,
+      private tripService: TripService,
+  ) {}
 
-  onSelect(aRoute): void {
-    if (aRoute === null) {
-      this.addingNewRoute = true;
-      this.selectedRoute = null;
-    } else {
-      this.addingNewRoute = false;
-      this.selectedRoute = aRoute;
-    }
-    this.onAddigNewRouteToggled.emit(this.addingNewRoute);
+  onSelect(selectedRoute): void {
+      this.selectedRoute = selectedRoute;
   }
 
   confirmSelection(): void {
-      console.log('Selected route: ' + this.selectedRoute.toString());
+      this.tripService.saveTrip(this.selectedRoute.id, this.trip).then(response => this.router.navigateByUrl(''));
   }
 
   ngOnInit(): void {
     this.routeService.getRoutes().then(routes => this.routes = routes);
+    this.trip = this.tripService.currentTrip;
   }
+
+  addRoute(route: Route): void {
+      this.routes.push(route);
+  }
+
 }

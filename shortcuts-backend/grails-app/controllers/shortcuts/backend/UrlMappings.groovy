@@ -9,10 +9,13 @@ class UrlMappings {
             }
         }
 
-        "/route/$routeId/trip"(controller: 'Trip') {
-            action = [POST: 'save', GET: 'getByRoute']
+        "/route"(controller: 'Route') {
+            action = ['POST': 'save', 'GET': 'index']
         }
-        "/trip/$tripId"(method: 'GET', controller: 'Trip', action: 'getById')
+
+        "/route/$routeId/trip"(controller: 'Trip') {
+            action = [POST: 'save']
+        }
 
         "/"(view: "/index")
         "500"(view: '/error')

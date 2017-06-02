@@ -14,20 +14,4 @@ class TripController {
         }
     }
 
-    def getByRoute(Long routeId) {
-        try {
-            render tripService.getByRoute(routeId) as JSON
-        } catch (ex) {
-            render ex.message
-        }
-    }
-
-    def getById(Long tripId) {
-        try {
-            render tripService.getById(tripId) as JSON
-        } catch (ex) {
-            render ex.message
-        }
-    }
-
 }

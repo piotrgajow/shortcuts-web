@@ -4,21 +4,20 @@ class Trip {
 
     Route route
     Date startTime
-    Date endTime
+    Long time
 
-    static hasMany = [path: TripPoint]
     static belongsTo = [Route]
 
     static mapping = {
         id column: 'trip_id'
         route column: 'route_id'
         startTime column: 'start_time'
-        endTime column: 'end_time'
+        time column: 'time'
     }
 
     static constraints = {
         route nullable: false
         startTime nullable: false
-        endTime nullable: false
+        time nullable: false
     }
 }

@@ -1,6 +1,6 @@
---liquibase formatted sql
+-- liquibase formatted sql
 
---changeset piotrgajow:createRouteTable
+-- changeset piotrgajow:createRouteTable
 CREATE TABLE route (
     route_id INT NOT NULL AUTO_INCREMENT,
     description VARCHAR(255) NOT NULL,

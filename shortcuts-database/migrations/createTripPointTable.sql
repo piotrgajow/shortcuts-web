@@ -1,6 +1,6 @@
---liquibase formatted sql
+-- liquibase formatted sql
 
---changeset piotrgajow:createTripPointTable
+-- changeset piotrgajow:createTripPointTable
 CREATE TABLE trip_point (
     trip_point_id BIGINT NOT NULL AUTO_INCREMENT,
     trip_id BIGINT NOT NULL,

@@ -1,11 +1,15 @@
+<p>
+    Twój przejazd trwał {{trip.time | time}}.
+</p>
+<p>
+    Do której trasy chcesz go dodać?
+</p>
 <ul>
     <li *ngFor="let route of routes" (click)="onSelect(route)" [class.selected]="route === selectedRoute">
          {{route.description}}
     </li>
     <button (click)="confirmSelection()" [disabled]="!selectedRoute">
-        Select
+        Potwierdź
     </button>
-    <p (click)="onSelect(null)" [class.selected]="addingNewRoute === true">
-        Create new route
-    </p>
 </ul>
+<route-form (onNewRoute)="addRoute($event)"></route-form>
