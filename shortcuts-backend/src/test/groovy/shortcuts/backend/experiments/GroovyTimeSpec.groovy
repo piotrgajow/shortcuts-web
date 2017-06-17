@@ -7,7 +7,7 @@ import spock.lang.Specification
 
 class GroovyTimeSpec extends Specification {
 
-    static DATE_FORMAT = 'yyyy-MM-dd HH:mm:ss'
+    static final DATE_FORMAT = 'yyyy-MM-dd HH:mm:ss'
 
     def "Create duration from two dates"() {
         given:

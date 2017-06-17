@@ -5,9 +5,9 @@ ruleset {
         FactoryMethodName {
             regex = /(build.*|make.*)/
         }
-//        MethodName {
-//            doNotApplyToClassNames= '*Spec'
-//        }
+        MethodName {
+            doNotApplyToClassNames= '*Spec'
+        }
     }
     ruleset('rulesets/unused.xml')
     ruleset('rulesets/unnecessary.xml') {

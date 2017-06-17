@@ -36,7 +36,7 @@ class TripServiceSpec extends Specification {
 
         where:
         routeId = 1L
-        tripJson = [startTime: new Date(), time: 5]
+        tripJson = [startTime: new Date(), duration: 5]
     }
 
 }

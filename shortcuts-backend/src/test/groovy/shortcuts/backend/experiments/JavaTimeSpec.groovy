@@ -29,7 +29,7 @@ class JavaTimeSpec extends Specification {
 
     def "Calculate average duration"() {
         given:
-        List<Duration> durations = getDurationsList()
+        List<Duration> durations = durationsList
 
         expect:
         durations.sum().dividedBy(durations.size()).seconds == 4
@@ -37,7 +37,7 @@ class JavaTimeSpec extends Specification {
 
     def "Find smallest duration"() {
         given:
-        List<Duration> durations = getDurationsList()
+        List<Duration> durations = durationsList
 
         expect:
         durations.min().seconds == 1
@@ -57,7 +57,7 @@ class JavaTimeSpec extends Specification {
         // twoMinutes.seconds == 15
     }
 
-    private static def getDurationsList() {
+    private static getDurationsList() {
         return [Duration.ofSeconds(8), Duration.ofSeconds(1), Duration.ofSeconds(3)]
     }
 

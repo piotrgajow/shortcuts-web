@@ -1,9 +1,11 @@
 package shortcuts.backend
 
 import spock.lang.Specification
+import spock.lang.Unroll
 
 class RouteJsonMapperSpec extends Specification {
 
+    @Unroll
     void 'Should map Route object to JSON'() {
         given:
         JsonMapper<Route> mapper = new RouteJsonMapper()
@@ -22,9 +24,11 @@ class RouteJsonMapperSpec extends Specification {
         Route route = new Route()
         route.id = id
         route.description = desc
-        route.trips = times.collect { Long it ->
+        List timeList = times as List
+        route.trips = timeList.withIndex().collect { duration, index ->
             Trip trip = new Trip()
-            trip.duration = it
+            trip.id = index
+            trip.duration = duration
             return trip
         }
         return route
