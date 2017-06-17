@@ -11,8 +11,8 @@ class RouteJsonMapper implements JsonMapper<Route> {
         ]
     }
 
-    static def calculateAvarageTime(Route route) {
-        def times = route.trips*.time
+    static calculateAvarageTime(Route route) {
+        def times = route.trips*.duration
         def averageTime = times ? times.sum() / times.size() : null
         return averageTime
     }

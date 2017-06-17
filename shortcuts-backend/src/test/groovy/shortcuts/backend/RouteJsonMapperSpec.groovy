@@ -24,7 +24,7 @@ class RouteJsonMapperSpec extends Specification {
         route.description = desc
         route.trips = times.collect { Long it ->
             Trip trip = new Trip()
-            trip.time = it
+            trip.duration = it
             return trip
         }
         return route

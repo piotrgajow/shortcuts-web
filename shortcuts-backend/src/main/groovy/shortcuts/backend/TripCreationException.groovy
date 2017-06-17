@@ -2,7 +2,7 @@ package shortcuts.backend
 
 class TripCreationException extends RuntimeException {
 
-    public TripCreationException(message) {
+    TripCreationException(message) {
         super(message)
     }
 

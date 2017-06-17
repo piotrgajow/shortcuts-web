@@ -33,7 +33,7 @@ class GroovyTimeSpec extends Specification {
         new Duration(0, 0, 0, 1, 0) + new Duration(0, 0, 0, 3, 0) == new Duration(0, 0, 0, 4, 0)
     }
 
-    @Issue('Not possible to divide groovy.time.Duration by number')
+    @Issue('Not possible to divide groovy.duration.Duration by number')
     def "Divide duration by scalar"() {
         when:
         (new Duration(0, 0, 0, 10, 0) / 2).seconds == 5
