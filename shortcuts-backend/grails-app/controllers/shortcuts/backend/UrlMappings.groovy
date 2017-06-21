@@ -9,7 +9,7 @@ class UrlMappings {
             }
         }
 
-        "/route"(controller: 'Route') {
+        '/route'(controller: 'Route') {
             action = ['POST': 'save', 'GET': 'index']
         }
 
@@ -17,8 +17,8 @@ class UrlMappings {
             action = [POST: 'save']
         }
 
-        "/"(view: "/index")
-        "500"(view: '/error')
-        "404"(view: '/notFound')
+        '/'(view: '/index')
+        '500'(view: '/error')
+        '404'(view: '/notFound')
     }
 }

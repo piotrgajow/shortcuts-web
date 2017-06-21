@@ -8,7 +8,7 @@ class RouteController {
 
     def index() {
         try {
-            render routeService.getAllRoutes() as JSON
+            render routeService.allRoutes() as JSON
         } catch (ex) {
             render ex.message
         }

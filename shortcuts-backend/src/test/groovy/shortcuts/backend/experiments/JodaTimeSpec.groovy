@@ -7,7 +7,7 @@ import spock.lang.Specification
 
 class JodaTimeSpec extends Specification {
 
-    static DATE_FORMAT = 'yyyy-MM-dd HH:mm:ss'
+    static final DATE_FORMAT = 'yyyy-MM-dd HH:mm:ss'
 
     def "Create duration from two dates"() {
         given:
@@ -35,7 +35,7 @@ class JodaTimeSpec extends Specification {
 
     def "Calculate average duration"() {
         given:
-        List<Duration> durations = getDurationsList()
+        List<Duration> durations = durationsList
 
         expect:
         durations.sum().dividedBy(durations.size()).standardSeconds == 4
@@ -43,7 +43,7 @@ class JodaTimeSpec extends Specification {
 
     def "Find smallest duration"() {
         given:
-        List<Duration> durations = getDurationsList()
+        List<Duration> durations = durationsList
 
         expect:
         durations.min().standardSeconds == 1
@@ -74,7 +74,7 @@ class JodaTimeSpec extends Specification {
         twoMinutes.seconds == 15
     }
 
-    private static def getDurationsList() {
+    private static getDurationsList() {
         return [new Duration(8000), new Duration(1000), new Duration(3000)]
     }
 
