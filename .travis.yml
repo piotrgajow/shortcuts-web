@@ -18,8 +18,6 @@ jobs:
           script: ./grailsw compile
         - <<: *backend-prepare
           stage: Static code analysis
-          script: 
-              - ./gradlew codenarcMain
-              - ./gradlew codenarcTest
+          script: ./gradlew codenarcMain && ./gradlew codenarcTest
           stage: Unit tests
           script: ./gradlew test --stacktrace
