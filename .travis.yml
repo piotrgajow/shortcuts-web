@@ -19,5 +19,6 @@ jobs:
         - <<: *backend-prepare
           stage: Static code analysis
           script: ./gradlew codenarcMain && ./gradlew codenarcTest
+        - <<: *backend-prepare
           stage: Unit tests
           script: ./gradlew test --stacktrace
