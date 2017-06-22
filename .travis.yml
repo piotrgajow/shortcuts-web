@@ -18,4 +18,4 @@ jobs:
           script: ./grailsw compile
         - <<: *backend-prepare
           stage: Unit tests
-          script: ./grailsw test-app --non-interactive --echoOut --stacktrace
+          script: ./gradlew check --stacktrace
