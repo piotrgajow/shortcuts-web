@@ -12,7 +12,7 @@ jobs:
           stage: Compilation
           jdk: oraclejdk8
           before_script: 
-              - cd shortcuts-backend 
+              - cd backend 
               - chmod +x ./grailsw 
               - chmod +x ./gradlew 
           script: ./grailsw compile
