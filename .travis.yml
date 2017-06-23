@@ -17,5 +17,11 @@ jobs:
               - chmod +x ./gradlew 
           script: ./grailsw compile
         - <<: *backend-prepare
+          stage: Static code analysis
+          script: ./gradlew codenarcMain 
+        - <<: *backend-prepare
+          stage: Static code analysis
+          script: ./gradlew codenarcTest
+        - <<: *backend-prepare
           stage: Unit tests
-          script: ./grailsw test-app --non-interactive --echoOut --stacktrace
+          script: ./gradlew test --stacktrace
