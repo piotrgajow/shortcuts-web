@@ -4,6 +4,7 @@ backend/Thumbs.db
 backend/.DS_Store
 backend/.gradle
 backend/build/
+backend/classes/
 backend/.idea
 backend/*.iml
 backend/*.ipr

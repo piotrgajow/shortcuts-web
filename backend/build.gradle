@@ -7,7 +7,6 @@ buildscript {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
         classpath "com.bertramlabs.plugins:asset-pipeline-gradle:2.11.6"
         classpath "org.grails.plugins:hibernate5:${gormVersion-".RELEASE"}"
-        classpath "net.saliman:gradle-cobertura-plugin:2.5.0"
     }
 }
 
@@ -22,8 +21,6 @@ apply plugin:"org.grails.grails-gsp"
 apply plugin:"asset-pipeline"
 
 apply plugin: 'codenarc'
-apply plugin: 'net.saliman.cobertura'
-
 
 
 repositories {
@@ -81,8 +78,3 @@ codenarcTest {
     maxPriority3Violations = 0
 }
 
-cobertura {
-    coverageIgnoreTrivial = true
-    coverageExcludes = ['.*Application.*', '.*BootStrap.*']
-    coverageCheckTotalLineRate = 75
-}
