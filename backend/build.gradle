@@ -80,3 +80,9 @@ codenarcTest {
     maxPriority2Violations = 0
     maxPriority3Violations = 0
 }
+
+cobertura {
+    coverageIgnoreTrivial = true
+    coverageExcludes = ['.*Application.*', '.*BootStrap.*']
+    coverageCheckTotalLineRate = 75
+}
