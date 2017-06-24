@@ -7,13 +7,13 @@ import spock.lang.Unroll
 
 @TestFor(TripService)
 @Mock([Route, Trip, DateService])
-@Unroll
 class TripServiceSpec extends Specification {
 
     def setup() {
-        new Route(description: 'test').save()
+        new Route(id: 1, description: 'test').save()
     }
 
+    @Unroll
     void 'Should reject trips without route'() {
         when:
         service.createTrip(routeId, tripJson)
@@ -23,8 +23,9 @@ class TripServiceSpec extends Specification {
         exception.message == 'Trip requires a specified route'
 
         where:
-        routeId = null
-        tripJson = [:]
+        routeId | tripJson
+        null    | [:]
+        5       | [:]
     }
 
     void 'Should assign trip to proper route'() {

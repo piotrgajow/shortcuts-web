@@ -5,7 +5,7 @@ import grails.transaction.Transactional
 @Transactional
 class RouteService {
 
-    def createRoute(routeJson) {
+    def createRoute(Map routeJson) {
         Route route = new Route(routeJson)
         route.save()
         return route
