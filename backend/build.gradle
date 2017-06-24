@@ -7,6 +7,8 @@ buildscript {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
         classpath "com.bertramlabs.plugins:asset-pipeline-gradle:2.11.6"
         classpath "org.grails.plugins:hibernate5:${gormVersion-".RELEASE"}"
+
+        classpath 'com.bmuschko:gradle-clover-plugin:2.1.0'
     }
 }
 
@@ -21,6 +23,7 @@ apply plugin:"org.grails.grails-gsp"
 apply plugin:"asset-pipeline"
 
 apply plugin: 'codenarc'
+apply plugin: 'com.bmuschko.clover'
 
 
 repositories {
@@ -51,6 +54,8 @@ dependencies {
     testCompile "org.grails.plugins:geb"
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
+
+    clover 'org.openclover:clover:4.2.0'
 }
 
 bootRun {
@@ -76,4 +81,30 @@ codenarcTest {
     maxPriority1Violations = 0
     maxPriority2Violations = 0
     maxPriority3Violations = 0
+}
+
+clover {
+    // Although Clover is now open source the plugin
+    // still expects to find the license file.
+    // Any file will work.
+    licenseLocation = File.createTempFile('clover', '.license').absolutePath
+
+    // This is neededed to see which tests targeted code
+    // In this particular project I'm only using Spock
+    // specifications
+    testIncludes = ['**/*Spec.groovy']
+    includes = ['**/*.groovy']
+
+    additionalSourceSets << ["src/main/groovy", "grails-app"]
+    additionalTestSourceSets << ["src/test/groovy"]
+
+    // I would like to have both html and xml report
+    report {
+        html = true
+        xml = true
+        testResultsDir = project.tasks.getByName('test').reports.junitXml.destination
+        testResultsInclude = 'TEST-*.xml'
+    }
+
+
 }
