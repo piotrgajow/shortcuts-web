@@ -1,56 +1,57 @@
 # BACKEND
 
-shortcuts-backend/Thumbs.db
-shortcuts-backend/.DS_Store
-shortcuts-backend/.gradle
-shortcuts-backend/build/
-shortcuts-backend/.idea
-shortcuts-backend/*.iml
-shortcuts-backend/*.ipr
-shortcuts-backend/*.iws
-shortcuts-backend/.project
-shortcuts-backend/.settings
-shortcuts-backend/.classpath
+backend/Thumbs.db
+backend/.DS_Store
+backend/.gradle
+backend/build/
+backend/classes/
+backend/.idea
+backend/*.iml
+backend/*.ipr
+backend/*.iws
+backend/.project
+backend/.settings
+backend/.classpath
 
 # FRONTEND
 
 # compiled output
-shortcuts-frontend/dist
-shortcuts-frontend/tmp
-shortcuts-frontend/out-tsc
+frontend/dist
+frontend/tmp
+frontend/out-tsc
 
 # dependencies
-shortcuts-frontend/node_modules
+frontend/node_modules
 
 # IDEs and editors
-shortcuts-frontend/.idea
-shortcuts-frontend/.project
-shortcuts-frontend/.classpath
-shortcuts-frontend/.c9/
-shortcuts-frontend/*.launch
-shortcuts-frontend/.settings/
-shortcuts-frontend/*.sublime-workspace
+frontend/.idea
+frontend/.project
+frontend/.classpath
+frontend/.c9/
+frontend/*.launch
+frontend/.settings/
+frontend/*.sublime-workspace
 
 # IDE - VSCode
-shortcuts-frontend/.vscode/*
-!shortcuts-frontend/.vscode/settings.json
-!shortcuts-frontend/.vscode/tasks.json
-!shortcuts-frontend/.vscode/launch.json
-!shortcuts-frontend/.vscode/extensions.json
+frontend/.vscode/*
+!frontend/.vscode/settings.json
+!frontend/.vscode/tasks.json
+!frontend/.vscode/launch.json
+!frontend/.vscode/extensions.json
 
 # misc
-shortcuts-frontend/.sass-cache
-shortcuts-frontend/connect.lock
-shortcuts-frontend/coverage
-shortcuts-frontend/libpeerconnection.log
-shortcuts-frontend/npm-debug.log
-shortcuts-frontend/testem.log
-shortcuts-frontend/typings
+frontend/.sass-cache
+frontend/connect.lock
+frontend/coverage
+frontend/libpeerconnection.log
+frontend/npm-debug.log
+frontend/testem.log
+frontend/typings
 
 # e2e
-shortcuts-frontend/e2e/*.js
-shortcuts-frontend/e2e/*.map
+frontend/e2e/*.js
+frontend/e2e/*.map
 
 # System Files
-shortcuts-frontend/.DS_Store
-shortcuts-frontend/Thumbs.db
+frontend/.DS_Store
+frontend/Thumbs.db
