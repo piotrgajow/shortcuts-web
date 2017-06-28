@@ -8,7 +8,7 @@ buildscript {
         classpath "com.bertramlabs.plugins:asset-pipeline-gradle:2.11.6"
         classpath "org.grails.plugins:hibernate5:${gormVersion-".RELEASE"}"
 
-        classpath 'com.bmuschko:gradle-clover-plugin:2.1.0'
+        classpath 'com.bmuschko:gradle-clover-plugin:2.1.1'
     }
 }
 
@@ -55,6 +55,7 @@ dependencies {
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
 
+    compile 'org.codehaus.groovy:groovy-all:2.4.7'
     clover 'org.openclover:clover:4.2.0'
 }
 
@@ -83,28 +84,110 @@ codenarcTest {
     maxPriority3Violations = 0
 }
 
+//clover {
+//    classesBackupDir = file("${sourceSets.main.output.classesDir}-backup")
+//
+//    testIncludes = ['**/*Test.java', '**/*Spec.groovy']
+//
+//    additionalSourceSet {
+//        srcDirs = sourceSets.main.allSource.srcDirs
+//        classesDir = sourceSets.main.output.classesDir
+//    }
+//
+//    report {
+//        html = true
+//        xml = true
+//        testResultsDir = project.tasks.getByName('test').reports.junitXml.destination
+//        testResultsInclude = 'TEST-*.xml'
+//    }
+//
+//
+//}
+
 clover {
-    // Although Clover is now open source the plugin
-    // still expects to find the license file.
-    // Any file will work.
-    licenseLocation = File.createTempFile('clover', '.license').absolutePath
+    println sourceSets.main.allGroovy
 
-    // This is neededed to see which tests targeted code
-    // In this particular project I'm only using Spock
-    // specifications
-    testIncludes = ['**/*Spec.groovy']
-    includes = ['**/*.groovy']
+    classesBackupDir = file("${sourceSets.main.output.classesDir}-backup")
 
-    additionalSourceSets << ["src/main/groovy", "grails-app"]
-    additionalTestSourceSets << ["src/test/groovy"]
+    testIncludes = ['**/*Test.java', '**/*Spec.groovy']
 
-    // I would like to have both html and xml report
-    report {
-        html = true
-        xml = true
-        testResultsDir = project.tasks.getByName('test').reports.junitXml.destination
-        testResultsInclude = 'TEST-*.xml'
+    targetPercentage = '75%'
+
+    additionalSourceSet {
+        srcDirs = sourceSets.main.allGroovy.srcDirs
+        classesDir = sourceSets.main.output.classesDir
+    }
+    additionalTestSourceSet {
+        srcDirs = sourceSets.test.allGroovy.srcDirs
+        classesDir = sourceSets.test.output.classesDir
     }
 
+    compiler {
+        encoding = 'UTF-8'
 
+        // if the javac executable used by ant should be the same as the one used elsewhere.
+        executable = file('/usr/local/java/jdk1.8.0_05')
+    }
+
+    contexts {
+        statement {
+            name = 'log'
+            regexp = '^.*LOG\\..*'
+        }
+
+        method {
+            name = 'main'
+            regexp = 'public static void main\\(String args\\[\\]\\).*'
+        }
+        method {
+            name = 'getters'
+            regexp = 'public [^\\s]+ get[A-Z][^\\s]+\\(\\)'
+            maxStatements = 1
+        }
+        method {
+            name = 'setters'
+            regexp = 'public void set[A-Z][^\\s]+\\(.+\\)'
+            maxStatements = 1
+        }
+    }
+
+    report {
+        html = true
+        pdf = true
+        filter = 'log,main,getters,setters'
+
+        // Support capturing test results from JUnix XML report
+        testResultsDir = project.tasks.getByName('test').reports.junitXml.destination
+        testResultsInclude = 'TEST-*.xml'
+
+        // Clover history generation support
+        // See Clover documentation for details of the values supported
+        historical {
+            enabled = true
+            historyIncludes = 'clover-*.xml.gz'
+            packageFilter = null
+            from = null
+            to = null
+
+            added {
+                range = 10
+                interval = '3 weeks'
+            }
+            mover {
+                threshold = 1
+                range = 10
+                interval = '3 weeks'
+            }
+            mover {
+                threshold = 1
+                range = 10
+                interval = '3 months'
+            }
+            mover {
+                threshold = 1
+                range = 10
+                interval = '1 year'
+            }
+        }
+    }
 }
