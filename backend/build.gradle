@@ -84,26 +84,6 @@ codenarcTest {
     maxPriority3Violations = 0
 }
 
-//clover {
-//    classesBackupDir = file("${sourceSets.main.output.classesDir}-backup")
-//
-//    testIncludes = ['**/*Test.java', '**/*Spec.groovy']
-//
-//    additionalSourceSet {
-//        srcDirs = sourceSets.main.allSource.srcDirs
-//        classesDir = sourceSets.main.output.classesDir
-//    }
-//
-//    report {
-//        html = true
-//        xml = true
-//        testResultsDir = project.tasks.getByName('test').reports.junitXml.destination
-//        testResultsInclude = 'TEST-*.xml'
-//    }
-//
-//
-//}
-
 clover {
     println sourceSets.main.allGroovy
 
