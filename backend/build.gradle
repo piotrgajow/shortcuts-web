@@ -85,29 +85,9 @@ codenarcTest {
 }
 
 clover {
-    println sourceSets.main.allGroovy
-
-    classesBackupDir = file("${sourceSets.main.output.classesDir}-backup")
-
     testIncludes = ['**/*Test.java', '**/*Spec.groovy']
 
     targetPercentage = '75%'
-
-    additionalSourceSet {
-        srcDirs = sourceSets.main.allGroovy.srcDirs
-        classesDir = sourceSets.main.output.classesDir
-    }
-    additionalTestSourceSet {
-        srcDirs = sourceSets.test.allGroovy.srcDirs
-        classesDir = sourceSets.test.output.classesDir
-    }
-
-    compiler {
-        encoding = 'UTF-8'
-
-        // if the javac executable used by ant should be the same as the one used elsewhere.
-        executable = file('/usr/local/java/jdk1.8.0_05')
-    }
 
     contexts {
         statement {
@@ -133,41 +113,12 @@ clover {
 
     report {
         html = true
-        pdf = true
         filter = 'log,main,getters,setters'
 
         // Support capturing test results from JUnix XML report
         testResultsDir = project.tasks.getByName('test').reports.junitXml.destination
         testResultsInclude = 'TEST-*.xml'
-
-        // Clover history generation support
-        // See Clover documentation for details of the values supported
-        historical {
-            enabled = true
-            historyIncludes = 'clover-*.xml.gz'
-            packageFilter = null
-            from = null
-            to = null
-
-            added {
-                range = 10
-                interval = '3 weeks'
-            }
-            mover {
-                threshold = 1
-                range = 10
-                interval = '3 weeks'
-            }
-            mover {
-                threshold = 1
-                range = 10
-                interval = '3 months'
-            }
-            mover {
-                threshold = 1
-                range = 10
-                interval = '1 year'
-            }
-        }
     }
 }
+
+check.dependsOn cloverGenerateReport
