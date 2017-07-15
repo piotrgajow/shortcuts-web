@@ -65,7 +65,7 @@ assets {
 }
 
 codenarcMain {
-    config = resources.text.fromFile('codenarc-ruleset.groovy')
+    configFile = rootProject.file('codenarc-main.groovy')
     maxPriority1Violations = 0
     maxPriority2Violations = 0
     maxPriority3Violations = 0
