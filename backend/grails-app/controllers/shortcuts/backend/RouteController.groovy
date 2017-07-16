@@ -17,7 +17,7 @@ class RouteController {
     def save() {
         try {
             render routeService.createRoute(request.JSON) as JSON
-        } catch(ex) {
+        } catch (ex) {
             render ex.message
         }
     }

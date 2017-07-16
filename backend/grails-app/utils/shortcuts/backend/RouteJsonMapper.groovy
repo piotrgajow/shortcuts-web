@@ -7,7 +7,7 @@ class RouteJsonMapper implements JsonMapper<Route> {
         return [
                 id         : it.id,
                 description: it.description,
-                averageTime: calculateAverageTime(it)
+                averageTime: calculateAverageTime(it),
         ]
     }
 
