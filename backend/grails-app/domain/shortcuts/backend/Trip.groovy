@@ -2,6 +2,7 @@ package shortcuts.backend
 
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
+import util.Constraints
 
 @ToString(includeNames = true)
 @EqualsAndHashCode
@@ -21,9 +22,9 @@ class Trip {
     }
 
     static constraints = {
-        route nullable: false
-        startTime nullable: false
-        duration nullable: false
+        route Constraints.NOT_NULL
+        startTime Constraints.NOT_NULL
+        duration Constraints.NOT_NULL
     }
 
 }

@@ -12,12 +12,12 @@ class RouteServiceSpec extends Specification {
         new Route(id: 1, description: 'route 1').save()
     }
 
-    void 'createRoute should save new the route'(Map routeJson) {
+    void 'method createRoute should save new the route'() {
         when:
         Route route = service.createRoute(routeJson)
 
         then:
-        route.id == 2
+        route.id == 2L
         route.description == routeJson.description
 
         where:

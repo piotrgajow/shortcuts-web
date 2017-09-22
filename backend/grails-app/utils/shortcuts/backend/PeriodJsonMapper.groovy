@@ -14,7 +14,7 @@ class PeriodJsonMapper implements JsonMapper<Period> {
                 hours  : period.hours,
                 minutes: period.minutes,
                 seconds: period.seconds,
-                millis : period.millis
+                millis : period.millis,
         ]
     }
 }

@@ -7,7 +7,7 @@ class TripService {
 
     def createTrip(Long routeId, Map tripJson) {
         Route route = Route.get(routeId)
-        if(!route) {
+        if (!route) {
             throw new TripCreationException('Trip requires a specified route')
         }
         Trip trip = new Trip(tripJson)
