@@ -133,7 +133,6 @@ grails:
             updateOnStart: true
             changelogLocation: grails-app/migrations
             changelogFileName: changelog.groovy
-            updateOnStartFileName: changelog.groovy
             databaseChangeLogTableName: database_change_log
             databaseChangeLogLockTableName: database_change_log_lock
 
