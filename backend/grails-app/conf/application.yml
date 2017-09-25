@@ -98,22 +98,15 @@ dataSource:
     pooled: true
     jmxExport: true
     driverClassName: com.mysql.jdbc.Driver
+    dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     username: root
     password:
+    dbCreate: none
+    url: jdbc:mysql://localhost/shortcuts?useSSL=false&createDatabaseIfNotExist=true
 
 environments:
-    development:
-        dataSource:
-            dbCreate: none
-            url: jdbc:mysql://localhost/shortcuts?useSSL=false
-    test:
-        dataSource:
-            dbCreate: none
-            url: jdbc:mysql://localhost/shortcuts?useSSL=false
     production:
         dataSource:
-            dbCreate: none
-            url: jdbc:h2:./prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
             properties:
                 jmxEnabled: true
                 initialSize: 5
@@ -132,3 +125,18 @@ environments:
                 testOnReturn: false
                 jdbcInterceptors: ConnectionState
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
+
+# DB Migrations
+grails:
+    plugin:
+        databasemigration:
+            updateOnStart: true
+            changelogLocation: grails-app/migrations
+            changelogFileName: changelog.groovy
+            databaseChangeLogTableName: database_change_log
+            databaseChangeLogLockTableName: database_change_log_lock
+
+    databinding:
+        dateFormats:
+            - yyyy-MM-dd HH:mm:ss
+
