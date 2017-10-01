@@ -2,7 +2,11 @@ ruleset {
     ruleset('rulesets/basic.xml')
     ruleset('rulesets/braces.xml')
     ruleset('rulesets/concurrency.xml')
-    ruleset('rulesets/dry.xml')
+    ruleset('rulesets/dry.xml') {
+        DuplicateStringLiteral {
+            doNotApplyToFilesMatching = /(.*UrlMappings.groovy)/
+        }
+    }
     ruleset('rulesets/enhanced.xml')
     ruleset('rulesets/exceptions.xml')
     ruleset('rulesets/formatting.xml') {

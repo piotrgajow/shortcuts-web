@@ -2,9 +2,6 @@ package shortcuts.backend
 
 class UrlMappings {
 
-    private static final String INDEX = 'index'
-    private static final String SAVE = 'save'
-
     static mappings = {
         "/$controller/$action?/$id?(.$format)?" {
             constraints {
@@ -13,15 +10,16 @@ class UrlMappings {
         }
 
         '/route'(controller: 'Route') {
-            action = [POST: SAVE, GET: INDEX]
+            action = [POST: 'save', GET: 'index']
         }
 
         "/route/$routeId/trip"(controller: 'Trip') {
-            action = [POST: SAVE]
+            action = [POST: 'save']
         }
 
         '/'(view: '/index')
         '500'(view: '/error')
         '404'(view: '/notFound')
     }
+
 }
