@@ -3,7 +3,7 @@ ruleset {
     ruleset('rulesets/braces.xml')
     ruleset('rulesets/concurrency.xml')
 //    ruleset('rulesets/dry.xml')
-    ruleset('rulesets/enhanced.xml')
+//    ruleset('rulesets/enhanced.xml')
     ruleset('rulesets/exceptions.xml') {
         exclude 'ThrowRuntimeException'
     }
@@ -35,7 +35,9 @@ ruleset {
     }
     ruleset('rulesets/security.xml')
     ruleset('rulesets/serialization.xml')
-    ruleset('rulesets/size.xml')
+    ruleset('rulesets/size.xml') {
+        exclude 'CrapMetric' // Disabled due to Cobertura issues in CodeNarc
+    }
     ruleset('rulesets/unnecessary.xml') {
         exclude 'UnnecessaryReturnKeyword'
     }

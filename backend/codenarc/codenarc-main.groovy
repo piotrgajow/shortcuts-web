@@ -6,8 +6,11 @@ ruleset {
         DuplicateStringLiteral {
             doNotApplyToFilesMatching = /(.*UrlMappings.groovy)/
         }
+        DuplicateMapLiteral {
+            doNotApplyToFilesMatching = /(.*UrlMappings.groovy)/
+        }
     }
-    ruleset('rulesets/enhanced.xml')
+//    ruleset('rulesets/enhanced.xml')
     ruleset('rulesets/exceptions.xml')
     ruleset('rulesets/formatting.xml') {
         exclude 'ClassJavadoc'
@@ -31,7 +34,9 @@ ruleset {
     }
     ruleset('rulesets/security.xml')
     ruleset('rulesets/serialization.xml')
-    ruleset('rulesets/size.xml')
+    ruleset('rulesets/size.xml') {
+        exclude 'CrapMetric' // Disabled due to Cobertura issues in CodeNarc
+    }
     ruleset('rulesets/unnecessary.xml') {
         exclude 'UnnecessaryReturnKeyword'
     }
