@@ -22,7 +22,7 @@ apply plugin:"org.grails.grails-web"
 apply plugin:"org.grails.grails-gsp"
 apply plugin:"asset-pipeline"
 
-apply plugin: 'codenarc'
+apply from: 'codenarc/codenarc.gradle'
 
 repositories {
     mavenLocal()
@@ -74,18 +74,3 @@ sourceSets {
         }
     }
 }
-
-codenarcMain {
-    configFile = rootProject.file('codenarc-main.groovy')
-    maxPriority1Violations = 0
-    maxPriority2Violations = 0
-    maxPriority3Violations = 0
-}
-
-codenarcTest {
-    configFile = rootProject.file('codenarc-test.groovy')
-    maxPriority1Violations = 0
-    maxPriority2Violations = 0
-    maxPriority3Violations = 0
-}
-
