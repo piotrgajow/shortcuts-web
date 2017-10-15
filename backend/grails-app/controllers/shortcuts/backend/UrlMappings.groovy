@@ -17,6 +17,10 @@ class UrlMappings {
             action = [POST: 'save']
         }
 
+        "/echo"(controller: 'Echo') {
+            action = [POST: 'echo']
+        }
+
         '/'(view: '/index')
         '500'(view: '/error')
         '404'(view: '/notFound')
