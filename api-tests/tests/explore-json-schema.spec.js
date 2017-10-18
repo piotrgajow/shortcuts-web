@@ -159,4 +159,56 @@ describe('Experiments with JSON schema validation', () => {
 
     });
 
+    describe('Compound schema', () => {
+
+        const listSchema = {
+            type: 'array',
+            items: {
+                type: 'string'
+            }
+        };
+
+        const schema = {
+            type: 'object',
+            properties: {
+                id: { type: 'number' },
+                list: listSchema
+            },
+            required: ['id', 'list'],
+            additionalProperties: false,
+        };
+
+        [
+            { obj: { id: 1, list: [] } },
+            { obj: { id: 1, list: ['test1', 'test2'] } },
+        ].forEach((testCase, i) => {
+
+            it(`should pass validation [${i}]`, () => {
+                return chakram.post(url, testCase.obj).then((res) => {
+                    return expect(res).to.have.schema('json', schema);
+                });
+            });
+
+        });
+
+        [
+            { obj: { id: 5 } },
+            { obj: [1, '2', 3] },
+            { obj: { id: 1, name: 'A' } },
+            { obj: { id: 2, name: 'B', list: [1, 2, 3] } },
+            { obj: { id: 3, name: 'C', list: [{ id: 1 } ] } },
+            { obj: { id: 4, name: 'D', list: [{ id: 1, additional: false }] } },
+            { obj: { id: 4, name: 'D', list: [{ id: 1, name: 'test' }, 3] } },
+        ].forEach((testCase, i) => {
+
+            it(`should fail validation [${i}]`, () => {
+                return chakram.post(url, testCase.obj).then((res) => {
+                    return expect(res).not.to.have.schema('json', schema);
+                });
+            });
+
+        });
+
+    });
+
 });
