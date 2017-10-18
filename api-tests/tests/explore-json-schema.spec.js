@@ -1,24 +1,26 @@
 const chakram = require('chakram');
 const expect = chakram.expect;
 
-const url = 'http://localhost:8080/echo';
+const url = 'http://httpbin.org/post';
 
 describe('Experiments with JSON schema validation', () => {
 
     describe('String', () => {
 
         const schema = {
-            'type': 'string'
+            type: 'string'
         };
 
         it('should pass validation', () => {
-            const res = chakram.post(url, 'test');
-            return expect(res).to.have.schema(schema);
+            return chakram.post(url, 'test').then((res) => {
+                return expect(res).to.have.schema('json', schema);
+            });
         });
 
         it('should fail validation', () => {
-            const res = chakram.post(url, 1);
-            return expect(res).not.to.have.schema(schema);
+            return chakram.post(url, 1).then((res) => {
+                return expect(res).not.to.have.schema('json', schema);
+            });
         })
 
     });
@@ -41,8 +43,9 @@ describe('Experiments with JSON schema validation', () => {
         ].forEach((testCase, i) => {
 
             it(`should pass validation - ${testCase.desc} [${i}]`, () => {
-                const res = chakram.post(url, testCase.obj);
-                return expect(res).to.have.schema(schema);
+                return chakram.post(url, testCase.obj).then((res) => {
+                    return expect(res).to.have.schema('json', schema);
+                });
             });
 
         });
@@ -55,8 +58,9 @@ describe('Experiments with JSON schema validation', () => {
         ].forEach((testCase, i) => {
 
             it(`should fail validation - ${testCase.desc} [${i}]`, () => {
-                const res = chakram.post(url, testCase.obj);
-                return expect(res).not.to.have.schema(schema);
+                return chakram.post(url, testCase.obj).then((res) => {
+                    return expect(res).not.to.have.schema('json', schema);
+                });
             });
 
         });
@@ -76,8 +80,9 @@ describe('Experiments with JSON schema validation', () => {
         ].forEach((testCase, i) => {
 
             it(`should pass validation - ${testCase.desc} [${i}]`, () => {
-                const res = chakram.post(url, testCase.obj);
-                return expect(res).to.have.schema(schema);
+                return chakram.post(url, testCase.obj).then((res) => {
+                    return expect(res).to.have.schema('json', schema);
+                });
             });
 
         });
@@ -88,8 +93,66 @@ describe('Experiments with JSON schema validation', () => {
         ].forEach((testCase, i) => {
 
             it(`should fail validation - ${testCase.desc} [${i}]`, () => {
-                const res = chakram.post(url, testCase.obj);
-                return expect(res).not.to.have.schema(schema);
+                return chakram.post(url, testCase.obj).then((res) => {
+                    return expect(res).not.to.have.schema('json', schema);
+                });
+            });
+
+        });
+
+    });
+
+    describe('Complex object', () => {
+
+        const schema = {
+            type: 'object',
+            properties: {
+                id: { type: 'number' },
+                name: { type: 'string' },
+                list: {
+                    type: 'array',
+                    items: {
+                        type: 'object',
+                        properties: {
+                            id: { type: 'number' },
+                            name: { type: 'string' }
+                        },
+                        required: ['id', 'name'],
+                        additionalProperties: false
+                    }
+                }
+            },
+            required: ['id', 'name', 'list'],
+            additionalProperties: false,
+        };
+
+        [
+            { obj: { id: 1, name: 'A', list: [] } },
+            { obj: { id: 1, name: 'B', list: [{ id: 2, name: 'X' }, { id: 3, name: 'Y' }] } },
+        ].forEach((testCase, i) => {
+
+            it(`should pass validation [${i}]`, () => {
+                return chakram.post(url, testCase.obj).then((res) => {
+                    return expect(res).to.have.schema('json', schema);
+                });
+            });
+
+        });
+
+        [
+            { obj: { id: 5 } },
+            { obj: [1, '2', 3] },
+            { obj: { id: 1, name: 'A' } },
+            { obj: { id: 2, name: 'B', list: [1, 2, 3] } },
+            { obj: { id: 3, name: 'C', list: [{ id: 1 } ] } },
+            { obj: { id: 4, name: 'D', list: [{ id: 1, additional: false }] } },
+            { obj: { id: 4, name: 'D', list: [{ id: 1, name: 'test' }, 3] } },
+        ].forEach((testCase, i) => {
+
+            it(`should fail validation [${i}]`, () => {
+                return chakram.post(url, testCase.obj).then((res) => {
+                    return expect(res).not.to.have.schema('json', schema);
+                });
             });
 
         });
