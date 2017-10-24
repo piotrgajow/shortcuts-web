@@ -3,11 +3,6 @@ package shortcuts.backend
 class UrlMappings {
 
     static mappings = {
-        "/$controller/$action?/$id?(.$format)?" {
-            constraints {
-                // apply constraints here
-            }
-        }
 
         '/route'(controller: 'Route') {
             action = [POST: 'save', GET: 'index']
