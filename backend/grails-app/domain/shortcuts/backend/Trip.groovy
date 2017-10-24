@@ -14,8 +14,6 @@ class Trip {
     LocalDateTime startTime
     Long duration
 
-    static belongsTo = [Route]
-
     static mapping = {
         id column: 'trip_id'
         route column: 'route_id'

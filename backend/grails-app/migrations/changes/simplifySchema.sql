@@ -5,4 +5,5 @@ DROP TABLE trip_point;
 
 ALTER TABLE trip
     DROP COLUMN end_time,
-    ADD COLUMN time BIGINT NOT NULL;
+    ADD COLUMN duration BIGINT NOT NULL;
+
