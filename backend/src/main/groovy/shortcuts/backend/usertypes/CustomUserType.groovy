@@ -1,9 +1,28 @@
 package shortcuts.backend.usertypes
 
 import org.hibernate.HibernateException
+import org.hibernate.engine.spi.SessionImplementor
 import org.hibernate.usertype.UserType
 
+import java.sql.PreparedStatement
+import java.sql.ResultSet
+import java.sql.SQLException
+
 abstract class CustomUserType implements UserType {
+
+    @Override
+    abstract int[] sqlTypes()
+
+    @Override
+    abstract Class returnedClass()
+
+    @Override
+    abstract Object nullSafeGet(ResultSet rs, String[] names, SessionImplementor session, Object owner)
+            throws HibernateException, SQLException
+
+    @Override
+    abstract void nullSafeSet(PreparedStatement st, Object value, int index, SessionImplementor session)
+            throws HibernateException, SQLException
 
     @Override
     @SuppressWarnings('EqualsOverloaded')

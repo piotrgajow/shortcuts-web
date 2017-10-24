@@ -2,7 +2,6 @@ package shortcuts.backend.usertypes
 
 import org.hibernate.HibernateException
 import org.hibernate.engine.spi.SessionImplementor
-import org.hibernate.type.DateType
 import org.hibernate.type.StringType
 import util.DateFormatters
 
@@ -10,7 +9,6 @@ import java.sql.PreparedStatement
 import java.sql.ResultSet
 import java.sql.SQLException
 import java.time.LocalDateTime
-import java.time.ZoneOffset
 
 class LocalDateTimeUserType extends CustomUserType {
 

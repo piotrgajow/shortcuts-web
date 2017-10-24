@@ -24,7 +24,14 @@ ruleset {
     ruleset('rulesets/design.xml')
     ruleset('rulesets/groovyism.xml')
     ruleset('rulesets/imports.xml')
-    ruleset('rulesets/jdbc.xml')
+    ruleset('rulesets/jdbc.xml') {
+        JdbcStatementReference {
+            doNotApplyToFilesMatching = /.*UserType.groovy/
+        }
+        JdbcResultSetReference {
+            doNotApplyToFilesMatching = /.*UserType.groovy/
+        }
+    }
     ruleset('rulesets/junit.xml')
     ruleset('rulesets/logging.xml')
     ruleset('rulesets/naming.xml') {
