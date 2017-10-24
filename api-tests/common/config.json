@@ -1,0 +1,10 @@
+{
+  "baseUrl": "http://localhost:8080",
+  "mysql": {
+    "host": "localhost",
+    "user": "root",
+    "password": "",
+    "database": "shortcuts",
+    "dateStrings": true
+  }
+}
