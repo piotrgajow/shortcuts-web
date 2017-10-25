@@ -1,5 +1,6 @@
 package shortcuts.backend
 
+import commands.CreateTripCommand
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 import spock.lang.Specification
@@ -15,29 +16,31 @@ class TripServiceSpec extends Specification {
 
     @Unroll
     void 'Should reject trips without route'() {
+        given:
+        CreateTripCommand command = new CreateTripCommand(routeId: routeId, startTime: '2000-01-01 00:00:00', duration: 0)
+
         when:
-        service.createTrip(routeId, tripJson)
+        service.createTrip(command)
 
         then:
         def exception = thrown TripCreationException
         exception.message == 'Trip requires a specified route'
 
         where:
-        routeId | tripJson
-        null    | [:]
-        5       | [:]
+        routeId | _
+        null    | _
+        5       | _
     }
 
     void 'Should assign trip to proper route'() {
+        given:
+        CreateTripCommand command = new CreateTripCommand(routeId: 1L, startTime: '2000-01-01 00:00:00', duration: 0)
+
         when:
-        Trip result = service.createTrip(routeId, tripJson)
+        Trip result = service.createTrip(command)
 
         then:
-        result.route.id == routeId
-
-        where:
-        routeId = 1L
-        tripJson = [startTime: new Date(), duration: 5]
+        result.route.id == 1L
     }
 
 }
