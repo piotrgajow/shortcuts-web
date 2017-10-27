@@ -3,11 +3,12 @@ package shortcuts.backend
 import commands.CreateTripCommand
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
+import shortcuts.backend.exceptions.RouteNotFound
 import spock.lang.Specification
 import spock.lang.Unroll
 
 @TestFor(TripService)
-@Mock([Route, Trip, DateService])
+@Mock([Route, Trip])
 class TripServiceSpec extends Specification {
 
     def setup() {
@@ -23,8 +24,7 @@ class TripServiceSpec extends Specification {
         service.createTrip(command)
 
         then:
-        def exception = thrown TripCreationException
-        exception.message == 'Trip requires a specified route'
+        thrown RouteNotFound
 
         where:
         routeId | _

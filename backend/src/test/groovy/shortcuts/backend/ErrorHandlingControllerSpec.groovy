@@ -1,6 +1,7 @@
 package shortcuts.backend
 
 import grails.test.mixin.TestFor
+import shortcuts.backend.exceptions.CustomException
 import spock.lang.Specification
 
 import javax.servlet.http.HttpServletResponse
@@ -10,15 +11,18 @@ class ErrorHandlingControllerSpec extends Specification {
 
     void 'handleOtherException should render proper response'() {
         when:
-        controller.handleOtherException(new RuntimeException(message))
+        controller."${method}"(exception)
 
         then:
-        response.status == HttpServletResponse.SC_BAD_REQUEST
-        response.json.error == message
+        response.status == expectedStatus
+        response.json.error == expectedMessage
 
         where:
-        message        | _
-        'test message' | _
+        method                  | exception                                                         | expectedMessage | expectedStatus
+        'handleCustomException' | new CustomException('test', HttpServletResponse.SC_UNAUTHORIZED)  | 'test'          | HttpServletResponse.SC_UNAUTHORIZED
+        'handleCustomException' | new CustomException('test2', HttpServletResponse.SC_UNAUTHORIZED) | 'test2'         | HttpServletResponse.SC_UNAUTHORIZED
+        'handleCustomException' | new CustomException('test', HttpServletResponse.SC_BAD_REQUEST)   | 'test'          | HttpServletResponse.SC_BAD_REQUEST
+        'handleOtherException'  | new RuntimeException('test')                                      | 'test'          | HttpServletResponse.SC_INTERNAL_SERVER_ERROR
     }
 
 }

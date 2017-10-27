@@ -18,7 +18,7 @@ class Route {
     }
 
     static constraints = {
-        description nullable: false
+        description nullable: false, blank: false
     }
 
 }
