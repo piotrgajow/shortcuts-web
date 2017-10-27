@@ -4,15 +4,15 @@ import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 import util.Constraints
 
+import java.time.LocalDateTime
+
 @ToString(includeNames = true)
 @EqualsAndHashCode
 class Trip {
 
     Route route
-    Date startTime
+    LocalDateTime startTime
     Long duration
-
-    static belongsTo = [Route]
 
     static mapping = {
         id column: 'trip_id'

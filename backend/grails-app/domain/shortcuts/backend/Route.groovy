@@ -10,9 +10,9 @@ class Route {
     Long id
     String description
 
-    static hasMany = [trips: Trip]
-
     static mapping = {
+        table 'route'
+
         id column: 'route_id'
         description column: 'description'
     }

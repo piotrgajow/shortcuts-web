@@ -18,12 +18,12 @@ class RouteControllerSpec extends Specification {
         controller."${controllerMethod}"()
 
         then:
-        1 * controller.routeService."${serviceMethod}"(*_)
+        1 * controller.routeService."${serviceMethod}"(*_) >> serviceResult
 
         where:
-        controllerMethod | serviceMethod
-        'index'          | 'getAllRoutes'
-        'save'           | 'createRoute'
+        controllerMethod | serviceMethod  | serviceResult
+        'index'          | 'getAllRoutes' | []
+        'save'           | 'createRoute'  | [:]
     }
 
     @Unroll
@@ -40,7 +40,6 @@ class RouteControllerSpec extends Specification {
 
         where:
         controllerMethod | serviceMethod
-        'index'          | 'getAllRoutes'
         'save'           | 'createRoute'
     }
 

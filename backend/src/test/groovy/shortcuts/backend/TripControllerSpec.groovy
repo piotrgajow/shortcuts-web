@@ -7,15 +7,20 @@ import spock.lang.Unroll
 @TestFor(TripController)
 class TripControllerSpec extends Specification {
 
-    void '#controllerMethod should call #serviceMethod'() {
-        given:
+    def setup() {
         controller.tripService = Mock(TripService)
+        controller.request.JSON = [
+                startTime: '2017-10-26 10:20:30',
+        ]
+    }
 
+    @Unroll
+    void '#controllerMethod should call #serviceMethod'() {
         when:
         controller."${controllerMethod}"()
 
         then:
-        1 * controller.tripService."${serviceMethod}"(*_)
+        1 * controller.tripService."${serviceMethod}"(*_) >> [:]
 
         where:
         controllerMethod | serviceMethod
@@ -25,7 +30,6 @@ class TripControllerSpec extends Specification {
     @Unroll
     void 'Should handle exceptions during #controllerMethod'() {
         given:
-        controller.tripService = Mock(TripService)
         controller.tripService."${serviceMethod}"(*_) >> { throw new RuntimeException('test') }
 
         when:
