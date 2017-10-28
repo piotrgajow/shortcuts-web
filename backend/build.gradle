@@ -55,6 +55,7 @@ dependencies {
     compile "mysql:mysql-connector-java:5.1.41"
     compile "org.liquibase:liquibase-core:3.5.3"
     compile "org.grails.plugins:database-migration:3.0.3"
+    testCompile "org.grails.plugins:build-test-data:3.0.0"
 }
 
 bootRun {

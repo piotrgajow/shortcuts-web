@@ -1,15 +1,15 @@
 package shortcuts.backend
 
-import grails.test.mixin.Mock
+import grails.buildtestdata.mixin.Build
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
 @TestFor(RouteService)
-@Mock(Route)
+@Build(Route)
 class RouteServiceSpec extends Specification {
 
     def setup() {
-        new Route(id: 1, description: 'route 1').save()
+        Route.build(description: 'route 1')
     }
 
     void 'method createRoute should save new the route'() {
