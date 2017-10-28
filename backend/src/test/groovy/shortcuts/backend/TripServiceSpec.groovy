@@ -1,18 +1,18 @@
 package shortcuts.backend
 
 import commands.CreateTripCommand
-import grails.test.mixin.Mock
+import grails.buildtestdata.mixin.Build
 import grails.test.mixin.TestFor
 import shortcuts.backend.exceptions.RouteNotFound
 import spock.lang.Specification
 import spock.lang.Unroll
 
 @TestFor(TripService)
-@Mock([Route, Trip])
+@Build([Route, Trip])
 class TripServiceSpec extends Specification {
 
     def setup() {
-        new Route(id: 1, description: 'test').save()
+        Route.build(description: 'test')
     }
 
     @Unroll
