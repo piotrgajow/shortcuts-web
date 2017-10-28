@@ -18,29 +18,12 @@ class RouteControllerSpec extends Specification {
         controller."${controllerMethod}"()
 
         then:
-        1 * controller.routeService."${serviceMethod}"(*_) >> serviceResult
+        1 * controller."${service}"."${serviceMethod}"(*_) >> serviceResult
 
         where:
-        controllerMethod | serviceMethod  | serviceResult
-        'index'          | 'getAllRoutes' | []
-        'save'           | 'createRoute'  | [:]
-    }
-
-    @Unroll
-    void 'Should handle exceptions during #controllerMethod'() {
-        given:
-        controller.routeService = Mock(RouteService)
-        controller.routeService."${serviceMethod}"(*_) >> { throw new RuntimeException('test') }
-
-        when:
-        controller."${controllerMethod}"()
-
-        then:
-        response.text == 'test'
-
-        where:
-        controllerMethod | serviceMethod
-        'save'           | 'createRoute'
+        controllerMethod | service        | serviceMethod  | serviceResult
+        'index'          | 'routeService' | 'getAllRoutes' | []
+        'save'           | 'routeService' | 'createRoute'  | [:]
     }
 
 }

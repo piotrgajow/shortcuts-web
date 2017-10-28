@@ -9,17 +9,12 @@ class RouteController {
     def routeService
 
     def index() {
-        def result = routeService.allRoutes
-        render result as JSON
+        render routeService.allRoutes as JSON
     }
 
     def save() {
-        try {
-            response.status = HttpServletResponse.SC_CREATED
-            render routeService.createRoute(request.JSON) as JSON
-        } catch (ex) {
-            render ex.message
-        }
+        response.status = HttpServletResponse.SC_CREATED
+        render routeService.createRoute(request.JSON) as JSON
     }
 
 }
