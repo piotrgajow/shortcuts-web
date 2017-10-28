@@ -13,7 +13,7 @@ class ErrorHandlingController {
         render result as JSON
     }
 
-        def handleOtherException(Exception e) {
+    def handleOtherException(Exception e) {
         def result = [error: e.message]
         response.status = HttpServletResponse.SC_INTERNAL_SERVER_ERROR
         render result as JSON
