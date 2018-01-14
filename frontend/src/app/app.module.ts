@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule  } from '@angular/common/http';
 import { MatToolbarModule, MatButtonModule, MatCardModule, MatListModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -28,7 +28,7 @@ import { RouteSelectionViewComponent } from './views/route-selection/route-selec
         AppRoutingModule,
         BrowserModule,
         ReactiveFormsModule,
-        HttpModule,
+        HttpClientModule,
         MatToolbarModule,
         MatButtonModule,
         MatCardModule,

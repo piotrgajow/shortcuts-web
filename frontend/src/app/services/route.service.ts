@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+
 import 'rxjs/add/operator/toPromise';
 
 import { BackendConfig } from '../config/backend-config';
@@ -9,15 +10,15 @@ import { Route } from '../domain/route';
 export class RouteService {
 
     constructor(
-        private http: Http,
+        private http: HttpClient,
     ) {}
 
     getRoutes(): Promise<Route[]> {
-        return this.http.get(`${BackendConfig.BASE_URL}/route`).toPromise().then(response => response.json() as Route[]);
+        return this.http.get(`${BackendConfig.BASE_URL}/route`).toPromise();
     }
 
     saveRoute(route: Route): Promise<Route> {
-        return this.http.post(`${BackendConfig.BASE_URL}/route`, route).toPromise().then(response => response.json() as Route);
+        return this.http.post(`${BackendConfig.BASE_URL}/route`, route).toPromise();
     }
 
 }
