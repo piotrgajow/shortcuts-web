@@ -4,18 +4,19 @@ import { Route } from '../route';
 import { RouteService } from '../route.service';
 
 @Component({
-    selector: 'route-list',
-    templateUrl: './route-list.component.html',
+    templateUrl: './route-list-view.component.html',
 })
-export class RouteListComponent implements OnInit {
+export class RouteListViewComponent implements OnInit {
     routes: Route[];
 
     constructor(
         private routeService: RouteService,
-    ) {}
+    ) {
+    }
 
     ngOnInit(): void {
-        this.routeService.getRoutes().then((routes) => this.routes = routes)
+        this.routeService.getRoutes()
+            .then((routes) => this.routes = routes);
     }
 
 }

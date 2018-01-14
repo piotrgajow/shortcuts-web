@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MainMenuComponent } from './shared/menu/main-menu.component';
-import { RouteListComponent } from './route/list/route-list.component';
+import { RouteListViewComponent } from './route/list/route-list-view.component';
 import { RouteService } from './route/route.service';
 import { TripViewComponent } from './trip/trip-view.component';
 import { TripService } from './trip/trip.service';
@@ -19,7 +19,7 @@ import { RouteSelectionViewComponent } from './route-selection/route-selection-v
     declarations: [
         AppComponent,
         MainMenuComponent,
-        RouteListComponent,
+        RouteListViewComponent,
         RouteSelectionViewComponent,
         TripViewComponent,
         TimePipe,
