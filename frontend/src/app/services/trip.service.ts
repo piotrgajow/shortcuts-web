@@ -3,8 +3,8 @@ import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { BackendConfig } from '../shared/backend-config';
-import { Trip } from './trip';
+import { BackendConfig } from '../config/backend-config';
+import { Trip } from '../domain/trip';
 
 @Injectable()
 export class TripService {

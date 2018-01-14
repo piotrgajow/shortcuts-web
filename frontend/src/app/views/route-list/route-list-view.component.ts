@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Route } from '../route';
-import { RouteService } from '../route.service';
+import { Route } from '../../domain/route';
+import { RouteService } from '../../services/route.service';
 
 @Component({
     templateUrl: './route-list-view.component.html',

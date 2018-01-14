@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 
 import { Observable, Subscription } from 'rxjs/Rx';
 
-import { Trip } from './trip';
-import { TripService } from './trip.service';
+import { Trip } from '../../domain/trip';
+import { TripService } from '../../services/trip.service';
 
 @Component({
     templateUrl: './trip-view.component.html'

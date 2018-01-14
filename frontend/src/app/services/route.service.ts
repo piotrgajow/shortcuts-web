@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
-import { BackendConfig } from '../shared/backend-config';
-import { Route } from './route';
+import { BackendConfig } from '../config/backend-config';
+import { Route } from '../domain/route';
 
 @Injectable()
 export class RouteService {

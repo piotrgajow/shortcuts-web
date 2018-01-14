@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 
-import { Route } from '../route/route';
-import { Trip } from '../trip/trip';
-import { RouteService } from '../route/route.service';
-import { TripService } from '../trip/trip.service';
+import { Route } from '../../domain/route';
+import { Trip } from '../../domain/trip';
+import { RouteService } from '../../services/route.service';
+import { TripService } from '../../services/trip.service';
 
 @Component({
     templateUrl: './route-selection-view.component.html',
