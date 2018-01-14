@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -11,13 +11,12 @@ export class TripService {
     currentTrip: Trip = new Trip();
 
     constructor(
-        private http: Http,
+        private http: HttpClient,
     ) {}
 
-    saveTrip(routeId: number, trip: Trip): Promise<Trip> {
-        const url = `${BackendConfig.BASE_URL}/route/${routeId}/trip`
-        return this.http.post(url, trip).toPromise()
-            .then(response => response.json() as Trip);
+    saveTrip(routeId: number, trip: Trip): Promise<any> {
+        const url = `${BackendConfig.BASE_URL}/route/${routeId}/trip`;
+        return this.http.post(url, trip).toPromise();
     }
 
 }
