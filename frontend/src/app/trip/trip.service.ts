@@ -7,7 +7,7 @@ import { Trip } from './trip';
 
 @Injectable()
 export class TripService {
-    currentTrip: Trip;
+    currentTrip: Trip = new Trip();
 
     constructor(
         private http: Http,
