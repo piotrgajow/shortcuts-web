@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+
 import 'rxjs/add/operator/toPromise';
 
 import { BackendConfig } from '../shared/backend-config';
@@ -14,7 +15,9 @@ export class TripService {
     ) {}
 
     saveTrip(routeId: number, trip: Trip): Promise<Trip> {
-        return this.http.post(`${BackendConfig.BASE_URL}/route/${routeId}/trip`, trip).toPromise().then(response => response.json() as Trip);
+        const url = `${BackendConfig.BASE_URL}/route/${routeId}/trip`
+        return this.http.post(url, trip).toPromise()
+            .then(response => response.json() as Trip);
     }
 
 }

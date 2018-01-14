@@ -7,7 +7,9 @@
 </mat-card>
 <mat-card>
     <mat-card-header>
-        <mat-card-title>Existing routes</mat-card-title>
+        <mat-card-title>
+            Existing routes
+        </mat-card-title>
     </mat-card-header>
     <mat-card-content>
         <mat-list>
@@ -21,12 +23,16 @@
     <mat-card-actions>
         <button mat-raised-button
                 (click)="confirmSelection()"
-                [disabled]="!selectedRoute">Confirm</button>
+                [disabled]="!selectedRoute">
+            Confirm
+        </button>
     </mat-card-actions>
 </mat-card>
 <mat-card>
     <mat-card-header>
-        <mat-card-title>Add new route</mat-card-title>
+        <mat-card-title>
+            Add new route
+        </mat-card-title>
     </mat-card-header>
     <mat-card-content>
         <form [formGroup]="newRouteForm">
@@ -40,6 +46,8 @@
     </mat-card-content>
     <mat-card-actions>
         <button mat-raised-button
-                (click)="addRoute()">Add</button>
+                (click)="addRoute()">
+            Add
+        </button>
     </mat-card-actions>
 </mat-card>

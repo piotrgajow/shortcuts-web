@@ -11,7 +11,7 @@ import { TripService } from './trip.service';
 })
 export class TripViewComponent implements OnInit, OnDestroy {
     static readonly TIMER_DELAY = 0;
-    static readonly TIMER_INTERVAL= 1000;
+    static readonly TIMER_INTERVAL = 1000;
 
     trip: Trip;
     timerSubscription: Subscription;

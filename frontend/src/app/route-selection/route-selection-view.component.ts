@@ -9,7 +9,6 @@ import { TripService } from '../trip/trip.service';
 
 @Component({
     templateUrl: './route-selection-view.component.html',
-    styleUrls: ['./route-selection-view.component.css']
 })
 export class RouteSelectionViewComponent implements OnInit {
     routes: Route[] = [];
@@ -34,8 +33,6 @@ export class RouteSelectionViewComponent implements OnInit {
     }
 
     confirmSelection(): void {
-        console.log(this.selectedRoute.id);
-        console.log(this.trip);
         this.tripService.saveTrip(this.selectedRoute.id, this.trip)
             .then(response => this.router.navigateByUrl(''));
     }
@@ -43,7 +40,7 @@ export class RouteSelectionViewComponent implements OnInit {
     addRoute(): void {
         this.routeService.saveRoute(this.newRouteForm.value)
             .then((res) => {
-            this.newRouteForm.reset();
+                this.newRouteForm.reset();
                 this.routes.push(res);
             });
     }
