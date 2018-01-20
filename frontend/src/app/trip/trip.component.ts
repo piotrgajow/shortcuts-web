@@ -17,7 +17,7 @@ export class TripComponent {
     ) {
         this.trip = new Trip();
         this.trip.startTime = LocalDateTime.now();
-        this.trip.time = 0;
+        this.trip.duration = 0;
     }
 
     finalize(): void {
