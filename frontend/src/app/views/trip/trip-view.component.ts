@@ -22,13 +22,13 @@ export class TripViewComponent implements OnInit, OnDestroy {
     ) {
         this.trip = new Trip();
         this.trip.startTime = new Date();
-        this.trip.time = 0;
+        this.trip.duration = 0;
     }
 
     ngOnInit(): void {
         const timer = Observable.timer(TripViewComponent.TIMER_DELAY, TripViewComponent.TIMER_INTERVAL);
         this.timerSubscription = timer.subscribe(t => {
-            this.trip.time = t;
+            this.trip.duration = t;
         });
     }
 

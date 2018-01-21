@@ -1,4 +1,4 @@
 export class Trip {
     startTime: Date;
-    time = 0;
+    duration = 0;
 }

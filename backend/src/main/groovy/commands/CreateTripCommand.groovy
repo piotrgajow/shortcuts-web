@@ -1,5 +1,7 @@
 package commands
 
+import util.DateFormatters
+
 import java.time.LocalDateTime
 
 class CreateTripCommand {
@@ -9,7 +11,7 @@ class CreateTripCommand {
     Long duration
 
     void setStartTime(String startTimeString) {
-        startTime = LocalDateTime.parse(startTimeString)
+        startTime = LocalDateTime.parse(startTimeString, DateFormatters.JSON)
     }
 
 }
