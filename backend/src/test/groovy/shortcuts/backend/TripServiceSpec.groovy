@@ -11,14 +11,17 @@ import spock.lang.Unroll
 @Build([Route, Trip])
 class TripServiceSpec extends Specification {
 
+    Route route
+    String localDateTimeString = '2000-01-01T00:00:00.000'
+
     def setup() {
-        Route.build(description: 'test')
+        route = Route.build(description: 'test')
     }
 
     @Unroll
     void 'Should reject trips without route'() {
         given:
-        CreateTripCommand command = new CreateTripCommand(routeId: routeId, startTime: '2000-01-01 00:00:00', duration: 0)
+        CreateTripCommand command = new CreateTripCommand(routeId: routeId, startTime: localDateTimeString, duration: 0)
 
         when:
         service.createTrip(command)
@@ -34,13 +37,13 @@ class TripServiceSpec extends Specification {
 
     void 'Should assign trip to proper route'() {
         given:
-        CreateTripCommand command = new CreateTripCommand(routeId: 1L, startTime: '2000-01-01 00:00:00', duration: 0)
+        CreateTripCommand command = new CreateTripCommand(routeId: route.id, startTime: localDateTimeString, duration: 0)
 
         when:
         Trip result = service.createTrip(command)
 
         then:
-        result.route.id == 1L
+        result.route.id == route.id
     }
 
 }

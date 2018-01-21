@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { Trip } from './trip';
 import { TripService } from './trip.service';
+import { LocalDateTime } from 'js-joda';
 
 @Component({
     templateUrl: './trip.component.html'
@@ -15,8 +16,8 @@ export class TripComponent {
         private tripService: TripService,
     ) {
         this.trip = new Trip();
-        this.trip.startTime = new Date();
-        this.trip.time = 0;
+        this.trip.startTime = LocalDateTime.now();
+        this.trip.duration = 0;
     }
 
     finalize(): void {

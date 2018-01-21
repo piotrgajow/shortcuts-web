@@ -1,5 +1,6 @@
 const chakram = require('chakram');
 const expect = chakram.expect;
+const LocalDateTime = require('js-joda').LocalDateTime;
 
 const db = require('../common/db.js');
 const common = require('../common/common.js');
@@ -57,7 +58,7 @@ describe('Module: Routes', () => {
             it('should add trip to a route', () => {
                 let routeId;
                 const json = {
-                    startTime: '2017-10-24 09:13:15',
+                    startTime: LocalDateTime.of(2017, 10, 24, 9, 13, 15),
                     duration: 1385
                 };
                 return db.executeQuery(`SELECT route_id FROM route WHERE description = 'Test'`)
@@ -69,11 +70,11 @@ describe('Module: Routes', () => {
                         expect(res).to.have.schema(schemas.trip);
                         expect(res.body.routeId).to.be.eql(routeId);
                         expect(res.body.duration).to.be.eql(json.duration);
-                        expect(res.body.startTime).to.be.eql(json.startTime);
+                        expect(res.body.startTime).to.be.eql(json.startTime.toString());
                         return db.executeQuery(`SELECT * FROM trip WHERE trip_id = ${res.body.id}`);
                     }).then((res) => {
                         expect(res[0].route_id).to.be.eql(routeId);
-                        expect(res[0].start_time).to.be.eql(json.startTime);
+                        expect(res[0].start_time).to.be.eql(common.formatDate(json.startTime));
                         expect(res[0].duration).to.be.eql(json.duration);
                     });
             });

@@ -1,6 +1,6 @@
-import { Route } from '../route/route';
+import { LocalDateTime } from 'js-joda';
 
 export class Trip {
-    startTime: Date;
-    time: number;
+    startTime: LocalDateTime;
+    duration: number;
 }

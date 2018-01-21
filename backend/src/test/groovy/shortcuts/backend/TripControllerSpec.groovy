@@ -10,7 +10,7 @@ class TripControllerSpec extends Specification {
     def setup() {
         controller.tripService = Mock(TripService)
         controller.request.JSON = [
-                startTime: '2017-10-26 10:20:30',
+                startTime: '2017-10-26T10:20:30.000',
         ]
     }
 
