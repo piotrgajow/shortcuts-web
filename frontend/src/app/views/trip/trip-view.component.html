@@ -1,0 +1,19 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            Trip duration
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <p>
+            {{trip.duration | time}}
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button
+                (click)="finalize()">
+            Finish
+        </button>
+    </mat-card-actions>
+</mat-card>
+
