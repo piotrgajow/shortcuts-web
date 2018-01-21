@@ -11,8 +11,12 @@ module.exports.expectStatusOk = function (response) {
     expect(response).to.have.status(200);
 };
 
-module.exports.buildUrl = function (url) {
-    return `${config.baseUrl}/${url}`;
+module.exports.buildUrl = function (url, params = {}) {
+    let endpointUrl = url;
+    Object.keys(params).forEach((paramKey) => {
+        endpointUrl = endpointUrl.replace(`$${paramKey}`, params[paramKey]);
+    });
+    return `${config.baseUrl}/${endpointUrl}`;
 };
 
 module.exports.formatDate = function (localDateTime) {
