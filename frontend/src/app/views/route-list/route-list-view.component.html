@@ -1,0 +1,12 @@
+<mat-card *ngIf="routes">
+    <mat-card-content>
+        <mat-list *ngIf="routes.length">
+            <mat-list-item *ngFor="let route of routes">
+                {{route.description}}
+            </mat-list-item>
+        </mat-list>
+        <h3 *ngIf="!routes.length">
+            No routes yet.
+        </h3>
+    </mat-card-content>
+</mat-card>

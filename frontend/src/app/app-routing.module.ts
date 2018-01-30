@@ -1,24 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { MainMenuComponent } from './shared/menu/main-menu.component';
-import { RouteListComponent } from './route/list/route-list.component';
-import { RouteSelectorComponent } from './route/selector/route-selector.component';
-import { TripComponent } from './trip/trip.component';
+import { RouteListViewComponent } from './views/route-list/route-list-view.component';
+import { TripViewComponent } from './views/trip/trip-view.component';
+import { RouteSelectionViewComponent } from './views/route-selection/route-selection-view.component';
 
 const routes: Routes = [
-  { path: 'newTrip', component: TripComponent },
-  { path: 'selectRoute', component: RouteSelectorComponent },
-  { path: 'routes', component: RouteListComponent },
-  { path: '', redirectTo: '/routes', pathMatch: 'full' }
-]
+    { path: 'newTrip', component: TripViewComponent },
+    { path: 'selectRoute', component: RouteSelectionViewComponent },
+    { path: 'routes', component: RouteListViewComponent },
+    { path: '', redirectTo: '/routes', pathMatch: 'full' }
+];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes)
-  ],
-  exports: [
-    RouterModule
-  ]
+    imports: [
+        RouterModule.forRoot(routes)
+    ],
+    exports: [
+        RouterModule
+    ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

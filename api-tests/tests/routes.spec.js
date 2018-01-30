@@ -23,10 +23,9 @@ describe('Module: Routes', () => {
 
             it('should return all existing routes', () => {
                 url = common.buildUrl(urlTemplate);
-                console.log(url);
                 return chakram.get(url)
                     .then((res) => {
-                        expect(res).to.have.status(200);
+                        common.expectStatusOk(res);
                         expect(res).to.have.schema(schemas.routeList);
                         expect(res.body).to.have.length(2);
                         expect(res.body.map((it) => it.description)).to.be.eql(['Test', 'Test 2']);
@@ -63,6 +62,11 @@ describe('Module: Routes', () => {
 
             it('should add trip to a route', () => {
                 let routeId;
+                const dateTime = LocalDateTime.of(2017, 10, 24, 9, 13, 15);
+                const json = {
+                    startTime: common.formatDateJson(dateTime),
+                    duration: 1385
+                };
                 return db.executeQuery(`SELECT route_id FROM route WHERE description = 'Test'`)
                     .then((res) => {
                         routeId = res[0].route_id;
@@ -74,14 +78,15 @@ describe('Module: Routes', () => {
                         };
                         return chakram.post(url, json);
                     }).then((res) => {
+                        common.expectStatusOk(res);
                         expect(res).to.have.schema(schemas.trip);
                         expect(res.body.routeId).to.be.eql(routeId);
                         expect(res.body.duration).to.be.eql(json.duration);
-                        expect(res.body.startTime).to.be.eql(json.startTime.toString());
+                        expect(res.body.startTime).to.be.eql(json.startTime);
                         return db.executeQuery(`SELECT * FROM trip WHERE trip_id = ${res.body.id}`);
                     }).then((res) => {
                         expect(res[0].route_id).to.be.eql(routeId);
-                        expect(res[0].start_time).to.be.eql(common.formatDate(json.startTime));
+                        expect(res[0].start_time).to.be.eql(common.formatDateMysql(dateTime));
                         expect(res[0].duration).to.be.eql(json.duration);
                     });
             });

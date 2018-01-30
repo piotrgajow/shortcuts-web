@@ -6,4 +6,4 @@ export class Route {
   toString(): String {
       return 'Route - ' + this.description + ' (' + this.id + ')';
   }
-};
+}
