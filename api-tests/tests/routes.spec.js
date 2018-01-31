@@ -6,6 +6,9 @@ const db = require('../common/db.js');
 const common = require('../common/common.js');
 const schemas = require('../common/schemas.js');
 
+let url;
+let json;
+
 describe('Module: Routes', () => {
 
     before(() => {
@@ -14,11 +17,12 @@ describe('Module: Routes', () => {
 
     describe('Endpoint: /route', () => {
 
-        const url = common.buildUrl('route');
+        const urlTemplate = 'route';
 
         describe('Method: GET', () => {
 
             it('should return all existing routes', () => {
+                url = common.buildUrl(urlTemplate);
                 return chakram.get(url)
                     .then((res) => {
                         common.expectStatusOk(res);
@@ -33,7 +37,8 @@ describe('Module: Routes', () => {
         describe('Method: POST', () => {
 
             it('should create new route', () => {
-                const json = {description: 'New route'};
+                url = common.buildUrl(urlTemplate);
+                json = {description: 'New route'};
                 return chakram.post(url, json)
                     .then((res) => {
                         expect(res).to.have.status(201);
@@ -51,7 +56,7 @@ describe('Module: Routes', () => {
 
     describe('Endpoint: /route/$routeId/trip', () => {
 
-        const url = common.buildUrl('route/$routeId/trip');
+        const urlTemplate = 'route/$routeId/trip';
 
         describe('Method: POST', () => {
 
@@ -66,7 +71,12 @@ describe('Module: Routes', () => {
                     .then((res) => {
                         routeId = res[0].route_id;
                         expect(routeId).to.be.a('number');
-                        return chakram.post(url.replace('$routeId', routeId), json)
+                        url = common.buildUrl(urlTemplate, { routeId: routeId });
+                        json = {
+                            startTime: LocalDateTime.of(2017, 10, 24, 9, 13, 15),
+                            duration: 1385
+                        };
+                        return chakram.post(url, json);
                     }).then((res) => {
                         common.expectStatusOk(res);
                         expect(res).to.have.schema(schemas.trip);
