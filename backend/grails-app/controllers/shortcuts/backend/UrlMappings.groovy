@@ -4,11 +4,11 @@ class UrlMappings {
 
     static mappings = {
 
-        '/route'(controller: 'Route') {
+        '/route'(controller: 'route') {
             action = [POST: 'save', GET: 'index']
         }
 
-        "/route/$routeId/trip"(controller: 'Trip') {
+        "/route/$routeId/trip"(controller: 'trip') {
             action = [POST: 'save']
         }
 
