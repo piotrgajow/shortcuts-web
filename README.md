@@ -22,6 +22,14 @@ Project created for 2017 edition of *Get Noticed!* (Daj się poznać) contest. A
 
 ## Development
 
+### Project structure
+
+Project is separated into three main directories:
+
+- backend - Contains Grails project source code
+- frontend - Contains Angular project source code
+- api-tests - Contains source code for Chakram REST API tests
+
 ### Environment setup and application startup
 
 1. Install MySQL 5.7.17
