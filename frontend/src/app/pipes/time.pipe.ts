@@ -10,9 +10,13 @@ export class TimePipe implements PipeTransform {
         value -= hours * 3600;
         const minutes = Math.floor(value / 60);
         value -= minutes * 60;
-        const seconds = value;
 
-        return `${hours}:${minutes}:${seconds}`;
+        return `${this.padTime(hours)}:${this.padTime(minutes)}:${this.padTime(value)}`;
+    }
+
+    private padTime(timeValue: number): string {
+        const timeString = String(timeValue);
+        return timeString.length === 1 ? `0${timeString}` : timeString;
     }
 
 }
