@@ -1,5 +1,6 @@
 import { RouteService } from './route.service';
 import { Route } from '../domain/route';
+import { TestMocks } from '../utls/test-mocks.spec';
 
 describe('RouteService', () => {
 
@@ -8,7 +9,7 @@ describe('RouteService', () => {
     let backendService;
 
     beforeEach(() => {
-        backendService = jasmine.createSpyObj('BackendService', ['get', 'post']);
+        backendService = TestMocks.mockBackendService();
         subject = new RouteService(backendService);
     });
 
