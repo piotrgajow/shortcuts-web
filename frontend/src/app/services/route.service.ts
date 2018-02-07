@@ -1,24 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
-import 'rxjs/add/operator/toPromise';
-
-import { BackendConfig } from '../config/backend-config';
 import { Route } from '../domain/route';
+import { BackendService } from './backend.service';
 
 @Injectable()
 export class RouteService {
 
     constructor(
-        private http: HttpClient,
+        private backendService: BackendService,
     ) {}
 
     getRoutes(): Promise<any> {
-        return this.http.get(`${BackendConfig.BASE_URL}/route`).toPromise();
+        return this.backendService.get('route');
     }
 
     saveRoute(route: Route): Promise<any> {
-        return this.http.post(`${BackendConfig.BASE_URL}/route`, route).toPromise();
+        return this.backendService.post('route', route);
     }
 
 }

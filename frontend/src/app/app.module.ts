@@ -14,6 +14,7 @@ import { TripViewComponent } from './views/trip/trip-view.component';
 import { TripService } from './services/trip.service';
 import { TimePipe } from './pipes/time.pipe';
 import { RouteSelectionViewComponent } from './views/route-selection/route-selection-view.component';
+import { BackendService } from './services/backend.service';
 
 @NgModule({
     declarations: [
@@ -38,6 +39,7 @@ import { RouteSelectionViewComponent } from './views/route-selection/route-selec
         BrowserAnimationsModule,
     ],
     providers: [
+        BackendService,
         RouteService,
         TripService,
     ],
