@@ -4,4 +4,8 @@ export class TestMocks {
         return jasmine.createSpyObj('BackendService', ['get', 'post']);
     }
 
+    static mockRouteService() {
+        return jasmine.createSpyObj('RouteService', ['getRoutes']);
+    }
+
 }
