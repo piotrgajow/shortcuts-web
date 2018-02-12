@@ -1,4 +1,4 @@
-import { TestMocks } from '../utls/test-mocks.spec';
+import { TestMocks } from '../utils/test-mocks.spec';
 import { Trip } from '../domain/trip';
 import { TripService } from './trip.service';
 

@@ -1,6 +1,6 @@
 import { RouteService } from './route.service';
 import { Route } from '../domain/route';
-import { TestMocks } from '../utls/test-mocks.spec';
+import { TestMocks } from '../utils/test-mocks.spec';
 
 describe('RouteService', () => {
 
