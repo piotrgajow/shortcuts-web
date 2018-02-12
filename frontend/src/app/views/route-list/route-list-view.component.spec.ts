@@ -1,10 +1,10 @@
 import { TestBed, ComponentFixture, async, fakeAsync, tick } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { RouteListViewComponent } from './route-list-view.component';
 import { RouteService } from '../../services/route.service';
 import { TestMocks } from '../../utils/test-mocks.spec';
 import { Route } from '../../domain/route';
-import { MatCardModule, MatListModule } from '@angular/material';
 
 describe('RouteListViewComponent', () => {
 
@@ -15,16 +15,15 @@ describe('RouteListViewComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            schemas: [
+                CUSTOM_ELEMENTS_SCHEMA,
+            ],
             declarations: [
                 RouteListViewComponent,
             ],
             providers: [
                 { provide: RouteService, useValue: TestMocks.mockRouteService() },
             ],
-            imports: [
-                MatListModule,
-                MatCardModule,
-            ]
         }).compileComponents();
     }));
 

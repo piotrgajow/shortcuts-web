@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatToolbarModule } from '@angular/material';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { MainMenuComponent } from './main-menu.component';
 
@@ -10,12 +10,12 @@ describe('MainMenuComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            schemas: [
+                CUSTOM_ELEMENTS_SCHEMA,
+            ],
             declarations: [
                 MainMenuComponent,
             ],
-            imports: [
-                MatToolbarModule,
-            ]
         }).compileComponents();
     }));
 
