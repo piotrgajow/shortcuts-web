@@ -13,12 +13,12 @@ class UrlMappingsSpec extends Specification {
         request.method = method
 
         expect:
-        assertForwardUrlMapping([controller: controllerName, action: actionName], url, parameters)
+        assertForwardUrlMapping([controller: controllerName, action: actionName, method: method], url, parameters)
 
         where:
         url              | method | controllerName | actionName | parameters
-        '/route'         | 'GET'  | 'route'        | 'index'    | {}
-        '/route'         | 'POST' | 'route'        | 'save'     | {}
+        '/route'         | 'GET'  | 'route'        | 'index'    | { }
+        '/route'         | 'POST' | 'route'        | 'save'     | { }
         '/route/15/trip' | 'POST' | 'trip'         | 'save'     | { routeId = '15' }
     }
 
