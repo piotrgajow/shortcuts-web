@@ -1,4 +1,6 @@
+import { LocalDateTime } from 'js-joda';
+
 export class Trip {
-    startTime: Date;
+    startTime: LocalDateTime;
     duration = 0;
 }

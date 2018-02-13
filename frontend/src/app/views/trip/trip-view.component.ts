@@ -5,6 +5,7 @@ import { Observable, Subscription } from 'rxjs/Rx';
 
 import { Trip } from '../../domain/trip';
 import { TripService } from '../../services/trip.service';
+import { LocalDateTime } from 'js-joda';
 
 @Component({
     templateUrl: './trip-view.component.html'
@@ -21,7 +22,7 @@ export class TripViewComponent implements OnInit, OnDestroy {
         private tripService: TripService,
     ) {
         this.trip = new Trip();
-        this.trip.startTime = new Date();
+        this.trip.startTime = LocalDateTime.now();
         this.trip.duration = 0;
     }
 
