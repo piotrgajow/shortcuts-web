@@ -20,12 +20,15 @@ export class RouteSelectionViewComponent implements OnInit {
         private router: Router,
         private routeService: RouteService,
         private tripService: TripService,
-    ) {}
+    ) {
+        const formControls: any = {};
+        formControls.description = new FormControl('', []);
+        this.newRouteForm = new FormGroup(formControls);
+    }
 
     ngOnInit(): void {
-        this.buildForm();
-        this.routeService.getRoutes().then(routes => this.routes = routes);
         this.trip = this.tripService.currentTrip;
+        this.routeService.getRoutes().then(routes => this.routes = routes);
     }
 
     selectRoute(route: Route): void {
@@ -43,12 +46,6 @@ export class RouteSelectionViewComponent implements OnInit {
                 this.newRouteForm.reset();
                 this.routes.push(res);
             });
-    }
-
-    private buildForm(): void {
-        const formControls: any = {};
-        formControls.description = new FormControl('', []);
-        this.newRouteForm = new FormGroup(formControls);
     }
 
 }
