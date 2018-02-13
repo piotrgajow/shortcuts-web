@@ -1,5 +1,12 @@
 export class Route {
     id: number;
     description: String;
-    averageTime: number;
+
+    constructor(obj?: any) {
+        if (obj) {
+            this.id = obj.id;
+            this.description =  obj.description;
+        }
+    }
+
 }
