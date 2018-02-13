@@ -5,7 +5,7 @@ import { RouteListViewComponent } from './views/route-list/route-list-view.compo
 import { TripViewComponent } from './views/trip/trip-view.component';
 import { RouteSelectionViewComponent } from './views/route-selection/route-selection-view.component';
 
-const routes: Routes = [
+export const routes: Routes = [
     { path: 'newTrip', component: TripViewComponent },
     { path: 'selectRoute', component: RouteSelectionViewComponent },
     { path: 'routes', component: RouteListViewComponent },
