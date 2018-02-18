@@ -7,9 +7,7 @@ const config = require('./config.json');
 const MYSQL_DATETIME_FORMAT = jsJoda.DateTimeFormatter.ofPattern('yyyy-MM-dd HH:mm:ss');
 const JSON_DATETIME_FORMAT = jsJoda.DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 
-module.exports.expectStatusOk = function (response) {
-    expect(response).to.have.status(200);
-};
+module.exports.expectStatusOk = verifyStatusFunction(200);
 
 module.exports.buildUrl = function (url, params = {}) {
     let endpointUrl = url;
@@ -26,3 +24,10 @@ module.exports.formatDateMysql = function (localDateTime) {
 module.exports.formatDateJson = function (localDateTime) {
     return localDateTime.format(JSON_DATETIME_FORMAT);
 };
+
+function verifyStatusFunction(expectedStatus) {
+    return function (res) {
+        const msg = res.body.error || 'No errorm essage';
+        expect(res.response.statusCode).to.be.equal(expectedStatus, `Invalid status because: ${msg}`);
+    }
+}
