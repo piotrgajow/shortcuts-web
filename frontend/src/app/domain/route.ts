@@ -1,9 +1,12 @@
 export class Route {
-  id: number;
-  description: String;
-  averageTime: number;
+    id: number;
+    description: String;
 
-  toString(): String {
-      return 'Route - ' + this.description + ' (' + this.id + ')';
-  }
+    constructor(obj?: any) {
+        if (obj) {
+            this.id = obj.id;
+            this.description =  obj.description;
+        }
+    }
+
 }

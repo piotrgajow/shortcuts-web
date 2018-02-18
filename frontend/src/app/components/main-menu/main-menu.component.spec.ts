@@ -1,12 +1,12 @@
-import { TestBed, ComponentFixture, async, } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-import { AppComponent } from './app.component';
+import { MainMenuComponent } from './main-menu.component';
 
-describe('AppComponent', () => {
+describe('MainMenuComponent', () => {
 
-    let fixture: ComponentFixture<AppComponent>;
-    let component: AppComponent;
+    let fixture: ComponentFixture<MainMenuComponent>;
+    let component: MainMenuComponent;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -14,13 +14,13 @@ describe('AppComponent', () => {
                 CUSTOM_ELEMENTS_SCHEMA,
             ],
             declarations: [
-                AppComponent,
+                MainMenuComponent,
             ],
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(AppComponent);
+        fixture = TestBed.createComponent(MainMenuComponent);
         component = fixture.debugElement.componentInstance;
     });
 

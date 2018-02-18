@@ -1,22 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
-import 'rxjs/add/operator/toPromise';
-
-import { BackendConfig } from '../config/backend-config';
 import { Trip } from '../domain/trip';
+import { BackendService } from './backend.service';
 
 @Injectable()
 export class TripService {
+
     currentTrip: Trip = new Trip();
 
     constructor(
-        private http: HttpClient,
+        private backendService: BackendService,
     ) {}
 
     saveTrip(routeId: number, trip: Trip): Promise<any> {
-        const url = `${BackendConfig.BASE_URL}/route/${routeId}/trip`;
-        return this.http.post(url, trip).toPromise();
+        const url = `route/${routeId}/trip`;
+        return this.backendService.post(url, trip);
     }
 
 }
