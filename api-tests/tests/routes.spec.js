@@ -72,10 +72,6 @@ describe('Module: Routes', () => {
                         routeId = res[0].route_id;
                         expect(routeId).to.be.a('number');
                         url = common.buildUrl(urlTemplate, { routeId: routeId });
-                        json = {
-                            startTime: LocalDateTime.of(2017, 10, 24, 9, 13, 15),
-                            duration: 1385
-                        };
                         return chakram.post(url, json);
                     }).then((res) => {
                         common.expectStatusOk(res);

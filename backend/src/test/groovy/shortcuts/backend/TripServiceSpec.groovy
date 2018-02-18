@@ -12,7 +12,7 @@ import spock.lang.Unroll
 class TripServiceSpec extends Specification {
 
     Route route
-    String localDateTimeString = '2000-01-01T00:00:00.000Z'
+    String localDateTimeString = '2000-01-01T00:00:00.000'
 
     def setup() {
         route = Route.build(description: 'test')
