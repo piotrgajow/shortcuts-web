@@ -1,5 +1,6 @@
-import { TestMocks } from '../utils/test-mocks.spec';
 import { Trip } from '../domain/trip';
+import { TestMocks } from '../utils/test-mocks.spec';
+
 import { TripService } from './trip.service';
 
 describe('TripService', () => {
