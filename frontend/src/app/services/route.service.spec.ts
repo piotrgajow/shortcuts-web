@@ -1,5 +1,5 @@
 import { Route } from '../domain/route';
-import { TestMocks } from '../utils/test-mocks.spec';
+import { mockBackendService } from '../utils/test-mocks.spec';
 
 import { RouteService } from './route.service';
 
@@ -7,10 +7,10 @@ describe('RouteService', () => {
 
     let subject: RouteService;
 
-    let backendService;
+    let backendService: any;
 
     beforeEach(() => {
-        backendService = TestMocks.mockBackendService();
+        backendService = mockBackendService();
         subject = new RouteService(backendService);
     });
 

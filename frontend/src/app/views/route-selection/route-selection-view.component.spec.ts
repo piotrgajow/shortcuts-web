@@ -4,7 +4,7 @@ import { RouteSelectionViewComponent } from './route-selection-view.component';
 import { Router } from '@angular/router';
 import { RouteService } from '../../services/route.service';
 import { TripService } from '../../services/trip.service';
-import { TestMocks } from '../../utils/test-mocks.spec';
+import { mockRouter, mockRouteService, mockTripService } from '../../utils/test-mocks.spec';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TimePipe } from '../../pipes/time.pipe';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -16,9 +16,9 @@ describe('RouteSelectionViewComponent', () => {
     let fixture: ComponentFixture<RouteSelectionViewComponent>;
     let component: RouteSelectionViewComponent;
 
-    let router;
-    let routeService;
-    let tripService;
+    let router: any;
+    let routeService: any;
+    let tripService: any;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -33,9 +33,9 @@ describe('RouteSelectionViewComponent', () => {
                 ReactiveFormsModule,
             ],
             providers: [
-                { provide: Router, useValue: TestMocks.mockRouter() },
-                { provide: RouteService, useValue: TestMocks.mockRouteService() },
-                { provide: TripService, useValue: TestMocks.mockTripService() },
+                { provide: Router, useValue: mockRouter() },
+                { provide: RouteService, useValue: mockRouteService() },
+                { provide: TripService, useValue: mockTripService() },
             ],
         }).compileComponents();
     }));
@@ -95,10 +95,10 @@ describe('RouteSelectionViewComponent', () => {
 
     describe('selectRoute', () => {
 
-        const route = new Route();
+        const route = new Route({ id: 1 });
 
         it('should save selected route', () => {
-            component.selectedRoute = null;
+            component.selectedRoute = new Route({ id: 3 });
 
             component.selectRoute(route);
 

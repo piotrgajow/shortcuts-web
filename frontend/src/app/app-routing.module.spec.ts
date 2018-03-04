@@ -18,13 +18,15 @@ describe('Url routing', () => {
 
         it(`should map /${testCase.url} url to ${testCase.componentName}`, () => {
             const route = getRoute(testCase.url);
-            expect(route.component.name).toBe(testCase.componentName);
+            expect(route.component && route.component.name).toBe(testCase.componentName);
         });
 
     });
 
     function getRoute(url: string): Route {
-        return routes.find((route) => route.path === url);
+        const route = routes.find((it) => it.path === url);
+
+        return route ? route : {};
     }
 
 });

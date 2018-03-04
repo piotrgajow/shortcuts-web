@@ -10,7 +10,7 @@ export class TimePipe implements PipeTransform {
 
     transform(value: number): string {
         const hours = Math.floor(value / SECONDS_IN_HOUR);
-        let remaining = hours * SECONDS_IN_HOUR;
+        let remaining = value - hours * SECONDS_IN_HOUR;
         const minutes = Math.floor(remaining / SECONDS_IN_MINUTE);
         remaining -= minutes * SECONDS_IN_MINUTE;
 

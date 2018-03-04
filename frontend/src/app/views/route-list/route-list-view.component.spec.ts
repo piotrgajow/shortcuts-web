@@ -3,7 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { RouteListViewComponent } from './route-list-view.component';
 import { RouteService } from '../../services/route.service';
-import { TestMocks } from '../../utils/test-mocks.spec';
+import { mockRouteService } from '../../utils/test-mocks.spec';
 import { Route } from '../../domain/route';
 
 describe('RouteListViewComponent', () => {
@@ -11,7 +11,7 @@ describe('RouteListViewComponent', () => {
     let fixture: ComponentFixture<RouteListViewComponent>;
     let component: RouteListViewComponent;
 
-    let routeService;
+    let routeService: any;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -22,7 +22,7 @@ describe('RouteListViewComponent', () => {
                 RouteListViewComponent,
             ],
             providers: [
-                { provide: RouteService, useValue: TestMocks.mockRouteService() },
+                { provide: RouteService, useValue: mockRouteService() },
             ],
         }).compileComponents();
     }));

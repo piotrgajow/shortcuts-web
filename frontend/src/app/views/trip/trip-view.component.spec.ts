@@ -4,7 +4,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TripViewComponent } from './trip-view.component';
 import { LocalDateTime } from 'js-joda';
 import { TimePipe } from '../../pipes/time.pipe';
-import { TestMocks } from '../../utils/test-mocks.spec';
+import { mockRouter, mockTripService } from '../../utils/test-mocks.spec';
 import { Router } from '@angular/router';
 import { TripService } from '../../services/trip.service';
 import { Trip } from '../../domain/trip';
@@ -14,8 +14,8 @@ describe('TripViewComponent', () => {
     let fixture: ComponentFixture<TripViewComponent>;
     let component: TripViewComponent;
 
-    let router;
-    let tripService;
+    let router: any;
+    let tripService: any;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -27,8 +27,8 @@ describe('TripViewComponent', () => {
                 TimePipe,
             ],
             providers: [
-                { provide: Router, useValue: TestMocks.mockRouter() },
-                { provide: TripService, useValue: TestMocks.mockTripService() },
+                { provide: Router, useValue: mockRouter() },
+                { provide: TripService, useValue: mockTripService() },
             ],
         }).compileComponents();
     }));

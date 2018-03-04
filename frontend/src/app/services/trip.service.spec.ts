@@ -1,5 +1,5 @@
 import { Trip } from '../domain/trip';
-import { TestMocks } from '../utils/test-mocks.spec';
+import { mockBackendService } from '../utils/test-mocks.spec';
 
 import { TripService } from './trip.service';
 
@@ -7,10 +7,10 @@ describe('TripService', () => {
 
     let service: TripService;
 
-    let backendService;
+    let backendService: any;
 
     beforeEach(() => {
-        backendService = TestMocks.mockBackendService();
+        backendService = mockBackendService();
         service = new TripService(backendService);
     });
 
