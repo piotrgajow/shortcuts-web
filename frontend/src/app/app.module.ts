@@ -1,22 +1,23 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule  } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule  } from '@angular/common/http';
-import { MatToolbarModule, MatButtonModule, MatCardModule, MatListModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatListModule, MatToolbarModule } from '@angular/material';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { MainMenuComponent } from './components/main-menu/main-menu.component';
-import { RouteListViewComponent } from './views/route-list/route-list-view.component';
-import { RouteService } from './services/route.service';
-import { TripViewComponent } from './views/trip/trip-view.component';
-import { TripService } from './services/trip.service';
 import { TimePipe } from './pipes/time.pipe';
-import { RouteSelectionViewComponent } from './views/route-selection/route-selection-view.component';
 import { BackendService } from './services/backend.service';
+import { RouteService } from './services/route.service';
+import { TripService } from './services/trip.service';
+import { RouteListViewComponent } from './views/route-list/route-list-view.component';
+import { RouteSelectionViewComponent } from './views/route-selection/route-selection-view.component';
+import { TripViewComponent } from './views/trip/trip-view.component';
 
 @NgModule({
+    bootstrap: [AppComponent],
     declarations: [
         AppComponent,
         MainMenuComponent,
@@ -43,7 +44,6 @@ import { BackendService } from './services/backend.service';
         RouteService,
         TripService,
     ],
-    bootstrap: [AppComponent]
 })
 export class AppModule {
 }
