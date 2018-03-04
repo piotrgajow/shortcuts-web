@@ -14,7 +14,7 @@ describe('Url routing', () => {
         { url: 'newTrip', componentName: 'TripViewComponent' },
         { url: 'selectRoute', componentName: 'RouteSelectionViewComponent' },
         { url: 'routes', componentName: 'RouteListViewComponent' },
-    ].forEach(testCase => {
+    ].forEach((testCase) => {
 
         it(`should map /${testCase.url} url to ${testCase.componentName}`, () => {
             const route = getRoute(testCase.url);
@@ -23,8 +23,8 @@ describe('Url routing', () => {
 
     });
 
-    function getRoute(url): Route {
-        return routes.find(route => route.path === url);
+    function getRoute(url: string): Route {
+        return routes.find((route) => route.path === url);
     }
 
 });

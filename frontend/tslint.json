@@ -115,8 +115,8 @@
             }
         ],
         "no-unbound-method": true,
-        "no-unnecessary-class": true,
-        "no-unsafe-any": true,
+        "no-unnecessary-class": [true, "allow-empty-class"],
+        "no-unsafe-any": false,
         "no-unsafe-finally": true,
         "no-unused-expression": [
             true,
