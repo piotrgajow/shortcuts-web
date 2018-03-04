@@ -255,7 +255,7 @@
             true,
             "allow-public",
             "allow-protected"
-        ]
+        ],
         "prefer-method-signature": true,
         "prefer-switch": true,
         "prefer-template": true,
