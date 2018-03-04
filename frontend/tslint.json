@@ -40,7 +40,11 @@
         "no-reference": true,
         "no-unnecessary-type-assertion": false,
         "no-var-requires": true,
-        "only-arrow-functions": [true, "allow-declarations", "allow-named-functions"],
+        "only-arrow-functions": [
+            true,
+            "allow-declarations",
+            "allow-named-functions"
+        ],
         "prefer-for-of": true,
         "promise-function-async": false,
         "typedef": [
@@ -60,7 +64,6 @@
             }
         ],
         "unified-signatures": true,
-
         "await-promise": true,
         "ban-comma-operator": true,
         "ban": false,
@@ -79,7 +82,10 @@
         "no-debugger": true,
         "no-duplicate-super": true,
         "no-duplicate-switch-case": true,
-        "no-duplicate-variable": [true, "check-parameters"],
+        "no-duplicate-variable": [
+            true,
+            "check-parameters"
+        ],
         "no-dynamic-delete": true,
         "no-empty": true,
         "no-eval": true,
@@ -88,7 +94,10 @@
         "no-implicit-dependencies": true,
         "no-inferred-empty-object-type": true,
         "no-invalid-template-strings": true,
-        "no-invalid-this": [true, "check-function-in-method" ],
+        "no-invalid-this": [
+            true,
+            "check-function-in-method"
+        ],
         "no-misused-new": true,
         "no-null-keyword": true,
         "no-object-literal-type-assertion": true,
@@ -99,12 +108,20 @@
         "no-string-throw": true,
         "no-submodule-imports": false,
         "no-switch-case-fall-through": true,
-        "no-this-assignment": [true, {"allow-destructuring": true}],
+        "no-this-assignment": [
+            true,
+            {
+                "allow-destructuring": true
+            }
+        ],
         "no-unbound-method": true,
         "no-unnecessary-class": true,
         "no-unsafe-any": true,
         "no-unsafe-finally": true,
-        "no-unused-expression": [true, "allow-fast-null-checks"],
+        "no-unused-expression": [
+            true,
+            "allow-fast-null-checks"
+        ],
         "no-unused-variable": true,
         "no-use-before-declare": true,
         "no-var-keyword": true,
@@ -131,9 +148,21 @@
             4
         ],
         "linebreak-style": false,
-        "max-classes-per-file": [true, 1],
-        "max-file-line-count": [true, 1000],
-        "max-line-length": [true, { "limit": 120, "ignore-pattern": "^import |^export {(.*?)}"}],
+        "max-classes-per-file": [
+            true,
+            1
+        ],
+        "max-file-line-count": [
+            true,
+            1000
+        ],
+        "max-line-length": [
+            true,
+            {
+                "limit": 120,
+                "ignore-pattern": "^import |^export {(.*?)}"
+            }
+        ],
         "no-default-export": true,
         "no-duplicate-imports": true,
         "no-mergeable-namespace": true,
@@ -171,7 +200,10 @@
         "encoding": true,
         "file-header": false,
         "import-spacing": true,
-        "interface-name": [true, "never-prefix"],
+        "interface-name": [
+            true,
+            "never-prefix"
+        ],
         "interface-over-type-literal": true,
         "jsdoc-format": [
             true,
@@ -183,7 +215,10 @@
         "new-parens": true,
         "no-angle-bracket-type-assertion": true,
         "no-boolean-literal-compare": true,
-        "no-consecutive-blank-lines": [true, 1],
+        "no-consecutive-blank-lines": [
+            true,
+            1
+        ],
         "no-irregular-whitespace": true,
         "no-parameter-properties": false,
         "no-redundant-jsdoc": true,
@@ -193,7 +228,10 @@
         "no-unnecessary-initializer": true,
         "no-unnecessary-qualifier": true,
         "number-literal-format": true,
-        "object-literal-key-quotes": [true, "as-needed"],
+        "object-literal-key-quotes": [
+            true,
+            "as-needed"
+        ],
         "object-literal-shorthand": true,
         "one-line": [
             true,
@@ -213,13 +251,26 @@
                 "module-source-path": "full"
             }
         ],
-        "prefer-function-over-method": [true, "allow-public", "allow-protected"]
+        "prefer-function-over-method": [
+            true,
+            "allow-public",
+            "allow-protected"
+        ]
         "prefer-method-signature": true,
         "prefer-switch": true,
         "prefer-template": true,
-        "quotemark": [true, "single", "avoid-escape", "avoid-template"],
+        "quotemark": [
+            true,
+            "single",
+            "avoid-escape",
+            "avoid-template"
+        ],
         "return-undefined": true,
-        "semicolon": [true, "always", "strict-bound-class-methods"],
+        "semicolon": [
+            true,
+            "always",
+            "strict-bound-class-methods"
+        ],
         "space-before-function-paren": [
             true,
             {
@@ -269,13 +320,41 @@
         "use-pipe-decorator": true,
         "use-pipe-transform-interface": true,
         "use-view-encapsulation": true,
-        "angular-whitespace": [true, "check-interpolation", "check-pipe", "check-semicolon"],
-        "component-class-suffix": [true, "Component", "View"],
-        "component-selector": [true, "element", ["sc"], "kebab-case"],
-        "directive-class-suffix": [true, "Directive"],
-        "directive-selector": [true, "attribute", ["sc"], "camelCase"],
+        "angular-whitespace": [
+            true,
+            "check-interpolation",
+            "check-pipe",
+            "check-semicolon"
+        ],
+        "component-class-suffix": [
+            true,
+            "Component",
+            "View"
+        ],
+        "component-selector": [
+            true,
+            "element",
+            [
+                "sc"
+            ],
+            "kebab-case"
+        ],
+        "directive-class-suffix": [
+            true,
+            "Directive"
+        ],
+        "directive-selector": [
+            true,
+            "attribute",
+            [
+                "sc"
+            ],
+            "camelCase"
+        ],
         "import-destructuring-spacing": true,
-        "pipe-naming": ["camelCase"],
+        "pipe-naming": [
+            "camelCase"
+        ],
         "use-host-property-decorator": true,
         "use-input-property-decorator": true,
         "use-output-property-decorator": true
