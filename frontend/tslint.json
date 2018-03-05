@@ -132,11 +132,7 @@
         "prefer-object-spread": true,
         "radix": true,
         "restrict-plus-operands": true,
-        "strict-boolean-expressions": [
-            true,
-            "allow-undefined-union",
-            "allow-null-union"
-        ],
+        "strict-boolean-expressions": false,
         "strict-type-predicates": true,
         "switch-default": true,
         "triple-equals": true,

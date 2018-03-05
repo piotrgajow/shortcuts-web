@@ -41,7 +41,9 @@ export class TripViewComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.timerSubscription.unsubscribe();
+        if (this.timerSubscription) {
+            this.timerSubscription.unsubscribe();
+        }
     }
 
 }
