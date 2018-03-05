@@ -1,22 +1,26 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+const SECONDS_IN_HOUR = 3600;
+const SECONDS_IN_MINUTE = 60;
+
 @Pipe({
     name: 'time',
 })
 export class TimePipe implements PipeTransform {
 
     transform(value: number): string {
-        const hours = Math.floor(value / 3600);
-        value -= hours * 3600;
-        const minutes = Math.floor(value / 60);
-        value -= minutes * 60;
+        const hours = Math.floor(value / SECONDS_IN_HOUR);
+        let remaining = value - hours * SECONDS_IN_HOUR;
+        const minutes = Math.floor(remaining / SECONDS_IN_MINUTE);
+        remaining -= minutes * SECONDS_IN_MINUTE;
 
-        return `${this.padTime(hours)}:${this.padTime(minutes)}:${this.padTime(value)}`;
+        return `${padTime(hours)}:${padTime(minutes)}:${padTime(remaining)}`;
     }
 
-    private padTime(timeValue: number): string {
-        const timeString = String(timeValue);
-        return timeString.length === 1 ? `0${timeString}` : timeString;
-    }
+}
 
+function padTime(timeValue: number): string {
+    const timeString = String(timeValue);
+
+    return timeString.length === 1 ? `0${timeString}` : timeString;
 }

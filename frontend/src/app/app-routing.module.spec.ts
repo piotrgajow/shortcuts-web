@@ -14,17 +14,19 @@ describe('Url routing', () => {
         { url: 'newTrip', componentName: 'TripViewComponent' },
         { url: 'selectRoute', componentName: 'RouteSelectionViewComponent' },
         { url: 'routes', componentName: 'RouteListViewComponent' },
-    ].forEach(testCase => {
+    ].forEach((testCase) => {
 
         it(`should map /${testCase.url} url to ${testCase.componentName}`, () => {
             const route = getRoute(testCase.url);
-            expect(route.component.name).toBe(testCase.componentName);
+            expect(route.component && route.component.name).toBe(testCase.componentName);
         });
 
     });
 
-    function getRoute(url): Route {
-        return routes.find(route => route.path === url);
+    function getRoute(url: string): Route {
+        const route = routes.find((it) => it.path === url);
+
+        return route ? route : {};
     }
 
 });

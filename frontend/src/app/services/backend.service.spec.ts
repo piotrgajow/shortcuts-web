@@ -5,7 +5,7 @@ describe('BackendService', () => {
 
     let subject: BackendService;
 
-    let httpClient;
+    let httpClient: any;
 
     const mockPromise = { test: 'promise' };
     const mockHttpResponse = { toPromise: () => mockPromise };
@@ -47,4 +47,3 @@ describe('BackendService', () => {
     });
 
 });
-

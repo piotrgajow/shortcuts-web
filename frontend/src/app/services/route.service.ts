@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 
 import { Route } from '../domain/route';
+
 import { BackendService } from './backend.service';
 
 @Injectable()
 export class RouteService {
 
     constructor(
-        private backendService: BackendService,
+        private readonly backendService: BackendService,
     ) {}
 
     getRoutes(): Promise<any> {

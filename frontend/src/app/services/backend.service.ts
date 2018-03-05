@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -8,12 +8,8 @@ export class BackendService {
 
     private static readonly BASE_URL = 'http://localhost:8080';
 
-    private static fullUrl(endpointUrl: string): string {
-        return `${BackendService.BASE_URL}/${endpointUrl}`;
-    }
-
     constructor(
-        private httpClient: HttpClient,
+        private readonly httpClient: HttpClient,
     ) {}
 
     get(endpointUrl: string): Promise<any> {
@@ -22,6 +18,10 @@ export class BackendService {
 
     post(endpointUrl: string, body: any): Promise<any> {
         return this.httpClient.post(BackendService.fullUrl(endpointUrl), body).toPromise();
+    }
+
+    private static fullUrl(endpointUrl: string): string {
+        return `${BackendService.BASE_URL}/${endpointUrl}`;
     }
 
 }

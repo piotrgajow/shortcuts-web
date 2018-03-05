@@ -1,19 +1,15 @@
-export class TestMocks {
+export function mockRouter(): any {
+    return jasmine.createSpyObj('Router', ['navigateByUrl']);
+}
 
-    static mockRouter() {
-        return jasmine.createSpyObj('Router', ['navigateByUrl']);
-    }
+export function mockBackendService(): any {
+    return jasmine.createSpyObj('BackendService', ['get', 'post']);
+}
 
-    static mockBackendService() {
-        return jasmine.createSpyObj('BackendService', ['get', 'post']);
-    }
+export function mockRouteService(): any {
+    return jasmine.createSpyObj('RouteService', ['getRoutes', 'saveRoute']);
+}
 
-    static mockRouteService() {
-        return jasmine.createSpyObj('RouteService', ['getRoutes', 'saveRoute']);
-    }
-
-    static mockTripService() {
-        return jasmine.createSpyObj('TripService', ['saveTrip']);
-    }
-
+export function mockTripService(): any {
+    return jasmine.createSpyObj('TripService', ['saveTrip']);
 }

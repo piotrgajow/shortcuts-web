@@ -7,16 +7,17 @@ import { RouteService } from '../../services/route.service';
     templateUrl: './route-list-view.component.html',
 })
 export class RouteListViewComponent implements OnInit {
-    routes: Route[];
+    routes: Array<Route>;
 
     constructor(
-        private routeService: RouteService,
+        private readonly routeService: RouteService,
     ) {
     }
 
     ngOnInit(): void {
         this.routeService.getRoutes()
-            .then((routes) => this.routes = routes);
+            .then((routes) => this.routes = routes)
+            .catch();
     }
 
 }

@@ -1,30 +1,28 @@
-import { TestBed, ComponentFixture, async, fakeAsync, tick } from '@angular/core/testing';
-
-import { RouteSelectionViewComponent } from './route-selection-view.component';
-import { Router } from '@angular/router';
-import { RouteService } from '../../services/route.service';
-import { TripService } from '../../services/trip.service';
-import { TestMocks } from '../../utils/test-mocks.spec';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { TimePipe } from '../../pipes/time.pipe';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
 import { Route } from '../../domain/route';
 import { Trip } from '../../domain/trip';
+import { TimePipe } from '../../pipes/time.pipe';
+import { RouteService } from '../../services/route.service';
+import { TripService } from '../../services/trip.service';
+import { mockRouter, mockRouteService, mockTripService } from '../../utils/test-mocks.spec';
+
+import { RouteSelectionViewComponent } from './route-selection-view.component';
 
 describe('RouteSelectionViewComponent', () => {
 
     let fixture: ComponentFixture<RouteSelectionViewComponent>;
     let component: RouteSelectionViewComponent;
 
-    let router;
-    let routeService;
-    let tripService;
+    let router: any;
+    let routeService: any;
+    let tripService: any;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            schemas: [
-                CUSTOM_ELEMENTS_SCHEMA,
-            ],
             declarations: [
                 RouteSelectionViewComponent,
                 TimePipe,
@@ -33,11 +31,14 @@ describe('RouteSelectionViewComponent', () => {
                 ReactiveFormsModule,
             ],
             providers: [
-                { provide: Router, useValue: TestMocks.mockRouter() },
-                { provide: RouteService, useValue: TestMocks.mockRouteService() },
-                { provide: TripService, useValue: TestMocks.mockTripService() },
+                { provide: Router, useValue: mockRouter() },
+                { provide: RouteService, useValue: mockRouteService() },
+                { provide: TripService, useValue: mockTripService() },
             ],
-        }).compileComponents();
+            schemas: [
+                CUSTOM_ELEMENTS_SCHEMA,
+            ],
+        }).compileComponents().then().catch();
     }));
 
     beforeEach(() => {
@@ -54,7 +55,7 @@ describe('RouteSelectionViewComponent', () => {
 
     it('should initialize the form', () => {
         expect(component.newRouteForm).toBeDefined();
-        expect(component.newRouteForm.controls['description']).toBeDefined();
+        expect(component.newRouteForm.get('description')).toBeDefined();
     });
 
     describe('ngOnInit', () => {
@@ -67,7 +68,7 @@ describe('RouteSelectionViewComponent', () => {
 
         it('should set tip based on tripService.currentTrip', () => {
             const trip = { test: 'trip' };
-            tripService['currentTrip'] = trip;
+            tripService.currentTrip = trip;
 
             component.ngOnInit();
 
@@ -95,10 +96,10 @@ describe('RouteSelectionViewComponent', () => {
 
     describe('selectRoute', () => {
 
-        const route = new Route();
+        const route = new Route({ id: 1 });
 
         it('should save selected route', () => {
-            component.selectedRoute = null;
+            component.selectedRoute = new Route({ id: 3 });
 
             component.selectRoute(route);
 
@@ -144,7 +145,8 @@ describe('RouteSelectionViewComponent', () => {
         const newRoute = new Route({ id: 19, description });
 
         beforeEach(() => {
-            component.newRouteForm.controls['description'].setValue(routeData.description);
+            const control = component.newRouteForm.get('description');
+            control && control.setValue(routeData.description);
             routeService.saveRoute.and.returnValue(Promise.resolve(newRoute));
         });
 

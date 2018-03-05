@@ -1,30 +1,31 @@
-import { TestBed, ComponentFixture, async, fakeAsync, tick } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+
+import { Route } from '../../domain/route';
+import { RouteService } from '../../services/route.service';
+import { mockRouteService } from '../../utils/test-mocks.spec';
 
 import { RouteListViewComponent } from './route-list-view.component';
-import { RouteService } from '../../services/route.service';
-import { TestMocks } from '../../utils/test-mocks.spec';
-import { Route } from '../../domain/route';
 
 describe('RouteListViewComponent', () => {
 
     let fixture: ComponentFixture<RouteListViewComponent>;
     let component: RouteListViewComponent;
 
-    let routeService;
+    let routeService: any;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            schemas: [
-                CUSTOM_ELEMENTS_SCHEMA,
-            ],
             declarations: [
                 RouteListViewComponent,
             ],
             providers: [
-                { provide: RouteService, useValue: TestMocks.mockRouteService() },
+                { provide: RouteService, useValue: mockRouteService() },
             ],
-        }).compileComponents();
+            schemas: [
+                CUSTOM_ELEMENTS_SCHEMA,
+            ],
+        }).compileComponents().then().catch();
     }));
 
     beforeEach(() => {
