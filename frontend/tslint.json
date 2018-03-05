@@ -310,7 +310,7 @@
         "decorator-not-allowed": true,
         "pipe-impure": true,
         "templates-no-negated-async": true,
-        "trackBy-function": true,
+        "trackBy-function": false,
         "i18n": false,
         "no-attribute-parameter-decorator": true,
         "no-forward-ref": true,
@@ -326,7 +326,6 @@
         "angular-whitespace": [
             true,
             "check-interpolation",
-            "check-pipe",
             "check-semicolon"
         ],
         "component-class-suffix": [

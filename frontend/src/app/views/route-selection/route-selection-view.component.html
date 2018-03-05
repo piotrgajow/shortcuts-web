@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-content>
         <p>
-            Your trip took {{trip.duration | time}}. Which route was taken?
+            Your trip took {{ trip.duration | time }}. Which route was taken?
         </p>
     </mat-card-content>
 </mat-card>
@@ -16,7 +16,7 @@
             <mat-list-item *ngFor="let route of routes"
                            (click)="selectRoute(route)"
                            [class.mat-elevation-z4]="route === selectedRoute">
-                {{route.description}}
+                {{ route.description }}
             </mat-list-item>
         </mat-list>
     </mat-card-content>
