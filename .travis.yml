@@ -9,7 +9,7 @@ cache:
 jobs:
     include:
         - &backend-prepare
-          stage: Compilation
+          stage: Backend - Compilation
           jdk: oraclejdk8
           before_script: 
               - cd backend 
@@ -17,11 +17,11 @@ jobs:
               - chmod +x ./gradlew 
           script: ./grailsw compile
         - <<: *backend-prepare
-          stage: Static code analysis
+          stage: Backend - Static code analysis (Production)
           script: ./gradlew codenarcMain 
         - <<: *backend-prepare
-          stage: Static code analysis
+          stage: Backend - Static code analysis (Test)
           script: ./gradlew codenarcTest
         - <<: *backend-prepare
-          stage: Unit tests
+          stage: Backend - Unit tests
           script: ./gradlew test --stacktrace
