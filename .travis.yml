@@ -25,5 +25,11 @@ jobs:
         - <<: *backend-prepare
           stage: Backend - Unit tests
           script: ./gradlew test --stacktrace
-        - stage: Frontend - Static code analysis
+        - &frontend-prepare
+          stage: Frontend - Install
+          before_script:
+              - cd frontend
+          script: npm install
+        - <<: *frontend-prepare
+          stage: Frontend - Static code analysis
           script: npm run lint
