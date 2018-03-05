@@ -1,13 +1,19 @@
-import { TestBed, ComponentFixture, async, fakeAsync, tick, discardPeriodicTasks } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { async, ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { Router } from '@angular/router';
+
+import { LocalDateTime } from 'js-joda';
+
+import { Trip } from '../../domain/trip';
+import { TimePipe } from '../../pipes/time.pipe';
+import { TripService } from '../../services/trip.service';
+import { mockRouter, mockTripService } from '../../utils/test-mocks.spec';
 
 import { TripViewComponent } from './trip-view.component';
-import { LocalDateTime } from 'js-joda';
-import { TimePipe } from '../../pipes/time.pipe';
-import { mockRouter, mockTripService } from '../../utils/test-mocks.spec';
-import { Router } from '@angular/router';
-import { TripService } from '../../services/trip.service';
-import { Trip } from '../../domain/trip';
+
+const ONE_SECOND_MS = 1000;
+const ONE_SECOND = 1;
+const TWO_SECONDS = 2;
 
 describe('TripViewComponent', () => {
 
@@ -19,9 +25,6 @@ describe('TripViewComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            schemas: [
-                CUSTOM_ELEMENTS_SCHEMA,
-            ],
             declarations: [
                 TripViewComponent,
                 TimePipe,
@@ -30,7 +33,10 @@ describe('TripViewComponent', () => {
                 { provide: Router, useValue: mockRouter() },
                 { provide: TripService, useValue: mockTripService() },
             ],
-        }).compileComponents();
+            schemas: [
+                CUSTOM_ELEMENTS_SCHEMA,
+            ],
+        }).compileComponents().then().catch();
     }));
 
     beforeEach(() => {
@@ -46,7 +52,7 @@ describe('TripViewComponent', () => {
 
     it('should initialize constants', () => {
         expect(TripViewComponent.TIMER_DELAY).toEqual(0);
-        expect(TripViewComponent.TIMER_INTERVAL).toEqual(1000);
+        expect(TripViewComponent.TIMER_INTERVAL).toEqual(ONE_SECOND_MS);
     });
 
     it('should initialize trip', () => {
@@ -61,10 +67,10 @@ describe('TripViewComponent', () => {
             component.ngOnInit();
 
             expect(component.timerSubscription).toBeDefined();
-            tick(1000);
-            expect(component.trip.duration).toEqual(1);
-            tick(1000);
-            expect(component.trip.duration).toEqual(2);
+            tick(ONE_SECOND_MS);
+            expect(component.trip.duration).toEqual(ONE_SECOND);
+            tick(ONE_SECOND_MS);
+            expect(component.trip.duration).toEqual(TWO_SECONDS);
             discardPeriodicTasks();
         }));
 

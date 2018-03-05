@@ -145,7 +145,8 @@ describe('RouteSelectionViewComponent', () => {
         const newRoute = new Route({ id: 19, description });
 
         beforeEach(() => {
-            component.newRouteForm.get('description').setValue(routeData.description);
+            const control = component.newRouteForm.get('description');
+            control && control.setValue(routeData.description);
             routeService.saveRoute.and.returnValue(Promise.resolve(newRoute));
         });
 
