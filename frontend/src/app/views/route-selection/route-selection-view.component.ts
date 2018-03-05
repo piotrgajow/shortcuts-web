@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { Route } from '../../domain/route';
 import { Trip } from '../../domain/trip';
@@ -11,15 +11,15 @@ import { TripService } from '../../services/trip.service';
     templateUrl: './route-selection-view.component.html',
 })
 export class RouteSelectionViewComponent implements OnInit {
-    routes: Route[] = [];
+    routes: Array<Route> = [];
     selectedRoute: Route;
     trip: Trip;
     newRouteForm: FormGroup;
 
     constructor(
-        private router: Router,
-        private routeService: RouteService,
-        private tripService: TripService,
+        private readonly router: Router,
+        private readonly routeService: RouteService,
+        private readonly tripService: TripService,
     ) {
         const formControls: any = {};
         formControls.description = new FormControl('', []);
@@ -28,7 +28,9 @@ export class RouteSelectionViewComponent implements OnInit {
 
     ngOnInit(): void {
         this.trip = this.tripService.currentTrip;
-        this.routeService.getRoutes().then(routes => this.routes = routes);
+        this.routeService.getRoutes()
+            .then((routes) => this.routes = routes)
+            .catch();
     }
 
     selectRoute(route: Route): void {
@@ -37,7 +39,8 @@ export class RouteSelectionViewComponent implements OnInit {
 
     confirmSelection(): void {
         this.tripService.saveTrip(this.selectedRoute.id, this.trip)
-            .then(response => this.router.navigateByUrl(''));
+            .then((response) => this.router.navigateByUrl(''))
+            .catch();
     }
 
     addRoute(): void {
@@ -45,7 +48,8 @@ export class RouteSelectionViewComponent implements OnInit {
             .then((res) => {
                 this.newRouteForm.reset();
                 this.routes.push(res);
-            });
+            })
+            .catch();
     }
 
 }
