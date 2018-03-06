@@ -37,10 +37,10 @@ jobs:
               - npm -v
               - npm install -g --silent @angular/cli
               - npm install
-          script: npm build --prod
+          script: npm run build --prod
         - <<: *frontend-prepare
           stage: Frontend - Unit tests
-          script: npm test
+          script: npm run test
         - <<: *frontend-prepare
           stage: Frontend - Static code analysis
           script: npm run lint
