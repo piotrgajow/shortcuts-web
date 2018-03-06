@@ -1,11 +1,12 @@
-language: groovy node_js
+language: groovy
 
 cache:
     directories:
         - $HOME/.m2
         - $HOME/.grails
         - $HOME/.gradle
-        - "$HOME/.npm"
+        - $HOME/.npm
+        - $HOME/.nvm
 
 jobs:
     include:
