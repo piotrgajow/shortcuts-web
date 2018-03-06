@@ -6,7 +6,7 @@ cache:
         - $HOME/.grails
         - $HOME/.gradle
         - frontend/node_modules
-        
+
 jobs:
     include:
         - &backend-prepare
@@ -27,10 +27,12 @@ jobs:
           stage: Backend - Unit tests
           script: ./gradlew test --stacktrace
         - &frontend-prepare
-          stage: Frontend - Install
+          stage: Frontend - Build
           before_script:
               - cd frontend
-          script: npm install
+              - npm install -g --silent @angular/cli
+              - npm install
+          script: npm build --prod
         - <<: *frontend-prepare
           stage: Frontend - Static code analysis
           script: npm run lint
