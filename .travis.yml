@@ -1,4 +1,4 @@
-language: groovy
+language: groovy node_js
 
 cache:
     directories:
@@ -28,7 +28,8 @@ jobs:
           script: ./gradlew test --stacktrace
         - &frontend-prepare
           stage: Frontend - Build
-          node_js: 6
+          node_js: 
+              - 6
           before_script:
               - cd frontend
               - node -v
