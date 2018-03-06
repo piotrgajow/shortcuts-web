@@ -28,6 +28,7 @@ jobs:
           script: ./gradlew test --stacktrace
         - &frontend-prepare
           stage: Frontend - Build
+          node_js: 6
           before_script:
               - cd frontend
               - npm install -g --silent @angular/cli
