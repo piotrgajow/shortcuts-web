@@ -5,7 +5,7 @@ cache:
         - $HOME/.m2
         - $HOME/.grails
         - $HOME/.gradle
-        - frontend/node_modules
+        - "$HOME/.npm"
 
 jobs:
     include:
@@ -31,8 +31,10 @@ jobs:
           node_js: 6
           before_script:
               - cd frontend
+              - node -v
+              - npm -v
               - npm install -g --silent @angular/cli
-              - npm install
+              - npm ci
           script: npm build --prod
         - <<: *frontend-prepare
           stage: Frontend - Static code analysis
