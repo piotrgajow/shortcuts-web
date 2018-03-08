@@ -25,11 +25,12 @@
     "@angular/router": "5.2.0",
     "core-js": "2.5.3",
     "js-joda": "1.6.2",
+    "npm-merge-driver": "2.3.5",
     "rxjs": "5.5.6",
     "zone.js": "0.8.20"
   },
   "devDependencies": {
-    "@angular/cli": "1.6.4",
+    "@angular/cli": "1.6.5",
     "@angular/compiler-cli": "5.2.0",
     "@types/jasmine": "2.5.38",
     "@types/node": "6.0.96",
