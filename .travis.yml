@@ -25,3 +25,8 @@ jobs:
         - <<: *backend-prepare
           stage: Unit tests
           script: ./gradlew test --stacktrace
+        - stage: Build Frontend
+          script:
+              - cd Frontend
+              - npm ci
+              - npm run build
