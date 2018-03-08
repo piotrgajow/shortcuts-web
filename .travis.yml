@@ -1,5 +1,8 @@
 language: groovy
 
+sudo: required
+dist: trusty
+
 addons:
   chrome: stable
 
@@ -42,4 +45,7 @@ jobs:
           script: ./gradlew test --stacktrace
         - <<: *frontend-prepare
           stage: Unit tests
+          before_script:
+              - "sudo chown root /opt/google/chrome/chrome-sandbox"
+              - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
           script: npm run ci
