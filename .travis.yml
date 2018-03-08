@@ -5,37 +5,38 @@ cache:
         - $HOME/.m2
         - $HOME/.grails
         - $HOME/.gradle
+        - $HOME/.npm
 
 jobs:
     include:
         - &backend-prepare
-          stage: Backend - Compilation
+          stage: Compilation
           jdk: oraclejdk8
           before_script: 
               - cd backend 
               - chmod +x ./grailsw 
               - chmod +x ./gradlew 
           script: ./grailsw compile
-        - <<: *backend-prepare
-          stage: Backend - Static code analysis (Production)
-          script: ./gradlew codenarcMain 
-        - <<: *backend-prepare
-          stage: Backend - Static code analysis (Test)
-          script: ./gradlew codenarcTest
-        - <<: *backend-prepare
-          stage: Backend - Unit tests
-          script: ./gradlew test --stacktrace
         - &frontend-prepare
-          stage: Frontend - Build
+          stage: Compilation
           node_js:
               - 6
           before_script:
               - cd frontend
               - npm install
           script: npm run build --prod
+        - <<: *backend-prepare
+          stage: Static code analysis
+          script: ./gradlew codenarcMain 
+        - <<: *backend-prepare
+          stage: Static code analysis 
+          script: ./gradlew codenarcTest
         - <<: *frontend-prepare
-          stage: Frontend - Unit tests
-          script: npm run test
-        - <<: *frontend-prepare
-          stage: Frontend - Static code analysis
+          stage: Static code analysis
           script: npm run lint
+        - <<: *backend-prepare
+          stage: Unit tests
+          script: ./gradlew test --stacktrace
+        - <<: *frontend-prepare
+          stage: Unit tests
+          script: npm run test
