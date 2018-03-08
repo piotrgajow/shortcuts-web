@@ -28,6 +28,8 @@ jobs:
           node_js:
               - 6
           before_script:
+              - "sudo chown root /opt/google/chrome/chrome-sandbox"
+              - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
               - cd frontend
               - npm install
           script: npm run build --prod
@@ -45,7 +47,4 @@ jobs:
           script: ./gradlew test --stacktrace
         - <<: *frontend-prepare
           stage: Unit tests
-          before_script:
-              - "sudo chown root /opt/google/chrome/chrome-sandbox"
-              - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
           script: npm run ci
