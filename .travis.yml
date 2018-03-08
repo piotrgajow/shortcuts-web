@@ -39,4 +39,4 @@ jobs:
           script: ./gradlew test --stacktrace
         - <<: *frontend-prepare
           stage: Unit tests
-          script: npm run test
+          script: npm run ci
