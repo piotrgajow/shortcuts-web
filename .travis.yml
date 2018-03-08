@@ -17,6 +17,7 @@ jobs:
     include:
         - &backend-prepare
           stage: Compilation
+          env: DESC=backend
           jdk: oraclejdk8
           before_script: 
               - cd backend 
@@ -25,6 +26,7 @@ jobs:
           script: ./grailsw compile
         - &frontend-prepare
           stage: Compilation
+          env: DESC=frontend
           node_js:
               - 6
           before_script:
@@ -34,17 +36,22 @@ jobs:
               - npm install
           script: npm run build --prod
         - <<: *backend-prepare
+          env: DESC=backend-main
           stage: Static code analysis
           script: ./gradlew codenarcMain 
         - <<: *backend-prepare
+          env: DESC=backend-test
           stage: Static code analysis 
           script: ./gradlew codenarcTest
         - <<: *frontend-prepare
+          env: DESC=frontend
           stage: Static code analysis
           script: npm run lint
         - <<: *backend-prepare
+          env: DESC=backend
           stage: Unit tests
           script: ./gradlew test --stacktrace
         - <<: *frontend-prepare
+          env: DESC=frontend
           stage: Unit tests
           script: npm run ci
