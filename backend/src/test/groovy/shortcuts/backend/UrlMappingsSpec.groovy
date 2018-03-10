@@ -3,11 +3,13 @@ package shortcuts.backend
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 import spock.lang.Specification
+import spock.lang.Unroll
 
 @TestFor(UrlMappings)
 @Mock([RouteController, TripController])
 class UrlMappingsSpec extends Specification {
 
+    @Unroll
     void 'Test url mappings for route controller'() {
         given:
         request.method = method

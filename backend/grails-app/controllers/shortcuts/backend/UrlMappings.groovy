@@ -6,13 +6,10 @@ class UrlMappings {
 
         group '/route', {
 
-            '/'(controller: 'route') {
-                action = [POST: 'save', GET: 'index']
-            }
+            get '/'(controller: 'route', action: 'index')
+            post '/'(controller: 'route', action: 'save')
 
-            "/$routeId/trip"(controller: 'trip') {
-                action = [POST: 'save']
-            }
+            post "/$routeId/trip"(controller: 'trip', action: 'save')
 
         }
 
