@@ -3,4 +3,5 @@ databaseChangeLog = {
     include file: 'changes/createTripTable.sql'
     include file: 'changes/createTripPointTable.sql'
     include file: 'changes/simplifySchema.sql'
+    include file: 'changes/routeFromTo.sql'
 }
