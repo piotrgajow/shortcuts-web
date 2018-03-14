@@ -4,6 +4,8 @@ const route = {
     additionalProperties: false,
     properties: {
         id: { type: 'number' },
+        locationFrom: { type: 'string' },
+        locationTo: { type: 'string' },
         description: { type: 'string' }
     },
     required: ['id', 'description']

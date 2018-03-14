@@ -38,7 +38,7 @@ describe('Module: Routes', () => {
 
             it('should create new route', () => {
                 url = common.buildUrl(urlTemplate);
-                json = {description: 'New route'};
+                json = { locationFrom: 'Origin', locationTo: 'destination', description: 'New route' };
                 return chakram.post(url, json)
                     .then((res) => {
                         expect(res).to.have.status(201);
@@ -98,7 +98,7 @@ describe('Module: Routes', () => {
 });
 
 function setup() {
-    return db.executeQuery(`INSERT INTO route (description) VALUES ('Test'), ('Test 2');`);
+    return db.executeQuery(`INSERT INTO route (location_from, location_to, description) VALUES ('x', 'y', 'Test'), ('y', 'x', 'Test 2');`);
 }
 
 function cleanup() {
