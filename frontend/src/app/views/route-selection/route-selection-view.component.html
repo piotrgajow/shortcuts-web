@@ -38,6 +38,18 @@
         <form [formGroup]="newRouteForm">
             <mat-form-field>
                 <input matInput
+                       placeholder="Location from"
+                       formControlName="locationFrom"
+                       required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput
+                       placeholder="Location to"
+                       formControlName="locationTo"
+                       required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput
                        placeholder="Route description"
                        formControlName="description"
                        required>

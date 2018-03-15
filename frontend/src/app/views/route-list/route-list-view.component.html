@@ -2,7 +2,7 @@
     <mat-card-content>
         <mat-list *ngIf="routes.length">
             <mat-list-item *ngFor="let route of routes">
-                {{ route.description }}
+                {{ route.locationFrom }} -> {{ route.locationTo }} ({{ route.description }})
             </mat-list-item>
         </mat-list>
         <h3 *ngIf="!routes.length">

@@ -141,12 +141,13 @@ describe('RouteSelectionViewComponent', () => {
     describe('addRoute', () => {
 
         const description = 'Test description';
-        const routeData = { description };
-        const newRoute = new Route({ id: 19, description });
+        const locationFrom = 'Origin';
+        const locationTo = 'Destination';
+        const routeData = { locationFrom, locationTo, description };
+        const newRoute = new Route({ id: 19, locationFrom, locationTo, description });
 
         beforeEach(() => {
-            const control = component.newRouteForm.get('description');
-            control && control.setValue(routeData.description);
+            component.newRouteForm.patchValue(routeData);
             routeService.saveRoute.and.returnValue(Promise.resolve(newRoute));
         });
 
