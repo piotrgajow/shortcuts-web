@@ -23,6 +23,8 @@ export class RouteSelectionViewComponent implements OnInit {
     ) {
         const formControls: any = {};
         formControls.description = new FormControl('', []);
+        formControls.locationFrom = new FormControl('', []);
+        formControls.locationTo = new FormControl('', []);
         this.newRouteForm = new FormGroup(formControls);
     }
 

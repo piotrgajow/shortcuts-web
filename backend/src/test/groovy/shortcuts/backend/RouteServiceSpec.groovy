@@ -21,7 +21,7 @@ class RouteServiceSpec extends Specification {
         route.description == routeJson.description
 
         where:
-        routeJson = [description: 'test']
+        routeJson = [description: 'test', locationFrom: 'origin', locationTo: 'destination']
     }
 
     void 'getAllRoutes should return all routes'() {
