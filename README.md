@@ -127,6 +127,6 @@ Please report any issues and feature requests on the [issue page of this reposit
   cp ~/shortcuts-api.war /var/lib/tomcat8/webapps/shortcuts-api.war
   ```
   ```
-  rm /var/lib/tomcat8/webapps/ROOT/*
-  cp ~/shortcuts-dist/* /var/lib/tomcat8/webapps/ROOT/
+  rm /var/lib/tomcat8/webapps/shortcuts/*
+  cp ~/shortcuts-dist/* /var/lib/tomcat8/webapps/shortcuts/
   ```
