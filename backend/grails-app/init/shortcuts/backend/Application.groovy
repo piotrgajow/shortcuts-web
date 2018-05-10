@@ -5,6 +5,7 @@ import grails.boot.config.GrailsAutoConfiguration
 import org.springframework.context.EnvironmentAware
 import org.springframework.core.env.Environment
 import org.springframework.core.env.MapPropertySource
+import util.ConfigurationLoader
 
 class Application extends GrailsAutoConfiguration implements EnvironmentAware {
 
@@ -14,11 +15,7 @@ class Application extends GrailsAutoConfiguration implements EnvironmentAware {
 
     @Override
     void setEnvironment(Environment environment) {
-        def externalConfigFile = new File('/home/tomcat/shortcuts', 'application.groovy')
-        if (externalConfigFile.exists()) {
-            def externalConfig = new ConfigSlurper().parse(externalConfigFile.toURI().toURL())
-            environment.propertySources.addFirst(new MapPropertySource("ExternalConfig", externalConfig))
-        }
+        ConfigurationLoader.loadFromFile(environment, new File('/home/tomcat/shortcuts', 'application.groovy'))
     }
 
 }
