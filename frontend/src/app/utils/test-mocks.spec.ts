@@ -1,5 +1,7 @@
+import { Observable } from 'rxjs/Observable';
+
 export function mockRouter(): any {
-    return jasmine.createSpyObj('Router', ['navigateByUrl']);
+    return jasmine.createSpyObj('Router', ['navigateByUrl', 'navigate']);
 }
 
 export function mockBackendService(): any {
@@ -12,4 +14,10 @@ export function mockRouteService(): any {
 
 export function mockTripService(): any {
     return jasmine.createSpyObj('TripService', ['saveTrip']);
+}
+
+export function mockActivatedRoute(): any {
+    return {
+        params: Observable.of({}),
+    };
 }

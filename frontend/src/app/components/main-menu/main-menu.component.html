@@ -1,14 +1,20 @@
 <mat-toolbar color="primary">
-    <a mat-button
-       routerLink="/">
+    <a
+        mat-button
+        routerLink="/"
+    >
         Shortcuts
     </a>
-    <a mat-button
-       routerLink="/newTrip">
+    <a
+        mat-button
+        (click)="startTrip()"
+    >
         Start trip
     </a>
-    <a mat-button
-       routerLink="/routes">
+    <a
+        mat-button
+        routerLink="/routes"
+    >
         Routes
     </a>
 </mat-toolbar>
