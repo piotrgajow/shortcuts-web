@@ -39,7 +39,9 @@ ruleset {
             regex = /(build.*|make.*)/
         }
     }
-    ruleset('rulesets/security.xml')
+    ruleset('rulesets/security.xml') {
+        exclude 'JavaIoPackageAccess'
+    }
     ruleset('rulesets/serialization.xml')
     ruleset('rulesets/size.xml') {
         exclude 'CrapMetric' // Disabled due to Cobertura issues in CodeNarc
