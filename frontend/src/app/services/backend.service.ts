@@ -3,10 +3,12 @@ import { Injectable } from '@angular/core';
 
 import 'rxjs/add/operator/toPromise';
 
+import { environment } from '../../environments/environment';
+
 @Injectable()
 export class BackendService {
 
-    private static readonly BASE_URL = 'http://localhost:8080';
+    private static readonly BASE_URL = environment.backendBaseUrl;
 
     constructor(
         private readonly httpClient: HttpClient,

@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --env=prod --base-href=/shortcuts/",
     "test": "ng test",
     "ci": "ng test --single-run --browsers ChromeHeadless",
     "lint": "ng lint",
