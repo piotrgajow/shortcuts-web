@@ -8,7 +8,7 @@ import { RouteSelectionViewComponent } from './views/route-selection/route-selec
 import { TripViewComponent } from './views/trip/trip-view.component';
 
 export const routes: Routes = [
-    { path: 'newTrip', component: TripViewComponent },
+    { path: 'newTrip/:startTime', component: TripViewComponent },
     { path: 'selectRoute', component: RouteSelectionViewComponent },
     { path: 'routes', component: RouteListViewComponent },
     { path: '', redirectTo: '/routes', pathMatch: 'full' },

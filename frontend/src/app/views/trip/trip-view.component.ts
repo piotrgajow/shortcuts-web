@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { LocalDateTime } from 'js-joda';
+import { Duration, LocalDateTime } from 'js-joda';
 import { Observable, Subscription } from 'rxjs/Rx';
 
 import { Trip } from '../../domain/trip';
@@ -18,18 +18,21 @@ export class TripViewComponent implements OnInit, OnDestroy {
     timerSubscription: Subscription;
 
     constructor(
+        private readonly activatedRoute: ActivatedRoute,
         private readonly router: Router,
         private readonly tripService: TripService,
     ) {
-        this.trip = new Trip();
-        this.trip.startTime = LocalDateTime.now();
-        this.trip.duration = 0;
     }
 
     ngOnInit(): void {
-        const timer = Observable.timer(TripViewComponent.TIMER_DELAY, TripViewComponent.TIMER_INTERVAL);
-        this.timerSubscription = timer.subscribe((t) => {
-            this.trip.duration = t;
+        this.activatedRoute.params.subscribe((params) => {
+            this.trip = new Trip();
+            this.trip.duration = 0;
+            this.trip.startTime = LocalDateTime.parse(params.startTime);
+            const timer = Observable.timer(TripViewComponent.TIMER_DELAY, TripViewComponent.TIMER_INTERVAL);
+            this.timerSubscription = timer.subscribe(() => {
+                this.trip.duration = Duration.between(this.trip.startTime, LocalDateTime.now()).seconds();
+            });
         });
     }
 
