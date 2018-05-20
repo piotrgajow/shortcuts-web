@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import 'rxjs/add/operator/toPromise';
-
 import { environment } from '../../environments/environment';
 
 @Injectable()

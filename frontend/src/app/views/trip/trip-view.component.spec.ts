@@ -31,7 +31,7 @@ describe('TripViewComponent', () => {
             ],
             providers: [
                 { provide: Router, useValue: mockRouter() },
-                { provide: TripService, useValue: mockTripService() },
+                { provide: TripService, useValue: mockTripService(new Trip()) },
             ],
             schemas: [
                 CUSTOM_ELEMENTS_SCHEMA,

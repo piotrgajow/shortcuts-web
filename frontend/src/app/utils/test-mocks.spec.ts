@@ -1,3 +1,4 @@
+import { Trip } from '../domain/trip';
 export function mockRouter(): any {
     return jasmine.createSpyObj('Router', ['navigateByUrl']);
 }
@@ -10,6 +11,9 @@ export function mockRouteService(): any {
     return jasmine.createSpyObj('RouteService', ['getRoutes', 'saveRoute']);
 }
 
-export function mockTripService(): any {
-    return jasmine.createSpyObj('TripService', ['saveTrip']);
+export function mockTripService(trip: Trip): any {
+    const service = jasmine.createSpyObj('TripService', ['saveTrip']);
+    service.currentTrip = trip;
+
+    return service;
 }
