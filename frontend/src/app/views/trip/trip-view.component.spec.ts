@@ -1,9 +1,9 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 
 import { LocalDateTime } from 'js-joda';
+import { of } from 'rxjs/internal/observable/of';
 
 import { Trip } from '../../domain/trip';
 import { TimePipe } from '../../pipes/time.pipe';
@@ -33,7 +33,7 @@ describe('TripViewComponent', () => {
             ],
             providers: [
                 { provide: Router, useValue: mockRouter() },
-                { provide: TripService, useValue: mockTripService() },
+                { provide: TripService, useValue: mockTripService(new Trip()) },
                 { provide: ActivatedRoute, useValue: mockActivatedRoute() },
             ],
             schemas: [
@@ -64,7 +64,7 @@ describe('TripViewComponent', () => {
         const startTime = LocalDateTime.now();
 
         beforeEach(() => {
-            activatedRoute.params = Observable.of({ startTime: startTime.toString() });
+            activatedRoute.params = of({ startTime: startTime.toString() });
         });
 
         it('should initialize the trip', fakeAsync(() => {

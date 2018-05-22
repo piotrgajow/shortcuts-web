@@ -7,7 +7,7 @@ import { RouteService } from '../../services/route.service';
     templateUrl: './route-list-view.component.html',
 })
 export class RouteListViewComponent implements OnInit {
-    routes: Array<Route>;
+    routes: Array<Route> = [];
 
     constructor(
         private readonly routeService: RouteService,

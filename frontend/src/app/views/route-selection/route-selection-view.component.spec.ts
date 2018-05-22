@@ -3,6 +3,8 @@ import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { LocalDateTime } from 'js-joda';
+
 import { Route } from '../../domain/route';
 import { Trip } from '../../domain/trip';
 import { TimePipe } from '../../pipes/time.pipe';
@@ -21,6 +23,8 @@ describe('RouteSelectionViewComponent', () => {
     let routeService: any;
     let tripService: any;
 
+    const trip = new Trip();
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
@@ -33,7 +37,7 @@ describe('RouteSelectionViewComponent', () => {
             providers: [
                 { provide: Router, useValue: mockRouter() },
                 { provide: RouteService, useValue: mockRouteService() },
-                { provide: TripService, useValue: mockTripService() },
+                { provide: TripService, useValue: mockTripService(trip) },
             ],
             schemas: [
                 CUSTOM_ELEMENTS_SCHEMA,
@@ -58,21 +62,16 @@ describe('RouteSelectionViewComponent', () => {
         expect(component.newRouteForm.get('description')).toBeDefined();
     });
 
+    it('should initialize trip based on tripService.currentTrip', () => {
+        expect(component.trip).toEqual(trip);
+    });
+
     describe('ngOnInit', () => {
 
         const routes = [new Route()];
 
         beforeEach(() => {
             routeService.getRoutes.and.returnValue(Promise.resolve(routes));
-        });
-
-        it('should set tip based on tripService.currentTrip', () => {
-            const trip = { test: 'trip' };
-            tripService.currentTrip = trip;
-
-            component.ngOnInit();
-
-            expect(component.trip).toEqual(trip);
         });
 
         it('should call routeService.getRoutes', () => {
@@ -111,7 +110,6 @@ describe('RouteSelectionViewComponent', () => {
     describe('confirmSelection', () => {
 
         const routeId = 19;
-        const trip = new Trip();
 
         beforeEach(() => {
             component.selectedRoute = new Route();

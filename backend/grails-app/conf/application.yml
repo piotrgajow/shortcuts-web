@@ -11,7 +11,7 @@ grails:
         autoFlush: true
     cors:
         enabled: true
-        allowedOrigins: ['http://localhost:*']
+        allowedOrigins: ['http://localhost:4200']
 info:
     app:
         name: '@info.app.name@'

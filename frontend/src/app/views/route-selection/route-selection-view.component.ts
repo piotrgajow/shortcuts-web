@@ -12,7 +12,7 @@ import { TripService } from '../../services/trip.service';
 })
 export class RouteSelectionViewComponent implements OnInit {
     routes: Array<Route> = [];
-    selectedRoute: Route;
+    selectedRoute: Route | undefined;
     trip: Trip;
     newRouteForm: FormGroup;
 
@@ -26,10 +26,10 @@ export class RouteSelectionViewComponent implements OnInit {
         formControls.locationFrom = new FormControl('', []);
         formControls.locationTo = new FormControl('', []);
         this.newRouteForm = new FormGroup(formControls);
+        this.trip = this.tripService.currentTrip;
     }
 
     ngOnInit(): void {
-        this.trip = this.tripService.currentTrip;
         this.routeService.getRoutes()
             .then((routes) => this.routes = routes)
             .catch();
@@ -40,7 +40,11 @@ export class RouteSelectionViewComponent implements OnInit {
     }
 
     confirmSelection(): void {
-        this.tripService.saveTrip(this.selectedRoute.id, this.trip)
+        const routeId = this.selectedRoute && this.selectedRoute.id;
+        if (!routeId) {
+            throw new Error('No route selected');
+        }
+        this.tripService.saveTrip(routeId, this.trip)
             .then((response) => this.router.navigateByUrl(''))
             .catch();
     }
