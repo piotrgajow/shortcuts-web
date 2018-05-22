@@ -11,7 +11,7 @@ describe('Url routing', () => {
     });
 
     [
-        { url: 'newTrip', componentName: 'TripViewComponent' },
+        { url: 'newTrip/:startTime', componentName: 'TripViewComponent' },
         { url: 'selectRoute', componentName: 'RouteSelectionViewComponent' },
         { url: 'routes', componentName: 'RouteListViewComponent' },
     ].forEach((testCase) => {

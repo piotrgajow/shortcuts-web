@@ -1,13 +1,14 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { LocalDateTime } from 'js-joda';
+import { of } from 'rxjs/internal/observable/of';
 
 import { Trip } from '../../domain/trip';
 import { TimePipe } from '../../pipes/time.pipe';
 import { TripService } from '../../services/trip.service';
-import { mockRouter, mockTripService } from '../../utils/test-mocks.spec';
+import { mockActivatedRoute, mockRouter, mockTripService } from '../../utils/test-mocks.spec';
 
 import { TripViewComponent } from './trip-view.component';
 
@@ -22,6 +23,7 @@ describe('TripViewComponent', () => {
 
     let router: any;
     let tripService: any;
+    let activatedRoute: any;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -32,6 +34,7 @@ describe('TripViewComponent', () => {
             providers: [
                 { provide: Router, useValue: mockRouter() },
                 { provide: TripService, useValue: mockTripService(new Trip()) },
+                { provide: ActivatedRoute, useValue: mockActivatedRoute() },
             ],
             schemas: [
                 CUSTOM_ELEMENTS_SCHEMA,
@@ -43,7 +46,8 @@ describe('TripViewComponent', () => {
         fixture = TestBed.createComponent(TripViewComponent);
         component = fixture.debugElement.componentInstance;
         router = fixture.debugElement.injector.get(Router);
-        tripService =  fixture.debugElement.injector.get(TripService);
+        tripService = fixture.debugElement.injector.get(TripService);
+        activatedRoute = fixture.debugElement.injector.get(ActivatedRoute);
     });
 
     it('Should create the component', () => {
@@ -55,22 +59,28 @@ describe('TripViewComponent', () => {
         expect(TripViewComponent.TIMER_INTERVAL).toEqual(ONE_SECOND_MS);
     });
 
-    it('should initialize trip', () => {
-        expect(component.trip).toBeDefined();
-        expect(component.trip.startTime.withNano(0)).toEqual(LocalDateTime.now().withNano(0));
-        expect(component.trip.duration).toEqual(0);
-    });
-
     describe('ngOnInit', () => {
+
+        const startTime = LocalDateTime.now();
+
+        beforeEach(() => {
+            activatedRoute.params = of({ startTime: startTime.toString() });
+        });
+
+        it('should initialize the trip', fakeAsync(() => {
+            component.ngOnInit();
+            tick();
+
+            expect(component.trip).toBeDefined();
+            expect(component.trip.startTime).toEqual(startTime);
+            discardPeriodicTasks();
+        }));
 
         it('should set timer', fakeAsync(() => {
             component.ngOnInit();
+            tick();
 
             expect(component.timerSubscription).toBeDefined();
-            tick(ONE_SECOND_MS);
-            expect(component.trip.duration).toEqual(ONE_SECOND);
-            tick(ONE_SECOND_MS);
-            expect(component.trip.duration).toEqual(TWO_SECONDS);
             discardPeriodicTasks();
         }));
 
