@@ -13,15 +13,25 @@ class UrlMappingsSpec extends Specification {
     void 'Test url mappings for route controller'() {
         given:
         request.method = method
+        Map controllerAction = [controller: controllerName, action: actionName]
+        Closure parameterAssertions = createParamAssertions(expectedParameterValues)
 
         expect:
-        assertForwardUrlMapping([controller: controllerName, action: actionName, method: method], url, parameters)
+        assertForwardUrlMapping(controllerAction, url, parameterAssertions)
 
         where:
-        url              | method | controllerName | actionName | parameters
-        '/route'         | 'GET'  | 'route'        | 'index'    | { }
-        '/route'         | 'POST' | 'route'        | 'save'     | { }
-        '/route/15/trip' | 'POST' | 'trip'         | 'save'     | { routeId = '15' }
+        url              | method | controllerName | actionName | expectedParameterValues
+        '/route'         | 'GET'  | 'route'        | 'index'    | [:]
+        '/route'         | 'POST' | 'route'        | 'save'     | [:]
+        '/route/15/trip' | 'POST' | 'trip'         | 'save'     | [routeId: 15]
+    }
+
+    private static Closure createParamAssertions(Map expectedParameterValues) {
+        return {
+            expectedParameterValues.each { parameterName, expectedValue ->
+                delegate."${parameterName}" = "${expectedValue}"
+            }
+        }
     }
 
 }
