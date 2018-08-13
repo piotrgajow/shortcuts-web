@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "start-external": "ng serve --host 192.168.0.251 --disable-host-check",
-    "build": "ng build --env=prod --base-href=/shortcuts/",
+    "build": "ng build --prod --base-href=/shortcuts/",
     "test": "ng test",
     "ci": "ng test --single-run --browsers ChromeHeadless",
     "lint": "ng lint",
